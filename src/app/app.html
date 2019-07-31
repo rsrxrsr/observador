@@ -1,0 +1,39 @@
+<ion-menu id="menuMain" [content]="mycontent">
+    <ion-content>
+      <ion-list>
+        <p>some menu content, could be list items</p>
+        <button ion-item (click)="openPage('UsuariosPage')" menuClose>Usuarios</button>
+        <button ion-item (click)="openPage('menuCatalogos')" menuClose>Catalogos</button>
+        <button ion-item (click)="openPage('menuEncuestas')" menuClose>Encuestas</button>
+        <button ion-item menuClose>Acciones</button>
+        <button ion-item menuClose (click)="openPage('TabsPage')">Tablero</button>
+        <button ion-item (click)="openPage('WelcomePage')" menuClose>Logout</button>
+      </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-menu id="menuCatalogos" [content]="mycontent" persistent=true>
+    <ion-content>
+      <ion-list>
+        <p>some menu content, could be list items</p>
+        <button ion-item (click)="openPage('EstadosPage')" menuClose>Estados</button>
+        <button ion-item (click)="openPage('MunicipiosPage')" menuClose>Municipios</button>
+        <button ion-item (click)="openPage('ClasesPage')" menuClose>Clasificador</button>
+        <button ion-item (click)="openPage('HomePage')" menuClose>Close Menu</button>
+      </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-menu id="menuEncuestas" [content]="mycontent" persistent=true>
+    <ion-content>
+      <ion-list>
+        <p>some menu content, could be list items</p>
+        <button ion-item (click)="openRollPage('EncuestasPage','encuestas')" menuClose>Encuestas</button>
+        <button ion-item (click)="openRollPage('EncuestasPage','preguntas')" menuClose>Preguntas</button>
+        <button ion-item (click)="openRollPage('EncuestasPage','opciones')" menuClose>Opciones</button>
+        <button ion-item (click)="openPage('HomePage')" menuClose>Close Menu</button>
+      </ion-list>
+    </ion-content>
+</ion-menu>
+ 
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

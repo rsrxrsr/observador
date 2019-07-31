@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Municipio</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+<!-- -->
+            <ion-item>
+              <ion-label>Estados</ion-label>
+              <ion-select [(ngModel)]="itemPadre.id" name="id">
+                <ion-option *ngFor="let opcion of servicioFirebase.modelo[padre]" [value]="opcion.id">{{opcion.estado}}</ion-option>                 
+              </ion-select>
+            </ion-item>
+<!-- -->
+            <ion-item>
+              <ion-input type="text" placeholder="cvMunicipio" name="cvMunicipio" [(ngModel)]="doc.cvMunicipio" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="municipio" name="municipio" [(ngModel)]="doc.municipio" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-col" *ngIf="!isUpdate">
+          <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+        </ion-col>
+        <ion-col class="ion-col" *ngIf="isUpdate">
+          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+        </ion-col>
+        <ion-col class="ion-col" *ngIf="isUpdate">
+          <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+</ion-content>

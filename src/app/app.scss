@@ -1,0 +1,96 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.correcto{
+    color: rgb(27, 228, 27);
+  }
+  
+  .error{
+    color: red;
+  }
+  
+  ion-card{
+    padding: 7px;
+  }
+
+  .lineaAbajo{
+    border-bottom: 1px solid rgb(173, 173, 173);
+  }
+
+  .lineaArriba{
+    border-top: 1px solid rgb(173, 173, 173);
+  }
+
+  .pull-right{
+    right: 0px;
+  }
+
+  .pull-left{
+    left: 0px;
+  }
+
+  .titulo{
+    background-color: #113168;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .subTitulo{
+    color: black;
+    font-weight: bold;
+  }
+
+  .fondoGris{
+    background-color: rgb(243, 243, 243);
+  }
+
+  // imagen
+  .avatar{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+  }
+  
+  // imagen
+  .avatarGrande{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+  }
+
+  .fecha{
+    color: #b9b9b9;
+  }
+
+  .gris{
+    color: #b9b9b9;
+  }
+
+  .external{
+    background-color: rgb(26, 26, 48);
+    color: white;
+  }
+
+  .logo {
+    width: 80%;
+    height: 140px;
+    margin: 20px auto 0;
+    background: url("../assets/imgs/logo_cadex.png") no-repeat;
+    background-size: 100%;
+  }

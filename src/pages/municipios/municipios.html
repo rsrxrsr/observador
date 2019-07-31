@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle="menuCatalogos">
+          <ion-icon name="menu"></ion-icon>
+      </button>  
+    <ion-title>Municipios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- -->
+    <div *ngIf="this.servicioFirebase.modelo[padre] == 0">
+      <ion-item>No hay información</ion-item>
+    </div>
+    <!-- --> 
+
+    <ion-fab bottom right>
+      <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+    </ion-fab> 
+
+    <ng-container *ngFor="let padre of servicioFirebase.modelo[padre]; let idx=index" >
+      <div *ngFor="let item of padre[coleccion]" (click)="selectRow($event, item, idx)">     
+        <ion-row no-padding>
+          <ion-col text-right>
+            {{ padre.cvEstado }}
+          </ion-col>
+<!-- -->
+          <ion-col text-right>
+            {{ item.cvMunicipio }}
+          </ion-col>
+ <!-- -->
+        </ion-row>
+      </div>      
+  </ng-container>
+</ion-content>

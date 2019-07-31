@@ -1,0 +1,41 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Opción</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+        <h4>{{doc.item.item.encuesta}}</h4>  
+        <h5>{{doc.item.pregunta}}</h5>  
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <ion-item>
+                <ion-input type="text" placeholder="opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" placeholder="Tipo" name="Tipo" [(ngModel)]="doc.tipo" required></ion-input>
+              </ion-item>
+  
+            </ion-list>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col class="ion-col" *ngIf="!isUpdate">
+            <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+          </ion-col>
+          <ion-col class="ion-col" *ngIf="isUpdate">
+            <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+          </ion-col>
+          <ion-col class="ion-col" *ngIf="isUpdate">
+            <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+          </ion-col>
+        </ion-row>
+  
+      </form>
+  </ion-content>

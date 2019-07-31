@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Recursos Cel Media
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="foto" *ngIf="foto">
+  <ion-fab top left>
+    <button (click)="getLocation()" ion-fab mini><ion-icon name="map"></ion-icon></button>
+  </ion-fab> 
+  <ion-fab top right>
+    <button (click)="getFoto()" ion-fab mini><ion-icon name="camera"></ion-icon></button>
+  </ion-fab>
+  <input type="file" (change)="fileUpload($event)">
+  <br><br><br><br>     
+  <img [src]="foto" *ngIf="foto">
+  <div *ngIf="imagen">
+    Imagen:<br>
+    <img [src]="imagen" width="100%" height="100%" alt="Imagen" />
+  </div>
+  <p>
+     Latitude: {{latitud}} Longitud: {{longitud}}
+  </p>
+  
+</ion-content>
