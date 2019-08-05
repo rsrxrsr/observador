@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle="menuMain">
+          <ion-icon name="menu"></ion-icon>
+      </button>  
+    <ion-title>Casos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-content padding>
+      <!-- -->
+        <div *ngIf="this.servicioDb.modelo[coleccion] == 0">
+          <ion-item>No hay información</ion-item>
+        </div>
+       <!-- --> 
+
+        <ion-fab bottom right>
+          <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+        </ion-fab>      
+
+        <div *ngFor="let item of this.servicioDb.modelo[coleccion]" (click)="selectRow($event, item)" text-wrap>
+          <ion-row no-padding>
+<!-- -->           
+            <ion-col text-right>
+                {{ item.id }}
+            </ion-col>
+<!-- -->
+            <ion-col text-right>
+              {{ item.descripcion}}
+            </ion-col>
+<!--
+            <ion-col text-right>
+              {{ item.casos }}
+            </ion-col>
+-->
+          </ion-row>
+        </div>
+      </ion-content>
+</ion-content>

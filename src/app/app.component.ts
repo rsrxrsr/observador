@@ -15,6 +15,7 @@ import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
 import { EncuestasPage } from '../pages/encuestas/encuestas';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionesPage } from '../pages/opciones/opciones';
+import { CasosPage } from '../pages/casos/casos';
 
 @Component({
   templateUrl: 'app.html'
@@ -58,6 +59,7 @@ export class MyApp {
         'EncuestasPage'  : EncuestasPage,
         'PreguntasPage'  : PreguntasPage,
         'OpcionesPage'   : OpcionesPage,
+        'CasosPage'      : CasosPage,
       }
   }
 

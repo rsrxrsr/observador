@@ -7,9 +7,11 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { CONEXION_BD } from './ambiente';
 import { ServicioFirebase } from '../servicios/firebase.servicio';
+import { ServicioDb } from '../servicios/db.servicio';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import { HttpClientModule } from '@angular/common/http';
 //import { Chart } from 'chart.js';
 
 import { LoginPageModule } from '../pages/login/login.module';
@@ -39,6 +41,7 @@ import { PreguntaPage } from '../pages/pregunta/pregunta';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionPage } from '../pages/opcion/opcion';
 import { OpcionesPage } from '../pages/opciones/opciones';
+import { CasosPage } from '../pages/casos/casos';
 import { TableroPage } from '../pages/tablero/tablero';
 import { MapaPage } from '../pages/mapa/mapa';
 
@@ -69,12 +72,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PreguntasPage,
     OpcionPage,
     OpcionesPage,
+    CasosPage,
     TableroPage,
     MapaPage
   ],
   exports:[],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(CONEXION_BD.firebase),
     AngularFirestoreModule,
@@ -109,15 +114,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PreguntasPage,
     OpcionPage,
     OpcionesPage,
+    CasosPage,
     TableroPage,
     MapaPage
-
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServicioFirebase,
+    ServicioDb,
     Camera,
     Geolocation
   ]
