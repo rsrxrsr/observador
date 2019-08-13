@@ -5,6 +5,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 //import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavParams } from 'ionic-angular';
+
 
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 @Component({
@@ -20,14 +22,22 @@ export class CamaraPage {
   latitud: any;
   longitud: any;
   currentImage:any;
-
+  doc:any;
+  url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Faccidente.jpg?alt=media&token=abf0dad0-e73c-464c-a1d6-7554cc4969d9";
+  url2="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Fevidencia2.jpg?alt=media&token=ad01a848-902f-4c5f-bd51-1ebe8e1d1cf9";
+  url3="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Fevidencia3.jpg?alt=media&token=c58e01ba-80c3-4cd7-b344-c454a43cc321";
+  url4="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Fevidencia4.jpg?alt=media&token=74f7de70-2136-47ce-af92-78a63921c729";
   constructor(
     private camera : Camera,
     private geolocation: Geolocation,
     private servicioFirebase : ServicioFirebase,
-    private sanitizer : DomSanitizer
+    private sanitizer : DomSanitizer,
+    public navParams:NavParams
   //  private videoCapturePlus: VideoCapturePlus) 
-  ){}
+  ){
+    this.doc = navParams.data;
+    this.url2 =this.doc.urlPhoto;
+  }
 
   getEvidencia() {
     this.getFoto();

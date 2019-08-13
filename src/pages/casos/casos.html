@@ -3,38 +3,127 @@
       <button ion-button menuToggle="menuMain">
           <ion-icon name="menu"></ion-icon>
       </button>  
-    <ion-title>Casos</ion-title>
+    <ion-title>Listado de Casos</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-content padding>
-      <!-- -->
-        <div *ngIf="this.servicioDb.modelo[coleccion] == 0">
-          <ion-item>No hay información</ion-item>
-        </div>
-       <!-- --> 
-
-        <ion-fab bottom right>
-          <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
-        </ion-fab>      
-
-        <div *ngFor="let item of this.servicioDb.modelo[coleccion]" (click)="selectRow($event, item)" text-wrap>
-          <ion-row no-padding>
-<!-- -->           
-            <ion-col text-right>
-                {{ item.id }}
-            </ion-col>
-<!-- -->
-            <ion-col text-right>
-              {{ item.descripcion}}
-            </ion-col>
+<ion-content padding class="tema-app">
+<!--   <div *ngIf="this.servicioDb.modelo[coleccion] == 0"> -->
+  <div *ngIf="this.servicioFirebase.modelo[coleccion] == 0">
+    <ion-item>No hay información</ion-item>
+  </div>
 <!--
-            <ion-col text-right>
-              {{ item.casos }}
-            </ion-col>
+  <ion-fab bottom right>
+    <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>      
 -->
-          </ion-row>
-        </div>
-      </ion-content>
+<ion-grid>
+    <ion-row no-padding class="hdr">
+      <ion-col >
+        Caso
+      </ion-col>
+      <ion-col >
+        Fecha
+      </ion-col>
+      <ion-col >
+        Clasificación
+      </ion-col>
+      <ion-col >
+        Municipio
+      </ion-col>
+      <ion-col>
+        Descripción
+      </ion-col>
+      <ion-col>
+      </ion-col> 
+    </ion-row>
+    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];first as isFirst" (click)="selectRow($event, item)" text-wrap>
+    <ion-row no-padding class="first" *ngIf="isFirst">
+        <!--           
+      <ion-col text-right>
+        {{ item.id }}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.dateCancellation}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.dateClose}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.dateUpgrade}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.address}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.idObserver}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.latitude}}
+      </ion-col>
+      <ion-col text-right>
+        {{ item.longitude}}
+      </ion-col>
+-->         
+      <ion-col >
+        {{ item.idCase}}
+      </ion-col>
+      <ion-col >
+        {{ item.dateCreation}}
+      </ion-col>
+      <ion-col >
+        {{ item.idClassification}}
+      </ion-col>
+      <ion-col >
+        {{ item.municipio}}
+      </ion-col>
+      <ion-col >
+        {{ item.description}}
+      </ion-col>
+      <ion-col>
+        <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
+      </ion-col> 
+  </ion-row>
+  <ion-row no-padding class="even" *ngIf="!isEvent">
+    <ion-col >
+      {{ item.idCase}}
+    </ion-col>
+    <ion-col >
+      {{ item.dateCreation}}
+    </ion-col>
+    <ion-col >
+      {{ item.idClassification}}
+    </ion-col>
+    <ion-col >
+      {{ item.municipio}}
+    </ion-col>
+    <ion-col >
+      {{ item.description}}
+    </ion-col>
+    <ion-col>
+      <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
+    </ion-col> 
+</ion-row>
+<ion-row no-padding *ngIf="!(isFirst && isEvent)">
+    <ion-col >
+      {{ item.idCase}}
+    </ion-col>
+    <ion-col >
+      {{ item.dateCreation}}
+    </ion-col>
+    <ion-col >
+      {{ item.idClassification}}
+    </ion-col>
+    <ion-col >
+      {{ item.municipio}}
+    </ion-col>
+    <ion-col >
+      {{ item.description}}
+    </ion-col>
+    <ion-col>
+      <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
+    </ion-col> 
+</ion-row>
+</div>
+ </ion-grid>
 </ion-content>

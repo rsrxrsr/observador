@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
-@IonicPage()
-@Component({
-  selector: 'page-usuario',
-  templateUrl: 'usuario.html',
-})
-export class UsuarioPage {
+import { CasosPage } from '../casos/casos';
 
-  coleccion="usuarios";
+@Component({
+  selector: 'page-caso',
+  templateUrl: 'caso.html'
+})
+export class CasoPage {
+
+  coleccion="caso";
   isUpdate=false; 
   createSuccess = false;
-  forma = {id:'', confirmation_password: '' };
-  doc = { id: "",pass:""};
+  doc={id:''};
+  //url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Ffile.jpg?alt=media&token=93a10744-7775-4ea3-b1ae-bfb9740dccda";
+  url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Faccidente.jpg?alt=media&token=abf0dad0-e73c-464c-a1d6-7554cc4969d9";
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -21,40 +23,25 @@ export class UsuarioPage {
     public navParams: NavParams,
     private alertCtrl: AlertController
     ) {
+      if (navParams.data) {
+        this.isUpdate = true;
+        this.doc = navParams.data;
+      } else
       if (navParams.get('item')) {
         this.isUpdate = true;
         this.doc = navParams.get('item');
-        this.forma.confirmation_password=this.doc.pass;
       }    
-      console.info("usuario",this.doc);
+      console.log("caso",this.doc);
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad usuarioPage');
+    console.log('ionViewDidLoad Page');
   }
 
   public register() {
-    //Validar
-    if (this.doc.pass != this.forma.confirmation_password) {
-      this.showPopup("Error", 'The password confirmation does not match.');
-    } else {
-
-      this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
+    {
+      this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ); 
       this.showPopup("Success", "Document created.");
-
-      /*
-      this.servicioFirebase.register(this.registerCredentials).subscribe(success => {
-        if (success) {
-          this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
-        } else {
-          this.showPopup("Error", "Problem creating account.");
-        }
-      },
-        error => {
-          this.showPopup("Error", error);
-        });
-      */  
     }
   }
 
@@ -66,6 +53,23 @@ export class UsuarioPage {
   public borrar() {
     this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
     this.showPopup("Success", "Document delete."); 
+  }
+
+  public showImagen() {
+    this.nav.parent.select(1);
+/*
+    document.getElementById('idMarco').hidden = false;
+    var imagen = document.createElement("img");
+    console.log("Img",imagen); 
+    imagen.src=this.url; 
+    var marco = document.getElementById("marco"); 
+    marco.appendChild(imagen);
+*/     
+  }
+
+  public salir() {
+    //this.nav.pop();
+    this.nav. setRoot(CasosPage);
   }
 
   showPopup(title, text) {

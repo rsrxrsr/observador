@@ -41,6 +41,7 @@ import { PreguntaPage } from '../pages/pregunta/pregunta';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionPage } from '../pages/opcion/opcion';
 import { OpcionesPage } from '../pages/opciones/opciones';
+import { CasoPage } from '../pages/caso/caso';
 import { CasosPage } from '../pages/casos/casos';
 import { TableroPage } from '../pages/tablero/tablero';
 import { MapaPage } from '../pages/mapa/mapa';
@@ -72,6 +73,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PreguntasPage,
     OpcionPage,
     OpcionesPage,
+    CasoPage,
     CasosPage,
     TableroPage,
     MapaPage
@@ -114,6 +116,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PreguntasPage,
     OpcionPage,
     OpcionesPage,
+    CasoPage,
     CasosPage,
     TableroPage,
     MapaPage

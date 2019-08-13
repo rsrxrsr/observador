@@ -1,3 +1,376 @@
-page-login {
-
+page-login,
+    .login {
+        .error-message
+    {
+    color: #bf3e3e;
+    }
+    .loginButton {
+      background-color:#4a565f;
+      -moz-border-radius:15px;
+      -webkit-border-radius:15px;
+      border-radius:20px;
+      border:2px solid #9ab8d4;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:23px;
+      padding:7px 31px;
+      text-decoration:none;
+    }
+    .loginButton:hover {
+      background-color:#98a5e0;
+    }
+    .loginButton:active {
+      position:relative;
+      top:1px;
+    }
+  //   ion-col {
+  //     border-bottom: 5px solid red;
+  // }
+  
+  .row {
+    min-height: 300px;
+    position: relative;
+  text-align: center;
 }
+
+.column_center {
+  display: inline-block;
+  padding: 20px;
+  border:1px solid red;
+}
+}
+
+
+#loginForm {
+  // background: #1c2627 url("../../assets/img/logo.png") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
+  .scroll-content {
+    display: table !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    form {
+      display: table-cell;
+      vertical-align: middle;
+
+      .header {
+        padding-bottom: 20px;
+
+        img {
+          display: block;
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+
+      .button.button-light.active, .button.button-light.activated {
+        color: #fff;
+        opacity: inherit;
+      }
+    }
+  }
+}
+
+// http://ionicframework.com/docs/theming/
+// App Shared Imports
+// --------------------------------------------------
+
+// global styles
+.primary-bg {
+    background-color: color($colors, primary) !important;
+  }
+  
+  .secondary-bg {
+    background-color: color($colors, secondary) !important;
+  }
+  
+  .common-bg {
+    background-color: #FAFBFC;
+  }
+  
+  .white-bg {
+    background-color: #fff;
+  }
+  
+  .detail-bg {
+    background-color: #f1f1f5;
+  }
+  
+  .light-bg {
+    background-color: color($colors, light);
+  }
+  
+  .dark-bg {
+    background-color: color($colors, dark);
+  }
+  
+  .green-bg {
+    background-color: #68C91F;
+  }
+  
+  .profile-bg {
+    background-image: linear-gradient(135deg, color($colors, dark), color($colors, primary), color($colors, light));
+  }
+  //
+  //
+  .text-primary {
+    color: color($colors, primary);
+  }
+  
+  .text-secondary {
+    color: color($colors, secondary);
+  }
+  
+  .text-green {
+    color: #68C91F;
+  }
+  
+  .text-yellow {
+    color: #FDD835;
+  }
+  
+  .text-white {
+    color: #fff;
+  }
+  
+  //
+  .dark-trans,
+  .toast-md .toast-wrapper {
+    background-color: rgba(0, 0, 0, .4);
+  }
+  
+  // Helpers
+  .quarter-op {
+    opacity: .25;
+  }
+  
+  .no-paddingTRL {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  .no-paddingTRB {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .no-paddingB {
+    padding-bottom: 0 !important;
+  }
+  
+  .no-paddingT {
+    padding-top: 0 !important;
+  }
+  
+  .padding-xs {
+    padding: 10px;
+  }
+  
+  .no-padding {
+    padding: 0 !important;
+  }
+  
+  .no-pl {
+    padding-left: 0 !important;
+  }
+  
+  .no-margin {
+    margin: 0;
+  }
+  
+  .no-marginT {
+    margin-top: 0 !important;
+  }
+  
+  .mt-half {
+    margin-top: .5rem !important;
+  }
+  
+  .mt-1 {
+    margin-top: 1rem !important;
+  }
+  
+  .mb-half {
+    margin-bottom: .5rem;
+  }
+  
+  .marginB-16px {
+    margin-bottom: 16px !important;
+  }
+  
+  .marginB-2 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .marginT-16px {
+    margin-top: 16px !important;
+  }
+  
+  .marginT-2 {
+    margin-top: 2rem !important;
+  }
+  
+  .pull-left {
+    float: left;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+  
+  .rlt {
+    position: relative;
+  }
+  
+  .clear {
+    clear: both;
+  }
+  
+  .align-bottom {
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .round {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  
+  .no-round {
+    border-radius: 0;
+  }
+  
+  .border-bottom {
+    border-bottom: 1px solid rgba(86, 61, 124, 0.1);
+  }
+  
+  .full-width {
+    width: 100% !important;
+  }
+  
+  .max-width {
+    max-width: 100% !important;
+  }
+  
+  .padding-sm {
+    padding: 1rem;
+  }
+  
+  .uppercase {
+    text-transform: uppercase;
+  }
+  
+  // text size
+  .text-2x {
+    font-size: 2em;
+  }
+  
+  .text-1x {
+    font-size: 1em;
+  }
+  
+  .text-sm {
+    font-size: 0.7em;
+  }
+  
+  .bold {
+    font-weight: bold !important;
+  }
+  
+  // buttons configs
+  .btn-facebook {
+    background-color: #3B5999;
+  }
+  
+  .btn-twitter {
+    background-color: #00ACEE;
+  }
+  
+  .btn-gplus {
+    background-color: #E04006
+  }
+  
+  // badge style
+  ion-badge {
+    &.square {
+      border-radius: 0;
+    }
+  }
+  
+  // card style
+  .card {
+    background: #FFF;
+    border-radius: 1rem;
+    box-shadow: 0 0 1px rgba(86, 61, 124, 0.2), 0 2px 4px rgba(86, 61, 124, 0.15);
+  }
+  
+  // navbar style
+  ion-navbar.no-border {
+  
+    .toolbar-background {
+      border: none;
+    }
+  }
+  
+  // list style
+  .list-no-border {
+  
+    .item:first-child {
+      border: none;
+    }
+    .item:last-child {
+      border: none;
+    }
+  
+    .item {
+      .item-inner {
+        border: none;
+      }
+    }
+  }
+  
+  .list-full-border {
+    @extend .list-no-border;
+  
+    .item,
+    .item:first-child,
+    .item:last-child {
+      border-bottom: 1px solid rgba(86, 61, 124, 0.2);
+      .item-inner {
+        border: none;
+      }
+    }
+  }
+  
+  // item style
+  .item.no-border {
+    .item-inner {
+      border: none;
+    }
+  }
+  
+  // Toolbar
+  // transparent nav bar
+  .toolbar {
+    &.nav-transparent {
+      .toolbar-background {
+        background-color: rgba(86, 61, 124, .65);
+      }
+    }
+    .toolbar-title {
+      img {
+        vertical-align: sub;
+        border-radius: 10%;
+      }
+    }
+  }
+  

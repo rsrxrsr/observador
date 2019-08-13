@@ -1,0 +1,113 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalle del Caso</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="tema">
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+              <ion-item>
+                <ion-label stacked>Caso</ion-label>
+                <ion-input type="text" name="caso" [(ngModel)]="doc.idCase"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Fecha y hora</ion-label>
+                  <ion-input type="text" name="fecha" [(ngModel)]="doc.dateCreation"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Clasificción</ion-label>
+                  <label>Clasificación</label>
+                <ion-input type="text" name="clasificacion" [(ngModel)]="doc.idClassification"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Municipio</ion-label>
+                  <label>Municipio</label>
+                <ion-input type="text" name="municipio" [(ngModel)]="doc.municipio"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Descripción</ion-label>
+                  <ion-input type="text" name="descripcion" [(ngModel)]="doc.description"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Dirección</ion-label>
+                  <ion-input type="text" name="direccion" [(ngModel)]="doc.address"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label stacked>Observador</ion-label>
+                  <ion-input type="text" name="observador" [(ngModel)]="doc.idObserver"></ion-input>
+              </ion-item>
+             <!--                                                                                               
+              <ion-item text-right>
+                  {{ item.address}}
+                </ion-item>
+                <ion-col text-right>
+                  {{ item.dateCancellation}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.dateClose}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.dateCreation}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.dateUpgrade}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.descripcion}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.idCase}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.idClassification}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.idObserver}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.latitude}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.longitude}}
+                </ion-item>
+                <ion-item text-right>
+                  {{ item.municipio}}
+                </ion-item>                                                                                              
+-->
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-col" *ngIf="!isUpdate">
+          <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
+        </ion-col>
+        <ion-col class="ion-col" *ngIf="!isUpdate">
+          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Editar</button>
+        </ion-col>
+        <ion-col class="ion-col" *ngIf="!isUpdate">
+          <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+        </ion-col>
+        <ion-col class="ion-col" *ngIf="isUpdate">
+            <button ion-button class="submit-btn" full type="button"  (click)="showImagen()" [disabled]="!registerForm.form.valid">  Ver Evidencias &nbsp;<ion-thumbnail><ion-img [src]="url"></ion-img></ion-thumbnail>
+
+            </button>
+          </ion-col>
+        <ion-col class="ion-col" *ngIf="isUpdate">
+            <button ion-button class="submit-btn" full type="button"  (click)="salir()" [disabled]="!registerForm.form.valid">  Salir&nbsp;<ion-icon name="arrow-round-up"></ion-icon></button>
+        </ion-col>
+        </ion-row>
+    </form>
+<!--
+    <div id="idMarco">
+        Imagen:<br>
+        <ion-img [src]="url"  height='400' width='600'></ion-img>
+    </div>
+-->    
+</ion-content>

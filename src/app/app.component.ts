@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { WelcomePage } from '../pages/welcome/welcome';
+import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UsuariosPage } from '../pages/usuarios/usuarios';
@@ -23,7 +24,7 @@ import { CasosPage } from '../pages/casos/casos';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   app:any;
-  rootPage:any = WelcomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
   paginas:{};
   constructor(    
@@ -41,6 +42,7 @@ export class MyApp {
       });
       this.pages = [
       { title: 'Welcome', component: WelcomePage },
+      { title: 'Login', component: LoginPage },
       { title: 'Tabs', component: TabsPage },
       { title: 'Catalogos', component: menuCatalogos },
       { title: 'Estados', component: EstadosPage },
@@ -48,6 +50,7 @@ export class MyApp {
       ];
       this.paginas = {
         'WelcomePage'    : WelcomePage,
+        'LoginPage'      : LoginPage,
         'HomePage'       : HomePage,
         'TabsPage'       : TabsPage,
         'UsuariosPage'   : UsuariosPage,

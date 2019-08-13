@@ -1,3 +1,22 @@
 page-casos {
+    
+}
 
+.hdr {
+    size:21;
+    background-color: navy;
+    color: white
+
+}
+
+.first {
+    background-color: green
+}
+
+.even {
+    background-color: #f2f2f2
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
 }

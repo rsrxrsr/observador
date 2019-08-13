@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
-import { HomePage } from '../home/home';
+import { CasosPage } from '../casos/casos';
+
+//import { HomePage } from '../home/home';
 //import { TabsPage } from '../tabs/tabs';
 //import { menuCatalogos } from '../menuCatalogos/menuCatalogos';
 
@@ -16,7 +18,7 @@ export class LoginPage {
   isUpdate=false; 
   createSuccess = false;
   forma = {id:'' };
-  usuario = { usuario: '', password: ''};
+  usuario = { correo: '', pass: ''};
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -33,12 +35,12 @@ export class LoginPage {
   public login() {
     //this.navCtrl.push(TabsPage);  //remove for prod
     var usuarios:any =[];
-    console.info('FrmUsuarios',this.usuario.usuario);
-    this.servicioFirebase.findColeccion("usuarios",'usuario','==',this.usuario.usuario).then(
+    console.info('FrmUsuarios',this.usuario.correo);
+    this.servicioFirebase.findColeccion("usuarios",'correo','==',this.usuario.correo).then(
       resp =>{usuarios = resp;        
-        if (usuarios.length==1 && this.usuario.password === usuarios[0].password) {
-          this.showPopup("Success", "Account created.");
-          this.navCtrl.push(HomePage);
+        if (usuarios.length==1 && this.usuario.pass === usuarios[0].pass) {
+          //this.showPopup("Success", "Account created.");
+          this.navCtrl.push(CasosPage);
         } else {
           this.showPopup("Error", 'The password confirmation does not match.');
         }

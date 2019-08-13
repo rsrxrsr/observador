@@ -1,7 +1,5 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Seguridad" tabIcon="contacts"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Catalogos" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Foto" tabIcon="camera"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Mapa" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="Tableros" tabIcon="stats"></ion-tab>
+  <ion-tab [root]="tab1Root" [rootParams]="item" tabTitle="Caso" tabIcon="information-circle"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="item" tabTitle="Evidencias" tabIcon="camera"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="item" tabTitle="Ubicación" tabIcon="compass"></ion-tab>
 </ion-tabs>

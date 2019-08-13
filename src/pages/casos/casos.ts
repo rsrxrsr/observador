@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { ServicioDb } from '../../servicios/db.servicio';
+//import { ServicioDb } from '../../servicios/db.servicio';
+import { ServicioFirebase } from '../../servicios/firebase.servicio';
 //import { CasoPage } from '../caso/caso';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-casos',
@@ -10,21 +12,25 @@ import { ServicioDb } from '../../servicios/db.servicio';
 })
 export class CasosPage {
 
-  public coleccion="casos";
+  public coleccion="caso";
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public servicioDb: ServicioDb) {};
+    public servicioFirebase: ServicioFirebase
+    //public servicioDb: ServicioDb
+    ) {};
  
     public ionViewDidLoad() {
-      this.servicioDb.getColeccion(this.coleccion);
+      //this.servicioDb.getColeccion(this.coleccion);
+      this.servicioFirebase.consultarColeccion(this.coleccion);
+
   }
 
   public selectRow(event, item ){
-  //  this.navCtrl.push(ClasePage,{
-  //    item:item
-  //    });
+    this.navCtrl.push(TabsPage,{
+      item:item
+      });
   }
 
 }
