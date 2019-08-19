@@ -14,6 +14,7 @@ export class UsuarioPage {
   createSuccess = false;
   forma = {id:'', confirmation_password: '' };
   doc = { id: "",pass:""};
+  file:any;
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -37,35 +38,39 @@ export class UsuarioPage {
     //Validar
     if (this.doc.pass != this.forma.confirmation_password) {
       this.showPopup("Error", 'The password confirmation does not match.');
+    } else 
+    if (this.file) {
+        this.servicioFirebase.fileUpload(this.file).then(fileInfo=>{
+        this.doc["foto"]=fileInfo.downloadUrl;
+        this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
+        this.showPopup("Success", "Document created.");          
+      })
     } else {
-
       this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
-      this.showPopup("Success", "Document created.");
-
-      /*
-      this.servicioFirebase.register(this.registerCredentials).subscribe(success => {
-        if (success) {
-          this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
-        } else {
-          this.showPopup("Error", "Problem creating account.");
-        }
-      },
-        error => {
-          this.showPopup("Error", error);
-        });
-      */  
+      this.showPopup("Success", "Document created.");          
     }
   }
 
   public editar() {
-    this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
-    this.showPopup("Success", "Document update."); 
+    if (this.file) {
+      this.servicioFirebase.fileUpload(this.file).then(fileInfo=>{
+      this.doc["foto"]=fileInfo.downloadUrl;
+      this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
+      this.showPopup("Success", "Document updated.");          
+    })} else {
+      this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
+      this.showPopup("Success", "Document updated.");          
+    }
   }
 
   public borrar() {
     this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
     this.showPopup("Success", "Document delete."); 
+  }
+
+  setFile(event) {
+    this.file = event.target.files[0];
+    console.log("File:",this.file);
   }
 
   showPopup(title, text) {

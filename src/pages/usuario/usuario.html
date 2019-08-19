@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>usuario</ion-title>
+    <ion-title>Usuario</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,25 +10,57 @@
   <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
-          <ion-list inset>
-
-            <ion-item>
+          <ion-item>
+            <label color="primary" class="item item-input"></label>
+            <input type="file" class="custom-file-input" id="idfile" name="uploadfile" ng-model="form.uploadfile" (change)="setFile($event)"  style="color: transparent">
+            <div class="preview-img"><br/><br/> <img id="idImg" src="{{doc.foto}}" width="155" height="155"  size="33" /> <br/></div>
+          </ion-item>
+        </ion-col>      
+        <ion-col>
+          <ion-item>
+              <ion-label stacked>Usuario</ion-label>
               <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="doc.usuario" required></ion-input>
             </ion-item>
-
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="doc.correo" required></ion-input>
+                <ion-label stacked>Correo</ion-label>
+                <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="doc.correo" required></ion-input>
             </ion-item>
-
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="doc.pass" required></ion-input>
+                <ion-label stacked>Contraseña</ion-label>
+                <ion-input type="password" placeholder="Contraseña" name="pass" [(ngModel)]="doc.pass" required></ion-input>
+              </ion-item>
+    
+              <ion-item>
+                  <ion-label stacked>Confirme contraseña</ion-label>
+                  <ion-input type="password" placeholder="Confirm Password" name="confirmation_password" [(ngModel)]="forma.confirmation_password" required></ion-input>
+              </ion-item>
+            </ion-col>
+      </ion-row>
+    
+      <ion-row>
+          <ion-col>
+          <ion-list inset>
+          <ion-item>
+              <ion-label>Roles</ion-label>
+              <ion-select name="roles" [(ngModel)]="doc.roles" multiple="true">
+                <ion-option>Ejecutivo</ion-option>
+                <ion-option>Administrador</ion-option>
+                <ion-option>Supervisor</ion-option>
+                <ion-option>Observador</ion-option>
+              </ion-select>
             </ion-item>
-
             <ion-item>
-              <ion-input type="password" placeholder="Confirm Password" name="confirmation_password" [(ngModel)]="forma.confirmation_password" required></ion-input>
-            </ion-item>
-
-          </ion-list>
+              <ion-label stacked>Region</ion-label>
+              <ion-input type="region" placeholder="Región" name="region" [(ngModel)]="doc.region" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Estatus</ion-label>
+            <ion-select name="estatus" [(ngModel)]="doc.estatus">
+              <ion-option>Activo</ion-option>
+              <ion-option>Inactivo</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
         </ion-col>
       </ion-row>
 
@@ -37,7 +69,7 @@
           <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
         <ion-col class="usuario-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Editar</button>
+          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
         </ion-col>
         <ion-col class="usuario-col" *ngIf="isUpdate">
           <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>

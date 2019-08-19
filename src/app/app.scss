@@ -95,17 +95,32 @@
     background-size: 100%;
   }
 
-  .tema-app {
-    background-color: #fff;
-    &::after {
-      content: "";
-      background: url("../assets/imgs/bg.jpg") no-repeat;
-      background-size: cover;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: absolute;
-      z-index: 0;
-    }
+.tema-app {
+  background-color: #fff;
+  &::after {
+    content: "";
+    background: url("../assets/imgs/bg.jpg") no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
   }
+}
+  
+.hdr {
+  size:21;
+  background-color: navy;
+  color: white
+
+}
+
+.first {
+  background-color: green
+}
+
+.even {
+  background-color: #f2f2f2
+}

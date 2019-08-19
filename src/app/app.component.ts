@@ -17,6 +17,7 @@ import { EncuestasPage } from '../pages/encuestas/encuestas';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionesPage } from '../pages/opciones/opciones';
 import { CasosPage } from '../pages/casos/casos';
+import { AccionesPage } from '../pages/acciones/acciones';
 
 @Component({
   templateUrl: 'app.html'
@@ -63,6 +64,7 @@ export class MyApp {
         'PreguntasPage'  : PreguntasPage,
         'OpcionesPage'   : OpcionesPage,
         'CasosPage'      : CasosPage,
+        'AccionesPage'   : AccionesPage,
       }
   }
 

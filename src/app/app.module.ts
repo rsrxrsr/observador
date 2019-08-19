@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioPageModule } from '../pages/usuario/usuario.module';
 import { UsuariosPageModule } from '../pages/usuarios/usuarios.module';
+import { AccionPageModule } from '../pages/accion/accion.module';
+import { AccionesPageModule } from '../pages/acciones/acciones.module';
 import { WelcomePageModule } from '../pages/welcome/welcome.module';
 
 //import { WelcomePage } from '../pages/welcome/welcome';
@@ -90,7 +92,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPageModule,
     WelcomePageModule,
     UsuarioPageModule,
-    UsuariosPageModule
+    UsuariosPageModule,
+    AccionPageModule,
+    AccionesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

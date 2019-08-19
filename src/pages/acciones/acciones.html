@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle="menuMain">
+      <ion-icon name="menu"></ion-icon>
+    </button>  
+    <ion-title>Acciones</ion-title>
+    <ion-fab bottom right>
+        <button (click)="selectRow()" ion-fab mini ><ion-icon name="add" ></ion-icon></button>
+    </ion-fab>      
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="tema-app">
+  <!-- -->
+  <div *ngIf="this.servicioFirebase.modelo['acciones'] == 0">
+    <ion-item>No hay acciones.</ion-item>
+  </div>
+  <!-- -->
+  <ion-grid>  
+    <ion-row no-padding class="hdr">
+      <ion-col>
+        Región
+      </ion-col>
+      <ion-col>
+        Observador
+      </ion-col>
+      <ion-col>
+        Caso
+      </ion-col>
+      <ion-col>
+        Tipo
+      </ion-col>
+      <ion-col>
+        Acción
+      </ion-col>
+      <ion-col>
+        Fecha Alta
+      </ion-col>
+      <ion-col>
+        Fecha Fin
+      </ion-col>
+      <ion-col>
+        % Avance
+      </ion-col>
+      <ion-col>
+      </ion-col>     
+    </ion-row>
+    <div *ngFor="let item of this.servicioFirebase.modelo['acciones'];even as isEven" (click)="selectRow($event, item)" text-wrap>
+      <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'">            
+        <ion-col>
+          {{ item.nmRegion }}
+        </ion-col>
+        <ion-col>
+          {{ item.nmUsuario}}
+        </ion-col>
+        <ion-col>
+          {{ item.caso }}
+        </ion-col>
+        <ion-col>
+          {{ item.tipo }}
+        </ion-col>
+        <ion-col>
+          {{ item.accion }}
+        </ion-col>
+        <ion-col>
+          {{ item.fhAlta }}
+        </ion-col>
+        <ion-col>
+            {{ item.fhFin }}
+        </ion-col>
+        <ion-col>
+          {{ item.avance }}
+      </ion-col>
+      <ion-col>
+          <ion-icon>
+              <ion-icon name="eye" item-start title="Ver Detalle"></ion-icon>
+          </ion-icon>
+        </ion-col>     
+        </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

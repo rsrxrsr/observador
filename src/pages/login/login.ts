@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
 import { CasosPage } from '../casos/casos';
@@ -24,9 +24,9 @@ export class LoginPage {
     private servicioFirebase: ServicioFirebase,
     private navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController
-    ) {
-    }
+    private alertCtrl: AlertController,
+    public menuCtrl: MenuController 
+    ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
@@ -40,7 +40,8 @@ export class LoginPage {
       resp =>{usuarios = resp;        
         if (usuarios.length==1 && this.usuario.pass === usuarios[0].pass) {
           //this.showPopup("Success", "Account created.");
-          this.navCtrl.push(CasosPage);
+          this.menuCtrl.enable(true, 'menuMain');
+          this.navCtrl. setRoot(CasosPage);
         } else {
           this.showPopup("Error", 'The password confirmation does not match.');
         }

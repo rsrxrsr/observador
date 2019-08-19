@@ -1,5 +1,5 @@
 export var CONEXION_BD = {
-//
+/*
     firebase: {
         apiKey: "AIzaSyBZUhH2ipm5U4MKXIQc-dfMrLDkTBkb92E",
         authDomain: "observatoriociudadano-3a68f.firebaseapp.com",
@@ -8,7 +8,7 @@ export var CONEXION_BD = {
         storageBucket: "observatoriociudadano-3a68f.appspot.com",
         messagingSenderId: "853621425484"
     }
-/*
+*/
     firebase: {
         apiKey: "AIzaSyAd1bVphgVETZZ6mYbh7RxK5yMZ1XJEU_0",
         authDomain: "observatorio-d6ad7.firebaseapp.com",
@@ -18,6 +18,6 @@ export var CONEXION_BD = {
         messagingSenderId: "133886977164",
         appId: "1:133886977164:web:a949779686bf2390"
     }
-*/    
+//    
     
 }

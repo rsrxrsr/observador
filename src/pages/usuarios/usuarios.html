@@ -1,37 +1,66 @@
 <ion-header>
   <ion-navbar>
-      <button ion-button menuToggle="menuMain">
-          <ion-icon name="menu"></ion-icon>
-      </button>  
+    <button ion-button menuToggle="menuMain">
+      <ion-icon name="menu"></ion-icon>
+    </button>  
     <ion-title>Usuarios</ion-title>
+    <ion-fab bottom right>
+        <button (click)="selectRow()" ion-fab mini ><ion-icon name="add" ></ion-icon></button>
+    </ion-fab>      
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-content padding>
+    <ion-content padding class="tema-app">
       <!-- -->
         <div *ngIf="this.servicioFirebase.modelo['usuarios'] == 0">
           <ion-item>No hay usuarios.</ion-item>
         </div>
        <!-- --> 
-
-        <ion-fab bottom right>
-          <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
-        </ion-fab>      
-
-        <div *ngFor="let item of this.servicioFirebase.modelo['usuarios']" (click)="selectRow($event, item)" text-wrap>
-          <ion-row no-padding>
-            <ion-col text-right>
-                {{ item.id }}
-            </ion-col>
-            <ion-col text-right>
+        <h6>
+        <ion-row no-padding class="hdr">
+          <ion-col>
+          </ion-col>     
+          <ion-col>
+            Usuario
+          </ion-col>
+          <ion-col>
+            Correo
+          </ion-col>
+          <ion-col>
+            Roles
+          </ion-col>
+          <ion-col>
+            Región
+          </ion-col>
+          <ion-col>
+            Estatus
+          </ion-col>
+        </ion-row>
+        </h6>
+        <div *ngFor="let item of this.servicioFirebase.modelo['usuarios'];even as isEven" (click)="selectRow($event, item)" text-wrap>
+          <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'">            
+            <ion-col>
+              <button ion-item [ngClass]="isEven? 'even' : 'odd'">
+                <ion-avatar item-start>
+                  <img [src]="item.foto" title="Ver detalle"/>
+                </ion-avatar>
+              </button>
+            </ion-col>       
+            <ion-col>
               {{ item.usuario }}
             </ion-col>
-            <ion-col text-right>
-              {{ item.password }}
-            </ion-col>
-            <ion-col text-right>
+            <ion-col>
               {{ item.correo }}
+            </ion-col>
+            <ion-col>
+              {{ item.roles }}
+            </ion-col>
+            <ion-col>
+              {{ item.region }}
+            </ion-col>
+            <ion-col>
+              {{ item.estatus }}
             </ion-col>
           </ion-row>
         </div>

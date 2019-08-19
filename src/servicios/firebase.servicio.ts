@@ -92,6 +92,17 @@ export class ServicioFirebase {
     })
   }
 
+  public findById(coleccion: string, id:string){
+    console.log("Coll", coleccion,"fb",id)
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion).doc(id).ref.get()
+      .then(snapshot => {
+        console.log(snapshot.data());
+        resolve(snapshot.data());
+      })
+    })
+  }
+
   public findColeccion(coleccion: string, campo:string, operador, value){
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion, ref => ref.where(campo, operador, value))
@@ -102,7 +113,7 @@ export class ServicioFirebase {
     });
   }
 
-  public findGroup(coleccion: string){
+  public consultarColecciones(coleccion: string){
     return new Promise<any>((resolve, reject) => {
       this.afs.collectionGroup(coleccion).snapshotChanges().subscribe(querySnapshot => {
         var snapshot = [];
@@ -167,12 +178,14 @@ public watchColeccion(coleccion:string) {
 
 // File Upload
 public fileUpload(data:any) {
-  console.log("Subiendo", data, "fin");
   //.putString(data, 'base64', {contentType: 'image/png'})
   //var imagen = 'data:image/jpeg;base64,' + data;
-  const file = this.storage.ref('casos/evidencias/file.jpg');
-  file
-    .put(data)
+  //const file = this.storage.ref('casos/evidencias/file.jpg');
+  console.log("Subiendo", data, "fin");
+  let coleccion='casos/evidencias/'+data.name;
+  const file = this.storage.ref(coleccion);
+  return new Promise<any>((resolve, reject) => {
+    file.put(data)
     .then(snapshot => {
       console.log("success",snapshot);
       file.getDownloadURL().subscribe(downloadUrl=>{
@@ -180,15 +193,18 @@ public fileUpload(data:any) {
         let fileInfo = {
           name: snapshot.metadata.name,
           created: snapshot.metadata.timeCreated,
-          url: downloadUrl,
+          downloadUrl: downloadUrl,
           fullPath: snapshot.metadata.fullPath,
           contentType: snapshot.metadata.contentType,
           size: snapshot.metadata.size }
-        this.agregarDocumento('files',fileInfo);
+        resolve(fileInfo);  
+        //this.agregarDocumento('files',fileInfo);
       }) 
     }, err => {
       console.log("err",err);
+      reject(err);
     })
+  })
 }       
   
 public imageUpload(data:any) {
