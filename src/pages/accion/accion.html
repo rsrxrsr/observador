@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content padding>
+    <p>{{this.doc.delta.nmRegion}}</p>
   <form (ngSubmit)="register()" #registerForm="ngForm">
     
       <ion-row>
@@ -14,19 +15,18 @@
           <ion-list inset>
             <ion-row>
             <ion-item>
-              <ion-label stacked>MainRegion</ion-label>
-              <ion-select #C name="MainRegion" [(ngModel)]="estado" (ionChange)="onChange(C.value)">required>
-                <ion-option *ngFor="let item of this.servicioFirebase.modelo['regiones']" value={{item.id}}>{{item.region}}</ion-option>
+              <ion-label stacked>Estado</ion-label>
+              <!--{{doc.delta.estado}} #C (ionChange)="onChange(C.value)"-->
+              <ion-select name="Estado" [(ngModel)]="doc.delta.estado" required [compareWith]="compareWithFn"  #C (ionChange)="onChangeEstado(C.value)" >
+                <ion-option *ngFor="let estado of this.servicioFirebase.modelo['regiones']" [value]="estado">{{estado.region}}</ion-option>
               </ion-select>
-            </ion-item>
-<!-- -->
+            </ion-item> 
             <ion-item>
                 <ion-label stacked>Region</ion-label>
-                <ion-select name="Region" [(ngModel)]="doc.region" required>
-                  <ion-option *ngFor="let item of municipios" value={{item.id}}>{{item.region}}</ion-option>
+                <ion-select name="Region" [(ngModel)]="doc.delta.region" required [compareWith]="compareWithFn" #C2 (ionChange)="onChangeRegion(C2.value)">
+                  <ion-option *ngFor="let item of doc.delta.estado.regiones" [value]="item" >{{item.region}}</ion-option>
                 </ion-select>
-              </ion-item>
-<!-- -->              
+              </ion-item>             
               </ion-row>
         <ion-item>
               <ion-label stacked>Observador</ion-label>
@@ -73,7 +73,7 @@
           </ion-item>
           <ion-item>
               <ion-label stacked>Avance</ion-label>
-              <ion-input type="number" placeholder="Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
+              <ion-input type="number" [min]="0.00" [max]="100.00" placeholder="Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label stacked>Estatus</ion-label>

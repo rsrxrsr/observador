@@ -48,10 +48,10 @@
     <div *ngFor="let item of this.servicioFirebase.modelo['acciones'];even as isEven" (click)="selectRow($event, item)" text-wrap>
       <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'">            
         <ion-col>
-          {{ item.nmRegion }}
+          {{ item.delta.nmRegion }}
         </ion-col>
         <ion-col>
-          {{ item.nmUsuario}}
+          {{ item.delta.nmUsuario}}
         </ion-col>
         <ion-col>
           {{ item.caso }}

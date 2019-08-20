@@ -12,9 +12,9 @@ export class AccionPage {
   coleccion="acciones";
   isUpdate=false; 
   createSuccess = false;
-  doc = { id: ""};
+  doc = {id:"",delta:{nmRegion:"", estado:{id:"",region:"",regiones:[]}}};
   file:any;
-  municipios:[];
+  work = {nmRegion:"", nmUsuario:""};
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -24,7 +24,7 @@ export class AccionPage {
     ) {
       if (navParams.get('item')) {
         this.isUpdate = true;
-        this.doc = navParams.get('item');
+        this.doc = navParams.get('item');        
       }    
       console.info("accion",this.doc);
     }
@@ -32,40 +32,63 @@ export class AccionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad accionPage');
     this.servicioFirebase.consultarColeccion("usuarios");
-    this.servicioFirebase.consultarColeccion("regiones");
-/*
+    this.servicioFirebase.consultarColeccion("regiones")
     .then(snapshot=>{
-      this.servicioFirebase.modelo["regiones"].forEach(element => {
-        let coleccion="regiones/"+element.id+"/regiones";
-        this.servicioFirebase.consultarColeccion(coleccion)
+      snapshot.forEach(item => {
+        this.servicioFirebase.consultarColeccion("regiones/"+item.id+"/regiones")
         .then(snapshot=>{
-          this.servicioFirebase.modelo["regiones"][element.id].regiones=snapshot;
-        });          
+          item.regiones=snapshot;          
+          if (!this.isUpdate) {
+            this.doc.delta['estado']=item;
+            this.doc.delta['nmRegion']=item.region+"/"+snapshot.region;
+            this.doc['idEstado']=item.id;
+            this.doc['region']=snapshot.id;
+          }
+          if (item.id===this.doc.delta['estado'].id) {
+            this.doc.delta['estado'].regiones=item.regiones;
+          }
+          console.log("Doc", this.doc);
+        }); 
       });
-      console.log("snap",this.servicioFirebase.modelo["regiones"]);
-    })
-*/      
+      console.log("Estado",this.doc['delta']);
+      console.log('ionViewDidLoad Regiones', this.servicioFirebase.modelo['regiones']);
+    });
+  } 
+  
+  compareWithFn = (o1, o2) => {
+    //console.log("Compare", o1, "o2=", o2, ".End");
+    //console.log("Compare", o1 && o2, o1.id === o2.id, o1 === o2, o1.id,o2.id);
+    //return o1 && o2 ? o1.id === o2.id : o1 === o2;
+    return o1.id === o2.id;
+  };
+
+  onChangeEstado(valor) {
+    this.doc['idEstado']=this.doc['delta'].estado.id;
+    this.work.nmRegion=this.doc['delta'].estado.region;
+    console.log("onChange1", this.work.nmRegion);
   }
 
-  onChange(id) {
-    console.log("onChange", id);
-    this.servicioFirebase.consultarColeccion("regiones/"+id+"/regiones")
-    .then(snapshot=>this.municipios=snapshot);
+  onChangeRegion(valor){
+    this.doc['region']=this.doc['delta']['region'].id;
+    this.work.nmRegion+="/"+this.doc['delta']['region'].region;
+    console.log("onChange2", this.work.nmRegion);
+  }
+
+  onChangeUsuario(id) {
+    console.log("onChange3", id);
+    this.work.nmUsuario=this.doc['usuario'];
   }
 
   public register() {
-    //Validar
-    //if (this.doc.pass != this.forma.confirmation_password) {
-    //this.showPopup("Error", 'The password confirmation does not match.');
-    //}
-
-    this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ); 
-    this.showPopup("Success", "Document created.");          
-  
+    this.servicioFirebase.agregarDocumento(this.coleccion, this.doc );
+    this.doc.delta.nmRegion=this.work.nmRegion; 
+    this.showPopup("Success", "Document created.");            
   }
 
   public editar() {
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
+    console.log("Region",this.work.nmRegion);
+    this.doc.delta.nmRegion=this.work.nmRegion; 
     this.showPopup("Success", "Document updated.");          
   }
 

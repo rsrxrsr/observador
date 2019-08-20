@@ -21,15 +21,24 @@ export class AccionesPage {
       this.servicioFirebase.consultarColeccion(this.coleccion)
       .then(snapshot=>{
         snapshot.forEach(element => {
+          console.log("Element", element);
+          element.delta={};
           this.servicioFirebase.findById("usuarios", element.usuario)
           .then(item=>{
-            console.log("Item", item);
-            element.nmUsuario=item.usuario;
+            console.log("Item1", item);
+            element.delta.nmUsuario=item.usuario;
           });
-          this.servicioFirebase.findById("regiones/"+"ctY2TMPCWtddTOosPw81"+"/regiones", element.region)
+          this.servicioFirebase.findById("regiones", element.idEstado)
           .then(item=>{
-            console.log("Item", item);
-            element.nmRegion=item.region;
+            console.log("Item2", item);
+            element.delta.nmRegion=item.region;
+            element.delta.estado=item;
+          }); 
+          this.servicioFirebase.findById("regiones/"+element.idEstado+"/regiones", element.region)
+          .then(item=>{
+            console.log("Item3", item);
+            element.delta.nmRegion=element.delta.estado.region+"/"+item.region;
+            element.delta.region=item;
           });
         });
     })

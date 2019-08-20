@@ -93,12 +93,14 @@ export class ServicioFirebase {
   }
 
   public findById(coleccion: string, id:string){
-    console.log("Coll", coleccion,"fb",id)
+    console.log("Coll", coleccion,"cfb",id)
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion).doc(id).ref.get()
-      .then(snapshot => {
-        console.log(snapshot.data());
-        resolve(snapshot.data());
+      .then(querySnapshot => {
+        let snapshot = querySnapshot.data();
+        snapshot['id'] = id;
+        console.log("snapshot", snapshot); 
+        resolve(snapshot);
       })
     })
   }

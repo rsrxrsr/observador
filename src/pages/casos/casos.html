@@ -37,7 +37,7 @@
       <ion-col>
       </ion-col> 
     </ion-row>
-    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];first as isFirst" (click)="selectRow($event, item)" text-wrap>
+    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion] ; first as isFirst" (click)="selectRow($event, item)" text-wrap>
     <ion-row no-padding class="first" *ngIf="isFirst">
         <!--           
       <ion-col text-right>
@@ -69,7 +69,7 @@
         {{ item.idCase}}
       </ion-col>
       <ion-col >
-        {{ item.dateCreation}}
+        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm' }}
       </ion-col>
       <ion-col >
         {{ item.idClassification}}
@@ -89,7 +89,7 @@
       {{ item.idCase}}
     </ion-col>
     <ion-col >
-      {{ item.dateCreation}}
+        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm' }}
     </ion-col>
     <ion-col >
       {{ item.idClassification}}
@@ -109,7 +109,7 @@
       {{ item.idCase}}
     </ion-col>
     <ion-col >
-      {{ item.dateCreation}}
+        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm'}}
     </ion-col>
     <ion-col >
       {{ item.idClassification}}

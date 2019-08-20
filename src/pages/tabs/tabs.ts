@@ -6,6 +6,7 @@ import { EstadosPage } from '../estados/estados';
 import { MapaPage } from '../mapa/mapa';
 import { CamaraPage } from '../camara/camara';
 import { CasoPage } from '../caso/caso';
+import { AccionesPage } from '../acciones/acciones';
 import { NavParams } from 'ionic-angular';
 
 
@@ -17,6 +18,7 @@ export class TabsPage {
   tab1Root = CasoPage;
   tab2Root = CamaraPage;
   tab3Root = MapaPage;
+  tab4Root = AccionesPage;
  
   constructor(public navParams:NavParams) {
   }
