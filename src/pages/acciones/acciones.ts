@@ -11,42 +11,49 @@ import { AccionPage } from '../accion/accion';
 export class AccionesPage {
 
   coleccion="acciones";
+  doc:any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public servicioFirebase: ServicioFirebase) {};
+    public servicioFirebase: ServicioFirebase) {
+      if (navParams.data) {
+        this.doc = navParams.data;
+        this.doc.idCaso=this.doc.id;    
+        console.log("doc",this.doc);
+      }
+    };
  
     public ionViewDidLoad() {
-      this.servicioFirebase.consultarColeccion(this.coleccion)
+//
+      this.servicioFirebase.docById("regiones/"+this.doc.idRegion)
+      .then(snapshot=>this.doc.region=snapshot.region);
+      this.servicioFirebase.docById("usuarios/"+this.doc.idObservador)
+        .then(snapshot=>this.doc.usuario=snapshot.usuario);
+      //this.servicioFirebase.consultarColeccion(this.coleccion);
+      this.servicioFirebase.findOrderCollection(this.coleccion, 'idCaso', '==', this.doc.idCaso);
+
+/*
       .then(snapshot=>{
         snapshot.forEach(element => {
           console.log("Element", element);
           element.delta={};
+          //
           this.servicioFirebase.findById("usuarios", element.usuario)
           .then(item=>{
             console.log("Item1", item);
-            element.delta.nmUsuario=item.usuario;
-          });
-          this.servicioFirebase.findById("regiones", element.idEstado)
-          .then(item=>{
-            console.log("Item2", item);
-            element.delta.nmRegion=item.region;
-            element.delta.estado=item;
-          }); 
-          this.servicioFirebase.findById("regiones/"+element.idEstado+"/regiones", element.region)
-          .then(item=>{
-            console.log("Item3", item);
-            element.delta.nmRegion=element.delta.estado.region+"/"+item.region;
-            element.delta.region=item;
+            element.delta.usuario=item.usuario;
           });
         });
-    })
-  }
+        })
+        */
+      }
 
   public selectRow(event, item ){
+    console.log("Item",item);
     this.navCtrl.push(AccionPage,{
-      item:item
+      item:item,
+      delta:this.doc
       });
   }
 

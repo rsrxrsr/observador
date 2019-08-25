@@ -20,6 +20,8 @@ import { UsuariosPageModule } from '../pages/usuarios/usuarios.module';
 import { AccionPageModule } from '../pages/accion/accion.module';
 import { AccionesPageModule } from '../pages/acciones/acciones.module';
 import { WelcomePageModule } from '../pages/welcome/welcome.module';
+import { evidenciasPageModule } from '../pages/evidencias/evidencias.module';
+import { evidenciaPageModule } from '../pages/evidencia/evidencia.module';
 
 //import { WelcomePage } from '../pages/welcome/welcome';
 //import { LoginPage } from '../pages/login/login';
@@ -93,6 +95,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     WelcomePageModule,
     UsuarioPageModule,
     UsuariosPageModule,
+    evidenciasPageModule,
+    evidenciaPageModule,
     AccionPageModule,
     AccionesPageModule
   ],

@@ -11,6 +11,30 @@
 </ion-header>
 
 <ion-content padding class="tema-app">
+  <ion-grid>  
+    <ion-row no-padding class="hdr">
+      <ion-col>
+        Caso
+      </ion-col>
+      <ion-col>
+        Región
+      </ion-col>
+      <ion-col>
+        Observador
+      </ion-col>
+    </ion-row>
+    <ion-row>  
+      <ion-col>
+        {{doc.titulo}} 
+      </ion-col>
+      <ion-col>
+        {{doc.region}} 
+      </ion-col>
+      <ion-col>
+        {{doc.usuario}}
+      </ion-col>
+  </ion-row>
+  </ion-grid>
   <!-- -->
   <div *ngIf="this.servicioFirebase.modelo['acciones'] == 0">
     <ion-item>No hay acciones.</ion-item>
@@ -18,15 +42,6 @@
   <!-- -->
   <ion-grid>  
     <ion-row no-padding class="hdr">
-      <ion-col>
-        Región
-      </ion-col>
-      <ion-col>
-        Observador
-      </ion-col>
-      <ion-col>
-        Caso
-      </ion-col>
       <ion-col>
         Tipo
       </ion-col>
@@ -37,7 +52,7 @@
         Fecha Alta
       </ion-col>
       <ion-col>
-        Fecha Fin
+        Fecha Fin Plan
       </ion-col>
       <ion-col>
         % Avance
@@ -48,15 +63,6 @@
     <div *ngFor="let item of this.servicioFirebase.modelo['acciones'];even as isEven" (click)="selectRow($event, item)" text-wrap>
       <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'">            
         <ion-col>
-          {{ item.delta.nmRegion }}
-        </ion-col>
-        <ion-col>
-          {{ item.delta.nmUsuario}}
-        </ion-col>
-        <ion-col>
-          {{ item.caso }}
-        </ion-col>
-        <ion-col>
           {{ item.tipo }}
         </ion-col>
         <ion-col>
@@ -66,7 +72,7 @@
           {{ item.fhAlta }}
         </ion-col>
         <ion-col>
-            {{ item.fhFin }}
+            {{ item.fhFinPlan }}
         </ion-col>
         <ion-col>
           {{ item.avance }}

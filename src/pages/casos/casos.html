@@ -20,6 +20,9 @@
 <ion-grid>
     <ion-row no-padding class="hdr">
       <ion-col >
+        #
+      </ion-col>
+      <ion-col>
         Caso
       </ion-col>
       <ion-col >
@@ -29,101 +32,44 @@
         Clasificación
       </ion-col>
       <ion-col >
-        Municipio
+        Impacto
       </ion-col>
-      <ion-col>
-        Descripción
+      <ion-col >
+        Riesgo
+      </ion-col>
+      <ion-col >
+        Municipio
       </ion-col>
       <ion-col>
       </ion-col> 
     </ion-row>
-    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion] ; first as isFirst" (click)="selectRow($event, item)" text-wrap>
-    <ion-row no-padding class="first" *ngIf="isFirst">
-        <!--           
-      <ion-col text-right>
-        {{ item.id }}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.dateCancellation}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.dateClose}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.dateUpgrade}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.address}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.idObserver}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.latitude}}
-      </ion-col>
-      <ion-col text-right>
-        {{ item.longitude}}
-      </ion-col>
--->         
+    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion]; first as isFirst; even as isEven" (click)="selectRow($event, item)" text-wrap>
+    <ion-row no-padding [ngClass]="isFirst ? 'first' :  isEven ? 'even' : 'odd'" >
       <ion-col >
         {{ item.idCase}}
       </ion-col>
       <ion-col >
-        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm' }}
+        {{ item.titulo}}
+      </ion-col>
+      <ion-col >
+        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm:ss' }}
       </ion-col>
       <ion-col >
         {{ item.idClassification}}
       </ion-col>
       <ion-col >
-        {{ item.municipio}}
+        {{ item.impacto}}
       </ion-col>
       <ion-col >
-        {{ item.description}}
+        {{ item.riesgo}}
+      </ion-col>
+      <ion-col >
+        {{ item.municipio}}
       </ion-col>
       <ion-col>
         <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
       </ion-col> 
   </ion-row>
-  <ion-row no-padding class="even" *ngIf="!isEvent">
-    <ion-col >
-      {{ item.idCase}}
-    </ion-col>
-    <ion-col >
-        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm' }}
-    </ion-col>
-    <ion-col >
-      {{ item.idClassification}}
-    </ion-col>
-    <ion-col >
-      {{ item.municipio}}
-    </ion-col>
-    <ion-col >
-      {{ item.description}}
-    </ion-col>
-    <ion-col>
-      <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
-    </ion-col> 
-</ion-row>
-<ion-row no-padding *ngIf="!(isFirst && isEvent)">
-    <ion-col >
-      {{ item.idCase}}
-    </ion-col>
-    <ion-col >
-        {{ item.dateCreation.toDate() | date:'dd-MM-yy HH:mm'}}
-    </ion-col>
-    <ion-col >
-      {{ item.idClassification}}
-    </ion-col>
-    <ion-col >
-      {{ item.municipio}}
-    </ion-col>
-    <ion-col >
-      {{ item.description}}
-    </ion-col>
-    <ion-col>
-      <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
-    </ion-col> 
-</ion-row>
 </div>
  </ion-grid>
 </ion-content>

@@ -7,6 +7,7 @@ import { MapaPage } from '../mapa/mapa';
 import { CamaraPage } from '../camara/camara';
 import { CasoPage } from '../caso/caso';
 import { AccionesPage } from '../acciones/acciones';
+import { evidenciasPage } from '../evidencias/evidencias';
 import { NavParams } from 'ionic-angular';
 
 
@@ -16,7 +17,7 @@ import { NavParams } from 'ionic-angular';
 export class TabsPage {
   public item:any;
   tab1Root = CasoPage;
-  tab2Root = CamaraPage;
+  tab2Root = evidenciasPage;
   tab3Root = MapaPage;
   tab4Root = AccionesPage;
  

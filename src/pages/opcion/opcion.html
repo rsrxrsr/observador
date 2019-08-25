@@ -13,12 +13,14 @@
         <ion-row>
           <ion-col>
             <ion-list inset>
+                <ion-item>
+                    <ion-input type="text" placeholder="opcion" name="opcion" [(ngModel)]="doc.cvOpcion" required></ion-input>
+                  </ion-item>
+                  <ion-item>
+                <ion-input type="text" placeholder="Opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
+              </ion-item>  
               <ion-item>
-                <ion-input type="text" placeholder="opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
-              </ion-item>
-  
-              <ion-item>
-                <ion-input type="text" placeholder="Tipo" name="Tipo" [(ngModel)]="doc.tipo" required></ion-input>
+                <ion-input type="text" placeholder="Ponderación de la opcion" name="valor" [(ngModel)]="doc.valor" required></ion-input>
               </ion-item>
   
             </ion-list>

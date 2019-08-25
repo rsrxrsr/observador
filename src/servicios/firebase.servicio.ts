@@ -78,17 +78,47 @@ export class ServicioFirebase {
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion).snapshotChanges().subscribe(querySnapshot => {
         var snapshot = [];
-        let ids = [];
         querySnapshot. forEach(function(doc) {
           var item=doc.payload.doc.data();
           item['id']=doc.payload.doc.id;
           snapshot.push(item);
-          ids["id"]=doc.payload.doc.id;
         });
-        console.log("Consulta: ", coleccion, querySnapshot );
+        console.log("Consulta: ", coleccion, snapshot );
         this.modelo[coleccion]=snapshot;
         resolve(snapshot);
       })      
+    })
+  }
+
+  public findOrderCollection(coleccion: string, campo:string, operador, value) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion, ref => ref.where(campo, operador, value).orderBy('fhAlta'))
+        .snapshotChanges().subscribe(querySnapshot => {
+          var snapshot = [];
+          let ids = [];
+          querySnapshot. forEach(function(doc) {
+            var item=doc.payload.doc.data();
+            item['id']=doc.payload.doc.id;
+            snapshot.push(item);
+            ids["id"]=doc.payload.doc.id;
+          });
+          console.log("Consulta: ", coleccion, snapshot );
+          this.modelo[coleccion]=snapshot;
+          resolve(snapshot);
+          })     
+    });
+  }
+
+  public docById(doc: string){
+    console.log("doc", doc)
+    return new Promise<any>((resolve, reject) => {
+      this.afs.doc(doc).ref.get()
+      .then(querySnapshot => {
+        let snapshot = querySnapshot.data();
+        snapshot['id'] = querySnapshot.id;
+        console.log("docById", snapshot); 
+        resolve(snapshot);
+      })
     })
   }
 

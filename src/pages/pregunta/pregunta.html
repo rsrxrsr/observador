@@ -12,18 +12,15 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-<!--
             <ion-item>
-              <ion-label>Encuesta</ion-label>
-              <ion-select [(ngModel)]="this.idPadre" name="id">
-                <ion-option *ngFor="let opcion of servicioFirebase.modelo[padre]" [value]="opcion.id">{{opcion.encuesta}}</ion-option>                 
-              </ion-select>
+              <ion-input type="text" placeholder="Número o inciso de pregunta" name="cvPregunta" [(ngModel)]="doc.cvPregunta" required></ion-input>
             </ion-item>
--->
             <ion-item>
-              <ion-input type="text" placeholder="Pregunta" name="Pregunta" [(ngModel)]="doc.pregunta" required></ion-input>
+                <ion-input type="text" placeholder="Pregunta" name="pregunta" [(ngModel)]="doc.pregunta" required></ion-input>
             </ion-item>
-
+            <ion-item>
+                <ion-input type="text" placeholder="Grupo" name="grupo" [(ngModel)]="doc.grupo" required></ion-input>
+            </ion-item>  
             <ion-item>
               <ion-input type="text" placeholder="Tipo" name="Tipo" [(ngModel)]="doc.tipo" required></ion-input>
             </ion-item>

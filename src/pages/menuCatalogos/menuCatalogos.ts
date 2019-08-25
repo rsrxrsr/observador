@@ -12,7 +12,6 @@ export class menuCatalogos {
   constructor(public navCtrl: NavController, public app: App
     , public menuCtrl: MenuController) {
         menuCtrl.enable(true, 'menuCatalogos');
-        menuCtrl.enable(false, 'menuMain');
   }
 
 logout(){

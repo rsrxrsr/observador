@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle="menuMain">
+      <ion-icon name="menu"></ion-icon>
+    </button>  
+    <ion-title>Evidencias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-content padding class="tema-app">
+      <!-- -->
+        <div *ngIf="this.servicioFirebase.modelo['evidencias'] == 0">
+          <ion-item>No hay evidencias.</ion-item>
+        </div>
+       <!-- --> 
+       <ion-grid>
+        <ion-row no-padding class="hdr">
+          <ion-col class="ion-text-center">
+            <h6 style="text-align:center;">Evidencias</h6>
+          </ion-col>
+        </ion-row>
+        <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)" text-wrap>
+          <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'">
+            <ion-col size="6"></ion-col>            
+            <ion-col size="1">
+              <button ion-item [ngClass]="isEven? 'even' : 'odd'" *ngIf="item.tipo=='imagen'">
+                <ion-avatar item-start>
+                  <img [src]="item.urlPhoto" title="Ver foto"/>
+                </ion-avatar>
+              </button>
+              <button ion-item [ngClass]="isEven? 'even' : 'odd'" *ngIf="item.tipo=='video'">
+                  <ion-icon name="videocam" title="Ver video" class="text-primary"></ion-icon>
+              </button>
+            </ion-col>       
+            <ion-col size="1">
+              {{item.tipo}}
+            </ion-col>
+            <ion-col size="4"></ion-col>            
+          </ion-row>
+        </div>
+      </ion-grid>
+      </ion-content>
+</ion-content>
+
+<!--
+        <ion-img [src]="item.urlPhoto"  height='300' width='500' ion-text-center></ion-img>
+          <ion-col-5>
+              <ion-col-2>
+              <button ion-item [ngClass]="isEven? 'even' : 'odd'" *ngIf="item.tipo=='imagen'">
+                <ion-avatar item-start>
+                  <img [src]="item.urlPhoto" title="Ver foto"/>
+                </ion-avatar>
+              </button>
+              <button ion-item [ngClass]="isEven? 'even' : 'odd'" *ngIf="item.tipo=='video'">
+                  <ion-icon name="videocam" title="Ver video" class="text-primary"></ion-icon>
+              </button>
+            </ion-col-2>       
+            <ion-col-2>
+              {{item.tipo}}
+            </ion-col-2>
+          </ion-col-5>  
+
+            <ion-col>
+              <ion-card *ngIf="item.tipo=='imagen'">
+                <ion-card-header>
+                  Fotografia
+                </ion-card-header>
+                <ion-card-content>
+                  <div height='300' width='500' class="ion-text-center">
+                    <ion-img [src]="item.urlPhoto"  height='300' width='500' ></ion-img>
+                  </div>
+                </ion-card-content>
+              </ion-card>
+              <ion-card *ngIf="item.tipo=='video'"> 
+                <ion-card-header>
+                  Video
+                </ion-card-header>
+                <ion-card-content>
+                  <video controls="controls"  height='300' width='500' preload="metadata" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+                    <source [src]="item.urlPhoto" type="video/mp4" />
+                  </video>
+                </ion-card-content>
+              </ion-card>    
+            </ion-col>      
+
+
+-->

@@ -12,15 +12,18 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-
             <ion-item>
-              <ion-input type="text" placeholder="Abr. encuesta" name="cvEncuesta" [(ngModel)]="doc.cvEncuesta" required></ion-input>
+              <ion-input type="text" placeholder="Nombre de encuesta" name="encuesta" [(ngModel)]="doc.encuesta" required></ion-input>
             </ion-item>
-
             <ion-item>
-              <ion-input type="text" placeholder="encuesta" name="encuesta" [(ngModel)]="doc.encuesta" required></ion-input>
+              <ion-input type="text" placeholder="Descripción" name="descripcion" [(ngModel)]="doc.descripcion" required></ion-input>
             </ion-item>
-
+            <ion-item>
+              <ion-input type="text" placeholder="Clasificación" name="clasificacion" [(ngModel)]="doc.clasificacion" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Proposito" name="proposito" [(ngModel)]="doc.proposito" required></ion-input>
+            </ion-item>      
           </ion-list>
         </ion-col>
       </ion-row>

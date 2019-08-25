@@ -13,8 +13,8 @@ export class CasoPage {
   coleccion="caso";
   isUpdate=false; 
   createSuccess = false;
-  doc={id:''};
-  //url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Ffile.jpg?alt=media&token=93a10744-7775-4ea3-b1ae-bfb9740dccda";
+  doc={id:'',idObservador:'',delta:{usuario:""}};
+  forma={dateCreation:''};
   url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Faccidente.jpg?alt=media&token=abf0dad0-e73c-464c-a1d6-7554cc4969d9";
 
   constructor(
@@ -30,12 +30,17 @@ export class CasoPage {
       if (navParams.get('item')) {
         this.isUpdate = true;
         this.doc = navParams.get('item');
-      }    
+        this.doc['dateCreation']=this.doc['dateCreation'].toDate();
+      }
+      this.doc['delta']={usuario:""};    
       console.log("caso",this.doc);
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Page');
+    console.log('ionViewDidLoad Page', this.doc.idObservador);
+    this.servicioFirebase.docById("usuarios/"+this.doc.idObservador)
+    .then(snapshot=>this.doc.delta.usuario=snapshot.usuario);
+
   }
 
   public register() {

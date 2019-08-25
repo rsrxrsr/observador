@@ -7,44 +7,17 @@
 </ion-header>
 
 <ion-content padding>
-    <p>{{this.doc.delta.nmRegion}}</p>
+    <p>| idCaso:{{doc.idCaso}} | idRegion: {{doc.idRegion}} | idObservador: {{doc.idObservador}}</p>
   <form (ngSubmit)="register()" #registerForm="ngForm">
-    
       <ion-row>
           <ion-col>
           <ion-list inset>
-            <ion-row>
-            <ion-item>
-              <ion-label stacked>Estado</ion-label>
-              <!--{{doc.delta.estado}} #C (ionChange)="onChange(C.value)"-->
-              <ion-select name="Estado" [(ngModel)]="doc.delta.estado" required [compareWith]="compareWithFn"  #C (ionChange)="onChangeEstado(C.value)" >
-                <ion-option *ngFor="let estado of this.servicioFirebase.modelo['regiones']" [value]="estado">{{estado.region}}</ion-option>
-              </ion-select>
-            </ion-item> 
-            <ion-item>
-                <ion-label stacked>Region</ion-label>
-                <ion-select name="Region" [(ngModel)]="doc.delta.region" required [compareWith]="compareWithFn" #C2 (ionChange)="onChangeRegion(C2.value)">
-                  <ion-option *ngFor="let item of doc.delta.estado.regiones" [value]="item" >{{item.region}}</ion-option>
-                </ion-select>
-              </ion-item>             
-              </ion-row>
-        <ion-item>
-              <ion-label stacked>Observador</ion-label>
-              <ion-select name="Usuario" [(ngModel)]="doc.usuario" required>
-                <ion-option *ngFor="let item of this.servicioFirebase.modelo['usuarios']" value={{item.id}}>{{item.usuario}}</ion-option>
-              </ion-select>
-            </ion-item>
-          <ion-item>
-              <ion-label stacked>Caso</ion-label>
-              <ion-input type="text" placeholder="Caso" name="Caso" [(ngModel)]="doc.caso" required></ion-input>
-          </ion-item>
           <ion-item>
             <ion-label stacked>Tipo</ion-label>
             <ion-select name="Tipo" [(ngModel)]="doc.tipo" required>
-              <ion-option>Alta</ion-option>
+              <ion-option>Actividad</ion-option>
               <ion-option>Tramite</ion-option>
-              <ion-option>Informe</ion-option>
-              <ion-option>Gestión</ion-option>
+              <ion-option>Seguimiento</ion-option>
             </ion-select>
           </ion-item>
           <ion-item>
@@ -72,12 +45,12 @@
               <ion-input type="text" placeholder="Responsable" name="Responsable" [(ngModel)]="doc.responsable"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label stacked>Avance</ion-label>
-              <ion-input type="number" [min]="0.00" [max]="100.00" placeholder="Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
+              <ion-label stacked>% Avance</ion-label>
+              <ion-input type="number" [min]="0.00" [max]="100.00" placeholder="% Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label stacked>Estatus</ion-label>
-            <ion-select name="Estatus" [(ngModel)]="doc.estatus" required>
+            <ion-select name="Estatus" [(ngModel)]="doc.estatus" >
               <ion-option>Activo</ion-option>
               <ion-option>Inactivo</ion-option>
             </ion-select>

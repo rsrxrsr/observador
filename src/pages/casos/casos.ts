@@ -24,6 +24,7 @@ export class CasosPage {
     public ionViewDidLoad() {
       //this.servicioDb.getColeccion(this.coleccion);
       this.servicioFirebase.consultarColeccion(this.coleccion);
+      //this.servicioFirebase.findCasos(this.coleccion, 'municipio', '==', 'Ecatepec');
 
   }
 

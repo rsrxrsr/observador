@@ -1,15 +1,17 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Demo 105
+      Ubicación
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-fab top left>
-  <button (click)="loadMap()" ion-fab mini><ion-icon name="map"></ion-icon></button>
-</ion-fab>      
-
 <ion-content>
   <div #map id="map"></div>
+
+  <ion-item>
+    <ion-label stacked>Descripción</ion-label>
+    <ion-textarea placeholder="Descripción" name="descripcion" [(ngModel)]="item.address" readonly color="ligth"></ion-textarea>
+  </ion-item>
+
 </ion-content>
