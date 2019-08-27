@@ -6,23 +6,33 @@
   
   </ion-header>
   
-  <ion-content padding>
-    <form (ngSubmit)="register()" #registerForm="ngForm">
+  <ion-content padding class="tema-app">
+      <div padding-horizontal text-center >
+          <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+      </div>
+    <ion-grid>  
+      <ion-row size-lg>
+        <ion-col col-2 size-lg></ion-col>
+        <ion-col col-8 size-lg>  
+
+        <form (ngSubmit)="register()" #registerForm="ngForm">
         <h4>{{doc.item.item.encuesta}}</h4>  
-        <h5>{{doc.item.pregunta}}</h5>  
+        <h5>Pregunta: {{doc.item.pregunta}}</h5>  
         <ion-row>
           <ion-col>
             <ion-list inset>
                 <ion-item>
-                    <ion-input type="text" placeholder="opcion" name="opcion" [(ngModel)]="doc.cvOpcion" required></ion-input>
-                  </ion-item>
-                  <ion-item>
-                <ion-input type="text" placeholder="Opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
+                  <ion-label stacked>Clave/Inciso/Número</ion-label>
+                  <ion-input type="text" placeholder="Clave, inciso, número" name="clave" [(ngModel)]="doc.cvOpcion" required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Opción</ion-label>
+                  <ion-input type="text" placeholder="Opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
               </ion-item>  
               <ion-item>
+                <ion-label stacked>Valor</ion-label>
                 <ion-input type="text" placeholder="Ponderación de la opcion" name="valor" [(ngModel)]="doc.valor" required></ion-input>
-              </ion-item>
-  
+              </ion-item>  
             </ion-list>
           </ion-col>
         </ion-row>
@@ -40,4 +50,8 @@
         </ion-row>
   
       </form>
-  </ion-content>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>       
+</ion-content>

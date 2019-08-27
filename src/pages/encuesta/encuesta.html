@@ -6,39 +6,54 @@
 
 </ion-header>
 
+<ion-content padding class="tema-app">
+    <div padding-horizontal text-center >
+        <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+    </div>
+  <ion-grid>  
+    <ion-row size-lg>
+      <ion-col col-2 size-lg></ion-col>
+      <ion-col col-8 size-lg>  
+  
+        <form (ngSubmit)="register()" #registerForm="ngForm">
+          <ion-row>
+            <ion-col>
+              <ion-list inset>
+                <ion-item>
+                  <ion-label stacked>Encuesta</ion-label>
+                  <ion-input type="text" placeholder="Nombre de encuesta" name="encuesta" [(ngModel)]="doc.encuesta" required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Descripción</ion-label>
+                  <ion-input type="text" placeholder="Descripción" name="descripcion" [(ngModel)]="doc.descripcion" required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Clasificación</ion-label>
+                  <ion-input type="text" placeholder="Clasificación" name="clasificacion" [(ngModel)]="doc.clasificacion" required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label stacked>Propósito</ion-label>
+                  <ion-input type="text" placeholder="Proposito" name="proposito" [(ngModel)]="doc.proposito" required></ion-input>
+                </ion-item>      
+              </ion-list>
+            </ion-col>
+          </ion-row>
 
-<ion-content padding>
-  <form (ngSubmit)="register()" #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-            <ion-item>
-              <ion-input type="text" placeholder="Nombre de encuesta" name="encuesta" [(ngModel)]="doc.encuesta" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input type="text" placeholder="Descripción" name="descripcion" [(ngModel)]="doc.descripcion" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input type="text" placeholder="Clasificación" name="clasificacion" [(ngModel)]="doc.clasificacion" required></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input type="text" placeholder="Proposito" name="proposito" [(ngModel)]="doc.proposito" required></ion-input>
-            </ion-item>      
-          </ion-list>
-        </ion-col>
-      </ion-row>
+          <ion-row>
+            <ion-col class="ion-col" *ngIf="!isUpdate">
+              <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+            </ion-col>
+            <ion-col class="ion-col" *ngIf="isUpdate">
+              <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+            </ion-col>
+            <ion-col class="ion-col" *ngIf="isUpdate">
+              <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+            </ion-col>
+          </ion-row>
 
-      <ion-row>
-        <ion-col class="ion-col" *ngIf="!isUpdate">
-          <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
-        </ion-col>
-        <ion-col class="ion-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
-        </ion-col>
-        <ion-col class="ion-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
-        </ion-col>
-      </ion-row>
+        </form>
 
-    </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>       
 </ion-content>

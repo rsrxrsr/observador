@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 import { AccionPage } from '../accion/accion';
+import { CasosPage } from '../casos/casos';
 
 @IonicPage()
 @Component({
@@ -49,6 +50,10 @@ export class AccionesPage {
         */
       }
 
+  openPage() {
+    this.navCtrl.push(CasosPage);
+  }
+        
   public selectRow(event, item ){
     console.log("Item",item);
     this.navCtrl.push(AccionPage,{

@@ -36,21 +36,26 @@ export class AccionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad accionPage');
+    this.servicioFirebase.consultarColeccion("encuestas");
    } 
  
   public register() {
     this.servicioFirebase.agregarDocumento(this.coleccion, this.doc );
-    this.showPopup("Success", "Document created.");            
+    if (this.doc['tipo']=="Encuesta") {
+      let encuesta={idRegion:this.doc['idRegion'],idCaso:this.doc['idCaso'],fhInicio:this.doc['fhAlta'],fhFin:this.doc['fhFinPlan']};       
+      this.servicioFirebase.agregarDocumento("encuestas/"+this.delta.idEncuesta+"/instancias", encuesta );  
+    }
+    this.showPopup("Alta", "Documento creado");            
   }
 
   public editar() {
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
-    this.showPopup("Success", "Document updated.");          
+    this.showPopup("Cambio", "Documento actualizado");          
   }
 
   public borrar() {
     this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
-    this.showPopup("Success", "Document delete."); 
+    this.showPopup("Baja", "Documento borrado"); 
   }
 
   showPopup(title, text) {

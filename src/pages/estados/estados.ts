@@ -10,7 +10,7 @@ import { EstadoPage } from '../estado/estado';
 })
 export class EstadosPage {
 
-  public coleccion="estados";
+  public coleccion="regiones";
 
   constructor(
     public navCtrl: NavController,

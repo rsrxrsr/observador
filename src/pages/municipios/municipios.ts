@@ -11,8 +11,8 @@ import { MunicipioPage } from '../municipio/municipio';
 })
 export class MunicipiosPage {
 
-  public padre="estados";
-  public coleccion="municipios";
+  public padre="regiones";
+  public coleccion="regiones";
 
   constructor(
     public navCtrl: NavController,
@@ -44,7 +44,7 @@ export class MunicipiosPage {
   }
 
   public selectRow(event, item, idx ){
-    console.log("SelectRow",item);
+    console.log("SelectRow",item, idx);
     this.navCtrl.push(MunicipioPage,{
       item  : item,
       idx    : idx

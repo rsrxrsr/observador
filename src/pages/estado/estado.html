@@ -14,19 +14,19 @@
   <ion-row size-lg>
     <ion-col col-2 size-lg></ion-col>
     <ion-col col-8 size-lg>  
+
       <form (ngSubmit)="register()" #registerForm="ngForm"  >
           <ion-row>
             <ion-col>
-              <ion-list inset>
-    
+              <ion-list inset>    
                 <ion-item>
                     <ion-label stacked>Estado</ion-label>
-                    <ion-input type="text" placeholder="Abreviación del Estado" name="cvEstado" [(ngModel)]="doc.cvEstado" required></ion-input>
+                    <ion-input type="text" placeholder="Abreviación del Estado" name="cvEstado" [(ngModel)]="doc.region" required></ion-input>
                 </ion-item>
     
                 <ion-item>
                   <ion-label stacked>Nombre oficial del Estado</ion-label>
-                  <ion-input type="text" placeholder="Nombre completo del Estado" name="estado" [(ngModel)]="doc.estado" required></ion-input>
+                  <ion-input type="text" placeholder="Nombre completo del Estado" name="estado" [(ngModel)]="doc.nombre" required></ion-input>
                 </ion-item>
     
               </ion-list>
@@ -46,8 +46,8 @@
           </ion-row>
     
         </form>
+
       </ion-col>
     </ion-row>
-
-    </ion-grid>       
-  </ion-content>
+  </ion-grid>       
+</ion-content>

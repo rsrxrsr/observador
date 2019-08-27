@@ -8,9 +8,9 @@ import { ServicioFirebase } from '../../servicios/firebase.servicio';
 })
 export class MunicipioPage {
 
-  padre="estados";
+  padre="regiones";
   itemPadre={"id":""};
-  coleccion="municipios";
+  coleccion="regiones";
   doc={id:''};
   isUpdate=false; 
   createSuccess = false;
@@ -26,7 +26,7 @@ export class MunicipioPage {
         this.itemPadre = this.servicioFirebase.modelo[this.padre][navParams.get('idx')];
         this.doc = navParams.get('item');
       }    
-      console.log("Constructor",this.doc);
+      console.log("Constructor",this.doc), this.itemPadre;
     }
 
   ionViewDidLoad() {

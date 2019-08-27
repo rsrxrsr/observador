@@ -8,7 +8,7 @@ import { ServicioFirebase } from '../../servicios/firebase.servicio';
 })
 export class EstadoPage {
 
-  coleccion="estados";
+  coleccion="regiones";
   doc={id:''};
   isUpdate=false; 
   createSuccess = false;

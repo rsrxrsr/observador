@@ -6,8 +6,16 @@
 
 </ion-header>
 
-<ion-content padding>
-    <p>| idCaso:{{doc.idCaso}} | idRegion: {{doc.idRegion}} | idObservador: {{doc.idObservador}}</p>
+<ion-content padding class="tema-app">
+    <div padding-horizontal text-center >
+        <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+    </div>
+  <ion-grid>  
+    <ion-row size-lg>
+      <ion-col col-2 size-lg></ion-col>
+      <ion-col col-8 size-lg>  
+  
+  <!--    <p>| idCaso:{{doc.idCaso}} | idRegion: {{doc.idRegion}} | idObservador: {{doc.idObservador}}</p> -->
   <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
           <ion-col>
@@ -17,7 +25,14 @@
             <ion-select name="Tipo" [(ngModel)]="doc.tipo" required>
               <ion-option>Actividad</ion-option>
               <ion-option>Tramite</ion-option>
+              <ion-option>Encuesta</ion-option>
               <ion-option>Seguimiento</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="doc.tipo=='Encuesta'">
+            <ion-label>Seleccione encuesta...</ion-label>
+            <ion-select [(ngModel)]="delta.idEncuesta" name="idEncuesta" >
+              <ion-option *ngFor="let opcion of servicioFirebase.modelo['encuestas']" [value]="opcion.id">{{opcion.encuesta}}</ion-option>                 
             </ion-select>
           </ion-item>
           <ion-item>
@@ -52,7 +67,8 @@
             <ion-label stacked>Estatus</ion-label>
             <ion-select name="Estatus" [(ngModel)]="doc.estatus" >
               <ion-option>Activo</ion-option>
-              <ion-option>Inactivo</ion-option>
+              <ion-option>Terminado</ion-option>
+              <ion-option>Cancelado</ion-option>
             </ion-select>
           </ion-item>
       </ion-list>
@@ -72,4 +88,8 @@
       </ion-row>
 
     </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>       
 </ion-content>

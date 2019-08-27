@@ -7,32 +7,62 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-content padding>
-      <!-- -->
-        <div *ngIf="this.servicioFirebase.modelo[coleccion] == 0">
-          <ion-item>No hay información</ion-item>
-        </div>
-       <!-- --> 
+<ion-content padding>  
+  <!-- -->
+    <div *ngIf="servicioFirebase.modelo[coleccion] == 0">
+      <ion-item>No hay información</ion-item>
+    </div>
+  <!-- --> 
 
-        <ion-fab bottom right *ngIf="this.rollPage==this.nmColeccion">
-          <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
-        </ion-fab>      
+  <ion-fab top right>
+    <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab> 
 
-        <div *ngFor="let item of this.servicioFirebase.modelo[coleccion]" (click)="selectRow($event, item)" text-wrap>
-          <ion-row no-padding>
-<!--            
-            <ion-col text-right>
-                {{ item.id }}
-            </ion-col>
--->
-            <ion-col text-right>
-              {{ item.cvEncuesta}}
-            </ion-col>
-            <ion-col text-right>
-              {{ item.encuesta }}
-            </ion-col>
-          </ion-row>
-        </div>
-      </ion-content>
+  <div padding-horizontal text-center >
+      <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+  </div>
+
+<ion-grid size-lg>
+  <ion-row size-lg>
+    <ion-col col-2 size-lg></ion-col>
+    <ion-col col-8 size-lg>  
+      <ion-row no-padding class="grad">
+        <ion-col text-center>
+          <h6>Encuesta</h6>
+        </ion-col>
+        <ion-col text-left>
+          <h6>Propósito</h6>
+        </ion-col>
+        <ion-col text-left>
+          <h6>Clasificación</h6>
+        </ion-col>
+        <ion-col col-1></ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col col-2 size-lg></ion-col>
+  </ion-row>
+
+  <ion-row>  
+    <ion-col col-2></ion-col>
+      <ion-col col-8>
+        <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)" text-wrap>
+            <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
+              <ion-col text-center>
+                {{ item.encuesta}}
+              </ion-col>
+              <ion-col text-left>
+                {{ item.proposito }}
+              </ion-col>
+              <ion-col text-left>
+                {{ item.clasificacion }}
+              </ion-col>
+              <ion-col col-1>
+                  <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
+                </ion-col>             
+            </ion-row>
+        </div>        
+      </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+</ion-grid>  
 </ion-content>

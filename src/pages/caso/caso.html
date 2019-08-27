@@ -1,12 +1,26 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle="menuMain">
+      <ion-icon name="menu"></ion-icon>
+    </button>      
     <ion-title>Detalle del Caso</ion-title>
+    <ion-fab top right>
+      <button (click)="openPage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
+  </ion-fab>          
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding class="tema">
+<ion-content padding class="tema-app">
+    <div padding-horizontal text-center >
+        <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+    </div>
+  <ion-grid>  
+    <ion-row size-lg>
+      <ion-col col-2 size-lg></ion-col>
+      <ion-col col-8 size-lg>  
+  
   <form (ngSubmit)="register()" #registerForm="ngForm" >
       <ion-row>
         <ion-col>
@@ -78,4 +92,8 @@
         </ion-row>
       -->        
     </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>       
 </ion-content>

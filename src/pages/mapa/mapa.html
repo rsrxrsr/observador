@@ -1,5 +1,9 @@
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button menuToggle="menuMain">
+      <ion-icon name="menu"></ion-icon>
+    </button>  
+    
     <ion-title>
       Ubicación
     </ion-title>
@@ -10,8 +14,8 @@
   <div #map id="map"></div>
 
   <ion-item>
-    <ion-label stacked>Descripción</ion-label>
-    <ion-textarea placeholder="Descripción" name="descripcion" [(ngModel)]="item.address" readonly color="ligth"></ion-textarea>
+    <ion-label stacked>Ubicación del caso</ion-label>
+    <ion-textarea placeholder="Ubicación del caso" name="descripcion" [(ngModel)]="item.address" readonly color="ligth"></ion-textarea>
   </ion-item>
 
 </ion-content>

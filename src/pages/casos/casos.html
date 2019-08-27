@@ -40,11 +40,11 @@
       <ion-col >
         Municipio
       </ion-col>
-      <ion-col>
+      <ion-col col-1>
       </ion-col> 
     </ion-row>
     <div *ngFor="let item of this.servicioFirebase.modelo[coleccion]; first as isFirst; even as isEven" (click)="selectRow($event, item)" text-wrap>
-    <ion-row no-padding [ngClass]="isFirst ? 'first' :  isEven ? 'even' : 'odd'" >
+    <ion-row no-padding [ngClass]="isFirst ? 'first' :  isEven ? 'even' : 'odd'" class="pointer">
       <ion-col >
         {{ item.idCase}}
       </ion-col>
@@ -66,8 +66,8 @@
       <ion-col >
         {{ item.municipio}}
       </ion-col>
-      <ion-col>
-        <ion-icon name="paper" item-start class="text-primary" title="Ver detalle"></ion-icon>
+      <ion-col col-1>
+        <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
       </ion-col> 
   </ion-row>
 </div>

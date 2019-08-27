@@ -43,6 +43,10 @@ export class CasoPage {
 
   }
 
+  openPage() {
+    this.nav.push(CasosPage);
+  }
+
   public register() {
     {
       this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ); 

@@ -18,7 +18,7 @@ export class LoginPage {
   isUpdate=false; 
   createSuccess = false;
   forma = {id:'' };
-  usuario = { correo: '', pass: ''};
+  usuario = { correo: '', pass: '', estatus:''};
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -35,10 +35,10 @@ export class LoginPage {
   public login() {
     //this.navCtrl.push(TabsPage);  //remove for prod
     var usuarios:any =[];
-    console.info('FrmUsuarios',this.usuario.correo);
     this.servicioFirebase.findColeccion("usuarios",'correo','==',this.usuario.correo).then(
-      resp =>{usuarios = resp;        
-        if (usuarios.length==1 && this.usuario.pass === usuarios[0].pass) {
+      resp =>{usuarios = resp;
+        console.info('FrmUsuarios',usuarios[0], this.usuario);        
+        if (usuarios.length==1 && this.usuario.pass === usuarios[0].pass && usuarios[0].estatus=="Activo") {
           //this.showPopup("Success", "Account created.");
           this.menuCtrl.enable(true, 'menuMain');
           this.navCtrl. setRoot(CasosPage);

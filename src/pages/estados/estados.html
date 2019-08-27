@@ -12,11 +12,11 @@
     <div *ngIf="servicioFirebase.modelo[coleccion] == 0">
       <ion-item>No hay información</ion-item>
     </div>
-    <!-- --> 
+  <!-- --> 
 
-    <ion-fab top right>
-      <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
-    </ion-fab> 
+  <ion-fab top right>
+    <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab> 
 
   <div padding-horizontal text-center >
       <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
@@ -43,18 +43,18 @@
     <ion-row>  
       <ion-col col-2></ion-col>
         <ion-col col-8>
-          <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)" text-wrap>
-              <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
-                <ion-col text-center>
-                  {{ item.cvEstado}}
-                </ion-col>
-                <ion-col text-left>
-                  {{ item.estado }}
-                </ion-col>
-                <ion-col col-1>
-                    <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
-                  </ion-col>             
-              </ion-row>
+          <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)">
+            <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
+              <ion-col text-center>
+                {{ item.region}}
+              </ion-col>
+              <ion-col text-left>
+                {{ item.nombre }}
+              </ion-col>
+              <ion-col col-1>
+                <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
+              </ion-col>             
+            </ion-row>
           </div>        
         </ion-col>
       <ion-col col-2></ion-col>

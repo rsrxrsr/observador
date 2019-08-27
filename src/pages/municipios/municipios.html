@@ -7,29 +7,66 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <!-- -->
-    <div *ngIf="this.servicioFirebase.modelo[padre] == 0">
-      <ion-item>No hay información</ion-item>
-    </div>
+<ion-content padding>  
+    <!-- -->
+      <div *ngIf="servicioFirebase.modelo[coleccion] == 0">
+        <ion-item>No hay información</ion-item>
+      </div>
     <!-- --> 
-
-    <ion-fab bottom right>
+  
+    <ion-fab top right>
       <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
     </ion-fab> 
-
-    <ng-container *ngFor="let padre of servicioFirebase.modelo[padre]; let idx=index" >
-      <div *ngFor="let item of padre[coleccion]" (click)="selectRow($event, item, idx)">     
-        <ion-row no-padding>
-          <ion-col text-right>
-            {{ padre.cvEstado }}
+  
+    <div padding-horizontal text-center >
+        <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+    </div>
+  
+    <ion-grid size-lg>
+  
+      <ion-row size-lg>
+        <ion-col col-2 size-lg></ion-col>
+        <ion-col col-8 size-lg>  
+          <ion-row no-padding class="grad">
+            <ion-col text-center>
+              <h6>Estado</h6>
+            </ion-col>
+            <ion-col text-center>
+              <h6>Municipio</h6>
+            </ion-col>
+            <ion-col text-left>
+              <h6>Nombre del municipio</h6>
+            </ion-col>
+            <ion-col col-1></ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2 size-lg></ion-col>
+      </ion-row>
+  
+      <ion-row>  
+        <ion-col col-2></ion-col>
+          <ion-col col-8>
+            <ng-container *ngFor="let padre of servicioFirebase.modelo[padre]; let idx=index" >
+            <div *ngFor="let item of padre[coleccion];even as isEven" (click)="selectRow($event, item, idx)">
+                <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
+                  <ion-col text-center>
+                    {{ padre.region}}
+                  </ion-col>
+                  <ion-col text-center>
+                    {{ item.region}}
+                  </ion-col>
+                  <ion-col text-left>
+                    {{ item.nombre }}
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
+                    </ion-col>             
+                </ion-row>
+            </div>
+            </ng-container>        
           </ion-col>
-<!-- -->
-          <ion-col text-right>
-            {{ item.cvMunicipio }}
-          </ion-col>
- <!-- -->
-        </ion-row>
-      </div>      
-  </ng-container>
-</ion-content>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>  
+  </ion-content>
+  
