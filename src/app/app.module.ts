@@ -49,6 +49,7 @@ import { CasoPage } from '../pages/caso/caso';
 import { CasosPage } from '../pages/casos/casos';
 import { TableroPage } from '../pages/tablero/tablero';
 import { MapaPage } from '../pages/mapa/mapa';
+import { maperPage } from '../pages/maper/maper';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -80,7 +81,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CasoPage,
     CasosPage,
     TableroPage,
-    MapaPage
+    MapaPage,
+    maperPage
   ],
   exports:[],
   imports: [
@@ -127,7 +129,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CasoPage,
     CasosPage,
     TableroPage,
-    MapaPage
+    MapaPage,
+    maperPage
   ],
   providers: [
     StatusBar,

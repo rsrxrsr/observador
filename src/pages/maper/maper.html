@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Demarcación</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+  
+<ion-content>
+  <div id="map1"></div>
+
+  <ion-row>
+    <ion-col class="ion-col" >
+      <button ion-button  full type="button"  (click)="limpiar()" >limpiar</button>
+    </ion-col>
+    <ion-col class="ion-col" >
+      <button ion-button  full type="button"  (click)="undo()" >deshacer</button>
+    </ion-col>
+    <ion-col class="ion-col" >
+      <button ion-button  full type="button"  (click)="navCtrl.pop()" >Aceptar</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

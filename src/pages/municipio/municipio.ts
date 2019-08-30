@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
+import { maperPage } from '../maper/maper';
+import { MapaPage } from '../mapa/mapa';
+
 @Component({
   selector: 'page-municipio',
   templateUrl: 'municipio.html'
@@ -12,7 +15,7 @@ export class MunicipioPage {
   itemPadre={"id":""};
   coleccion="regiones";
   doc={id:''};
-  isUpdate=false; 
+  isUpdate=false;
   createSuccess = false;
 
   constructor(
@@ -26,7 +29,7 @@ export class MunicipioPage {
         this.itemPadre = this.servicioFirebase.modelo[this.padre][navParams.get('idx')];
         this.doc = navParams.get('item');
       }    
-      console.log("Constructor",this.doc), this.itemPadre;
+      console.log("Constructor",this.doc, this.itemPadre);
     }
 
   ionViewDidLoad() {
@@ -131,6 +134,12 @@ export class MunicipioPage {
       ]
     });
     alert.present();
+  }
+
+  public demarcar() {
+    this.nav.push(maperPage,{
+      item  : this.doc
+    });      
   }
 
 }

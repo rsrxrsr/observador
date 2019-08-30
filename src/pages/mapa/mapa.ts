@@ -50,10 +50,12 @@ export class MapaPage {
     //let longitude = -5.6773;
     let latitude = Number(this.item.longitude);
     let longitude = Number(this.item.latitude);
-    console.log(latitude, longitude);
 
     //latitude = 19.4978;
     //longitude =  -99.1269;
+    latitude = 40;
+    longitude =  -3.5;
+    console.log(latitude, longitude);
 
     // create a new map by passing HTMLElement
      let mapEle: HTMLElement = document.getElementById('map');
@@ -81,7 +83,59 @@ export class MapaPage {
       mapEle.classList.add('show-map');
       google.maps.event.trigger(mapEle, 'resize');
     });
+
+//New Region
+    var verticesPoligono = [
+      { lat: 41.05, lng: -4.79 },
+      { lat: 40.39, lng: -6.09 },
+      { lat: 39.29, lng: -5.85 },
+      { lat: 38.39, lng: -4.09 },
+      { lat: 38.94, lng: -2.59 },
+      { lat: 40.09, lng: -3.12 },
+      { lat: 40.95, lng: -3.99 }
+    ];
+
+    var poligono = new google.maps.Polygon({
+      path: verticesPoligono,
+      map: this.map,
+      strokeColor: 'rgb(255, 0, 0)',
+      fillColor: 'rgb(255, 255, 0)',
+      strokeWeight: 4,
+    });
+
+    let poly = new google.maps.Polyline({
+      strokeColor: '#000000',
+      strokeOpacity: 1.0,
+      strokeWeight: 3
+    });
+    poly.setMap(this.map);
+
+    // Add a listener for the click event
+    this.map.addListener('click', addLatLng);
+
+    // Handles click events on a map, and adds a new point to the Polyline.
+    function addLatLng(event) {
+      var path = poly.getPath();
+
+      // Because path is an MVCArray, we can simply append a new coordinate
+      // and it will automatically appear.
+      path.push(event.latLng);
+
+      // Add a new marker at the new plotted point on the polyline.
+      let marker = new google.maps.Marker({
+        position: event.latLng,
+        title: '#' + 'path.getLength()',
+        map: this.map
+      });
+    }
+
+
     /*    
+
+    google.maps.event.addListener(this.map, "click", function(event) {
+      alert(event.latLng);
+      });
+
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       let marker = new google.maps.Marker({
         position: myLatLng,
