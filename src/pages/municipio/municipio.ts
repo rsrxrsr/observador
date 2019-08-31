@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
 import { maperPage } from '../maper/maper';
 import { MapaPage } from '../mapa/mapa';
+
 
 @Component({
   selector: 'page-municipio',

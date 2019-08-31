@@ -25,17 +25,15 @@ export class maperPage {
 
   ionViewDidLoad(){
     console.log("ionViewDidLoad");
-    console.log("This", this);
     this.loadMap();
   }
  
   loadMap(){
-    console.log("LoadMap", this.item);
+    console.log("LoadMap");
     let latitude = Number(this.item.latitude);
     let longitude = Number(this.item.longitude);
     let myLatLng = {lat: latitude, lng: longitude};
     //let myLatLng = {lat: 19.3624966, lng: -99.1838139};
-    console.log( " Coord", myLatLng);
      
     // create a new map by passing HTMLElement
     let mapEle: HTMLElement = document.getElementById('map1');
@@ -65,6 +63,7 @@ export class maperPage {
     */      
 
     //New Region
+    /*
     var verticesPoligono = [
       { lat: 41.05, lng: -4.79 },
       { lat: 40.39, lng: -6.09 },
@@ -74,6 +73,8 @@ export class maperPage {
       { lat: 40.09, lng: -3.12 },
       { lat: 40.95, lng: -3.99 }
     ];
+    */
+    var verticesPoligono = this.item.demarcacion; 
 
     var poligono = new google.maps.Polygon({
       path: verticesPoligono,
@@ -93,21 +94,14 @@ export class maperPage {
 
     // Add a listener for the click event
     this.map.addListener('click', event => { 
-      console.log('addLatLng');
-      console.log("this", this);
-      console.log("Page", maperPage);
+    //  console.log('addLatLng');
   
       let path = this. poly. getPath();
   
       // Because path is an MVCArray, we can simply append a new coordinate
       // and it will automatically appear.
       path.push(event.latLng);
-  
-  
-      path.getArray().forEach(c => {
-        console.log("c",c.lat(),c.lng());  
-      });
-  
+      
       // Add a new marker at the new plotted point on the polyline.
       this.marker[this.marker.length] = new google.maps.Marker({
         position: event.latLng,
@@ -115,7 +109,6 @@ export class maperPage {
         map: this.map
       });
 
-      console.log("mark",this.marker.length);
     })
 
   }
@@ -133,6 +126,15 @@ export class maperPage {
       this.marker[i].setMap(null);
     }
     this.marker.splice(1,this.marker.length-1);
+  }
+
+  setKLM() {
+    let dem=[];
+    this.poly.getPath().getArray().forEach(c => {
+      dem.push({lat:c.lat(), lng:c.lng()});  
+    });
+    this.item.demarcacion=dem;
+    this.navCtrl.pop();
   }
 
 }
