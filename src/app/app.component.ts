@@ -11,6 +11,7 @@ import { UsuariosPage } from '../pages/usuarios/usuarios';
 import { menuCatalogos } from '../pages/menuCatalogos/menuCatalogos';
 import { EstadosPage } from '../pages/estados/estados';
 import { MunicipiosPage } from '../pages/municipios/municipios';
+import { coloniasPage } from '../pages/colonias/colonias';
 import { ClasesPage } from '../pages/clases/clases';
 import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
 import { EncuestasPage } from '../pages/encuestas/encuestas';
@@ -58,6 +59,7 @@ export class MyApp {
         'menuCatalogos'  : menuCatalogos,
         'EstadosPage'    : EstadosPage,
         'MunicipiosPage' : MunicipiosPage,
+        'coloniasPage'   : coloniasPage,
         'ClasesPage'     : ClasesPage,
         'menuEncuestas'  : menuEncuestas, 
         'EncuestasPage'  : EncuestasPage,

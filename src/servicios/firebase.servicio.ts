@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+//import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
-//import { Storage } from '@ionic/storage';
 
 @Injectable()
 // ====================================================================================================================
@@ -115,8 +115,9 @@ export class ServicioFirebase {
       this.afs.doc(doc).ref.get()
       .then(querySnapshot => {
         let snapshot = querySnapshot.data();
-        snapshot['id'] = querySnapshot.id;
-        console.log("docById", snapshot); 
+        snapshot['id'] =  querySnapshot.id;
+        console.log("docById", snapshot);
+        console.log("ref", querySnapshot.ref.parent , "par", querySnapshot.ref.parent.parent, "path", querySnapshot.ref.path); 
         resolve(snapshot);
       })
     })

@@ -36,6 +36,8 @@ import { EstadoPage } from '../pages/estado/estado';
 import { EstadosPage } from '../pages/estados/estados';
 import { MunicipioPage } from '../pages/municipio/municipio';
 import { MunicipiosPage } from '../pages/municipios/municipios';
+import { coloniaPage } from '../pages/colonia/colonia';
+import { coloniasPage } from '../pages/colonias/colonias';
 import { ClasePage } from '../pages/clase/clase';
 import { ClasesPage } from '../pages/clases/clases';
 import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
@@ -69,6 +71,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     EstadosPage,
     MunicipioPage,
     MunicipiosPage,
+    coloniaPage,
+    coloniasPage,
     ClasePage,
     ClasesPage,
     menuEncuestas,
@@ -117,6 +121,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     EstadosPage,
     MunicipioPage,
     MunicipiosPage,
+    coloniaPage,
+    coloniasPage,
     ClasePage,
     ClasesPage,
     menuEncuestas,

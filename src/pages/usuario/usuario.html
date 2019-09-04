@@ -7,16 +7,26 @@
 </ion-header>
 
 <ion-content padding>
+
   <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
-        <ion-col>
+        <ion-col col-8>
+          <ion-row>
+            <ion-col col-5>
           <ion-item>
             <label color="primary" class="item item-input"></label>
             <input type="file" class="custom-file-input" id="idfile" name="uploadfile" ng-model="form.uploadfile" (change)="setFile($event)"  style="color: transparent">
             <div class="preview-img"><br/><br/> <img id="idImg" src="{{doc.foto}}" width="155" height="155"  size="33" /> <br/></div>
           </ion-item>
+        </ion-col>
+        <ion-col col-1></ion-col>
+        <ion-col col-5>
+          <div id="mapauser" style="width:100%;height:400px"></div>
+        </ion-col>
+        <ion-col col-1></ion-col>
+        </ion-row>
         </ion-col>      
-        <ion-col>
+        <ion-col col-4>
           <ion-item>
               <ion-label stacked>Usuario</ion-label>
               <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="doc.usuario" required></ion-input>
@@ -49,9 +59,31 @@
                 <ion-option>Observador</ion-option>
               </ion-select>
             </ion-item>
+              <!-- -->
+              <ion-item>
+                <ion-label>Estado</ion-label>
+                <ion-select [(ngModel)]="delta.estado" name="idEdo">
+                  <ion-option *ngFor="let opcion of servicioFirebase.modelo[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                </ion-select>
+              </ion-item>
+                
+              <ion-item>
+                <ion-label>Municipio</ion-label>
+                <ion-select [(ngModel)]="delta.municipio" name="idMun" >
+                  <ion-option *ngFor="let opcion of delta.estado[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                </ion-select>
+              </ion-item> 
+
+              <ion-item>
+                  <ion-label>Colonia</ion-label>
+                  <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)">
+                    <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                  </ion-select>
+                </ion-item> 
+                <!-- -->
             <ion-item>
               <ion-label stacked>Region</ion-label>
-              <ion-input type="region" placeholder="Región" name="region" [(ngModel)]="doc.region" required></ion-input>
+              <ion-input type="region" placeholder="Región" name="region" value="{{doc.idRegion}}" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Estatus</ion-label>
@@ -77,4 +109,7 @@
       </ion-row>
 
     </form>
+
+    <div id="mapuser"></div>
+
 </ion-content>

@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle="menuCatalogos">
+          <ion-icon name="menu"></ion-icon>
+      </button>  
+    <ion-title>Colonias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>  
+    <!-- -->
+      <div *ngIf="delta.municipio[coleccion] == 0">
+        <ion-item>No hay información</ion-item>
+      </div>
+    <!-- --> 
+  
+    <ion-fab top right>
+      <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+    </ion-fab> 
+  
+    <div padding-horizontal text-center >
+        <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+    </div>
+  
+    <ion-grid size-lg>
+
+        <ion-row size-lg>
+          <ion-col col-2></ion-col>
+          <ion-col col-8>
+            <ion-row>
+              <ion-col>
+                  <ion-item>
+                      <ion-label>Estado {{delta.estado.id}}</ion-label>
+                      <ion-select [(ngModel)]="delta.estado" name="idEdo" >
+                        <ion-option *ngFor="let opcion of servicioFirebase.modelo[coleccion]" [value]="opcion">{{opcion.nombre}}</ion-option>                 
+                      </ion-select>
+                    </ion-item>    
+              </ion-col>
+              <ion-col>
+                  <ion-item>
+                      <ion-label>Municipio {{delta.municipio.id}}</ion-label>
+                      <ion-select [(ngModel)]="delta.municipio" name="idMun" >
+                        <ion-option *ngFor="let opcion of delta.estado[coleccion]" [value]="opcion">{{opcion.nombre}}</ion-option>                 
+                      </ion-select>
+                    </ion-item>     
+              </ion-col>
+
+            </ion-row>
+  
+          </ion-col>
+          <ion-col col-2></ion-col>
+        </ion-row>   
+  
+      <ion-row size-lg>
+        <ion-col col-2 size-lg></ion-col>
+        <ion-col col-8 size-lg>  
+          <ion-row no-padding class="grad">
+            <ion-col text-center>
+              <h6>Estado</h6>
+            </ion-col>
+            <ion-col text-center>
+              <h6>colonia</h6>
+            </ion-col>
+            <ion-col text-left>
+              <h6>Nombre del colonia</h6>
+            </ion-col>
+            <ion-col col-1></ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col col-2 size-lg></ion-col>
+      </ion-row>
+  
+      <ion-row>  
+        <ion-col col-2></ion-col>
+          <ion-col col-8>
+            <div *ngFor="let item of delta.municipio[coleccion];even as isEven" (click)="selectRow($event, item)">
+                <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
+                  <ion-col text-center>
+                      {{ delta.estado.region}}/{{ delta.municipio.region}} 
+                  </ion-col>
+                  <ion-col text-center>
+                    {{ item.region}}
+                  </ion-col>
+                  <ion-col text-left>
+                    {{ item.nombre }}
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
+                    </ion-col>             
+                </ion-row>
+              </div>        
+          </ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>  
+  </ion-content>
+  

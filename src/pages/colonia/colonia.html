@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>colonia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="tema-app">
+  <div padding-horizontal text-center >
+    <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+  </div>
+  <ion-grid>  
+    <ion-row size-lg>
+      <ion-col col-2 size-lg></ion-col>
+      <ion-col col-8 size-lg>  
+    
+        <form (ngSubmit)="register()" #registerForm="ngForm" >
+          <ion-row>
+            <ion-col>
+              <ion-list inset >
+              <!-- -->
+                <ion-item>
+                  <ion-label>Estado {{delta.estado.id}}</ion-label>
+                  <ion-select [(ngModel)]="delta.estado" name="idEdo" disabled="{{isUpdate}}" (ionChange)="this.delta.idxEdo=idxEdo">
+                    <ion-option *ngFor="let opcion of servicioFirebase.modelo[coleccion]; let idxEdo=index" [value]="opcion" >{{opcion.nombre}}{{delta.idxEdo}}</ion-option>                 
+                  </ion-select>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label>Municipio {{delta.municipio.id}}</ion-label>
+                  <ion-select [(ngModel)]="delta.municipio" name="idMun" disabled="{{isUpdate}}" (ionChange)="this.delta.idxMun=idxMun">
+                    <ion-option *ngFor="let opcion of delta.estado[coleccion]; let idxMun=index" [value]="opcion" >{{opcion.nombre}}{{delta.idxMun}}</ion-option>                 
+                  </ion-select>
+                </ion-item> 
+              <!-- -->
+                <ion-item>
+                    <ion-label stacked>colonia</ion-label>
+                    <ion-input type="text" placeholder="cvcolonia" name="cvcolonia" [(ngModel)]="doc.region" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked>Nombre completo del colonia</ion-label>
+                    <ion-input type="text" placeholder="colonia" name="colonia" [(ngModel)]="doc.nombre" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Latitud</ion-label>
+                    <ion-input type="number" placeholder="Latitud" name="latitud" [(ngModel)]="doc.latitude" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Longitud</ion-label>
+                    <ion-input type="number" placeholder="longitud" name="longitud" [(ngModel)]="doc.longitude" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label stacked>Demarcación</ion-label>
+                    <ion-input type="text" placeholder="demarcación" name="demarcacion" [(ngModel)]="doc.demarcacion" required></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="ion-col" *ngIf="!isUpdate">
+              <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+            </ion-col>
+            <ion-col class="ion-col">
+              <button ion-button  full type="button"  (click)="demarcar()" >Demarcar</button>
+            </ion-col>
+            <ion-col class="ion-col" *ngIf="isUpdate">
+              <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+            </ion-col>
+            <ion-col class="ion-col" *ngIf="isUpdate">
+              <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+            </ion-col>
+          </ion-row>
+
+        </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
