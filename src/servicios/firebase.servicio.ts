@@ -8,6 +8,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 export class ServicioFirebase {
   //-------------------------------------------------------------------------------------------------------------------
   public modelo=[];
+  public model=[];
   public that=this;
   constructor(public afs: AngularFirestore,
               public storage:  AngularFireStorage
@@ -90,6 +91,20 @@ export class ServicioFirebase {
     })
   }
 
+  public getColeccion(coleccion: string){
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion).snapshotChanges().subscribe(querySnapshot => {
+        var snapshot = {};
+        querySnapshot. forEach(function(doc) {
+          snapshot[doc.payload.doc.id]=doc.payload.doc.data();
+        });
+        console.log("Consulta: ", coleccion, snapshot );
+        this.model[coleccion]=snapshot;
+        resolve(snapshot);
+      })      
+    })
+  }
+
   public findOrderCollection(coleccion: string, campo:string, operador, value) {
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion, ref => ref.where(campo, operador, value).orderBy('fhAlta'))
@@ -116,8 +131,7 @@ export class ServicioFirebase {
       .then(querySnapshot => {
         let snapshot = querySnapshot.data();
         snapshot['id'] =  querySnapshot.id;
-        console.log("docById", snapshot);
-        console.log("ref", querySnapshot.ref.parent , "par", querySnapshot.ref.parent.parent, "path", querySnapshot.ref.path); 
+        //console.log("docById", querySnapshot.ref.parent , "par", querySnapshot.ref.parent.parent, "path", querySnapshot.ref.path); 
         resolve(snapshot);
       })
     })
@@ -139,10 +153,17 @@ export class ServicioFirebase {
   public findColeccion(coleccion: string, campo:string, operador, value){
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion, ref => ref.where(campo, operador, value))
-        .valueChanges().subscribe(snapshot => {
+        .snapshotChanges().subscribe(querySnapshot => {
+          var snapshot = [];
+          querySnapshot. forEach(function(doc) {
+            var item=doc.payload.doc.data();
+            item['id']=doc.payload.doc.id;
+            snapshot.push(item);
+          });
           console.log("Consulta: ", coleccion, snapshot );
-          resolve(snapshot); 
-      })     
+          this.modelo[coleccion]=snapshot;
+          resolve(snapshot);
+        })     
     });
   }
 

@@ -28,6 +28,7 @@ export class UsuarioPage {
     public navParams: NavParams,
     private alertCtrl: AlertController
     ) {
+      this.servicioFirebase.modelo[this.regiones]=[];
       if (navParams.get('item')) {
         this.isUpdate = true;
         this.doc = navParams.get('item');
@@ -77,7 +78,13 @@ export class UsuarioPage {
 
   setFile(event) {
     this.file = event.target.files[0];
+    this.doc['foto']='data:image/jpeg;base64,'+this.file;
     console.log("File:",this.file);
+    var reader = new FileReader();
+    reader.onload = function (fd) {
+      let fn = document.getElementById("idImg")['src']=fd.target['result'];
+    };
+    reader.readAsDataURL(this.file);
   }
 
   showPopup(title, text) {

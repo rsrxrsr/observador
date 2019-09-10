@@ -44,7 +44,7 @@
       <ion-col col-2></ion-col>
         <ion-col col-8>
           <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)" text-wrap>
-              <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
+                <ion-row no-padding [ngClass]="isEven? 'even' : 'odd'" class="pointer">
                 <ion-col text-center>
                   {{ item.clase}}
                 </ion-col>

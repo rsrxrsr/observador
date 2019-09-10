@@ -17,6 +17,7 @@ import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
 import { EncuestasPage } from '../pages/encuestas/encuestas';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionesPage } from '../pages/opciones/opciones';
+import { cuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { CasosPage } from '../pages/casos/casos';
 import { AccionesPage } from '../pages/acciones/acciones';
 
@@ -65,6 +66,7 @@ export class MyApp {
         'EncuestasPage'  : EncuestasPage,
         'PreguntasPage'  : PreguntasPage,
         'OpcionesPage'   : OpcionesPage,
+        'cuestionarioPage' : cuestionarioPage,
         'CasosPage'      : CasosPage,
         'AccionesPage'   : AccionesPage,
       }

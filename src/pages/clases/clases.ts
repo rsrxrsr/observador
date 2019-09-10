@@ -18,8 +18,9 @@ export class ClasesPage {
     public servicioFirebase: ServicioFirebase) {};
  
     public ionViewDidLoad() {
+//      this.servicioFirebase.consultarColeccion(this.coleccion);
       this.servicioFirebase.consultarColeccion(this.coleccion);
-  }
+}
 
   public selectRow(event, item ){
     this.navCtrl.push(ClasePage,{
