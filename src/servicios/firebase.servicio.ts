@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+//import { AngularFireAuthModule } from "@angular/fire/auth";
 //import { AngularFirestore } from 'angularfire2/firestore';
-import { AngularFireStorage } from 'angularfire2/storage';
 
 @Injectable()
 // ====================================================================================================================
@@ -11,7 +12,8 @@ export class ServicioFirebase {
   public model=[];
   public that=this;
   constructor(public afs: AngularFirestore,
-              public storage:  AngularFireStorage
+              public storage: AngularFireStorage
+              //public auth: AngularFireAuthModule
               ) {}
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -176,7 +178,7 @@ export class ServicioFirebase {
           item['id']=doc.payload.doc.id;
           snapshot.push(item);
         });
-        console.log("Current snapshot 0: ", snapshot[0], snapshot.length);
+        console.log("Current snapshot 0: ", snapshot, snapshot.length);
         this.modelo[coleccion]=snapshot;
         resolve(snapshot);
       })      
@@ -283,8 +285,39 @@ public imageUpload(data:any) {
     }, err => {
       console.log("err",err);
     })
-  }       
-} 
+  } 
+
+   // Authentication
+  
+  createUser(email, password) {
+    console.log('Creando el usuario con email ' + email);  
+    this.afs.firestore.app.auth().createUserWithEmailAndPassword(email, password)
+    .then(function (user) {
+      console.log('¡Creamos al usuario!');
+    })
+    .catch(function (error) {
+      console.error(error)
+    });
+  }
+  
+  loginUser(email, password) {
+    console.log('Loging user ' + email);  
+    this.afs.firestore.app.auth().signInWithEmailAndPassword(email, password)
+    .then(function (user) {
+      console.log('Credenciales correctas, ¡bienvenido!');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  
+  logoutUser() {
+    this.afs.firestore.app.auth().signOut();
+    console.log("Logout User");
+  }
+
+} // End Service
+
 /*
     return new Promise<any>((resolve, reject) => {
       file.putString(data, 'data_url')

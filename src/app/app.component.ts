@@ -86,9 +86,10 @@ export class MyApp {
   }
 
   logout(page:any){
+    //this.rootPage = WelcomePage;
     //this.nav.setRoot(this.paginas[page]);
-    //this.rootPage = WelcomePage; 
-    this.app.getRootNav().popToRoot();
+    //this.app.getRootNav().popToRoot();
+    this.nav. setRoot(this.paginas[page]); 
   }
 
 }

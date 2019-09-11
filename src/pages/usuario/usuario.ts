@@ -50,11 +50,13 @@ export class UsuarioPage {
     if (this.file) {
         this.servicioFirebase.fileUpload(this.file).then(fileInfo=>{
         this.doc["foto"]=fileInfo.downloadUrl;
-        this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
+        this.servicioFirebase.agregarDocumento("usuarios", this.doc );
+        this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);    
         this.showPopup("Success", "Document created.");          
       })
     } else {
       this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
+      this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);   
       this.showPopup("Success", "Document created.");          
     }
   }
@@ -67,6 +69,7 @@ export class UsuarioPage {
       this.showPopup("Success", "Document updated.");          
     })} else {
       this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
+      this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);   
       this.showPopup("Success", "Document updated.");          
     }
   }

@@ -37,8 +37,7 @@ export class cuestionarioPage {
 
   public consultarEncuesta() {
     console.log('Consultar', this.delta);
-  //this.servicioFirebase.consultarColecciones(coleccion);
-  //
+    //
     let refI:string, refE:string, refP:string, refO:string ; 
     refI=this.delta.idInstancia;
     this.servicioFirebase.docById(refI).then( docI => {
@@ -61,6 +60,7 @@ export class cuestionarioPage {
       });
     });
     console.log("Consultar Encuesta",this.servicioFirebase.modelo[this.coleccion]);
+    //
   }
 
   public setRespuestas() {

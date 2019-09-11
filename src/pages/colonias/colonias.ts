@@ -27,20 +27,17 @@ export class coloniasPage {
   public consultar(coleccion) {
     console.log('Consultar');
   //this.servicioFirebase.consultarColecciones(coleccion);
-  //
-    this.servicioFirebase.consultarColeccion(coleccion).then( snap1 => {
+  this.servicioFirebase.consultarColeccion(coleccion).then( snap1 => {
         snap1.forEach((element, index) => {
           let ref:string = this.coleccion+"/"+element.id+"/"+this.coleccion;
           this.servicioFirebase.consultarColeccion(ref).then(snap2 =>{
             this.servicioFirebase.modelo[coleccion][index][coleccion]=snap2;
-  //
             snap2.forEach((element2, index2) => {
               let ref2=ref+"/"+element2.id+"/"+this.coleccion;
               this.servicioFirebase.consultarColeccion(ref2).then(snap3 =>{
                 this.servicioFirebase.modelo[coleccion][index][coleccion][index2][coleccion]=snap3;
               });
             });
-  //
           });   
         });                
     });

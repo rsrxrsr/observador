@@ -2,9 +2,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from "@angular/fire/auth";
+
 import { CONEXION_BD } from './ambiente';
 import { ServicioFirebase } from '../servicios/firebase.servicio';
 import { ServicioDb } from '../servicios/db.servicio';
@@ -98,6 +100,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AngularFireModule.initializeApp(CONEXION_BD.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     IonicStorageModule.forRoot(),
     LoginPageModule,
     WelcomePageModule,

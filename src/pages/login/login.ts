@@ -30,10 +30,12 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+    this.servicioFirebase.logoutUser();
   }
 
   public login() {
     //this.navCtrl.push(TabsPage);  //remove for prod
+    this.servicioFirebase.loginUser(this.usuario.correo,this.usuario.pass);
     var usuarios:any =[];
     this.servicioFirebase.findColeccion("usuarios",'correo','==',this.usuario.correo).then(
       resp =>{usuarios = resp;
