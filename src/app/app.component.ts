@@ -3,6 +3,8 @@ import { App, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { FcmService } from '../servicios/fcm.servicio';
+
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
@@ -24,54 +26,71 @@ import { AccionesPage } from '../pages/acciones/acciones';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class ObservadorApp {
   @ViewChild(Nav) nav: Nav;
-  app:any;
   rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
   paginas:{};
   constructor(    
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    app:App) {
-      this.app=app;
-    //initializeApp() {
-      platform.ready().then(() => {
-        // Okay, so the platform is ready and our plugins are available.
-        // Here you can do any higher level native things you might need.
-        statusBar.styleDefault();
-        splashScreen.hide();
-      });
-      this.pages = [
-      { title: 'Welcome', component: WelcomePage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Tabs', component: TabsPage },
-      { title: 'Catalogos', component: menuCatalogos },
-      { title: 'Estados', component: EstadosPage },
-      { title: 'Municipios', component: MunicipiosPage }
-      ];
-      this.paginas = {
-        'WelcomePage'    : WelcomePage,
-        'LoginPage'      : LoginPage,
-        'HomePage'       : HomePage,
-        'TabsPage'       : TabsPage,
-        'UsuariosPage'   : UsuariosPage,
-        'menuCatalogos'  : menuCatalogos,
-        'EstadosPage'    : EstadosPage,
-        'MunicipiosPage' : MunicipiosPage,
-        'coloniasPage'   : coloniasPage,
-        'ClasesPage'     : ClasesPage,
-        'menuEncuestas'  : menuEncuestas, 
-        'EncuestasPage'  : EncuestasPage,
-        'PreguntasPage'  : PreguntasPage,
-        'OpcionesPage'   : OpcionesPage,
-        'cuestionarioPage' : cuestionarioPage,
-        'CasosPage'      : CasosPage,
-        'AccionesPage'   : AccionesPage,
-      }
+    public platform: Platform,
+    private fcm: FcmService,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public app:App) {
+    this.initializeApp();
   }
 
+  initializeApp() {    
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      //this.notificationSetup();
+    });
+    this.paginas = {
+      'WelcomePage'    : WelcomePage,
+      'LoginPage'      : LoginPage,
+      'HomePage'       : HomePage,
+      'TabsPage'       : TabsPage,
+      'UsuariosPage'   : UsuariosPage,
+      'menuCatalogos'  : menuCatalogos,
+      'EstadosPage'    : EstadosPage,
+      'MunicipiosPage' : MunicipiosPage,
+      'coloniasPage'   : coloniasPage,
+      'ClasesPage'     : ClasesPage,
+      'menuEncuestas'  : menuEncuestas, 
+      'EncuestasPage'  : EncuestasPage,
+      'PreguntasPage'  : PreguntasPage,
+      'OpcionesPage'   : OpcionesPage,
+      'cuestionarioPage' : cuestionarioPage,
+      'CasosPage'      : CasosPage,
+      'AccionesPage'   : AccionesPage,
+    }
+  }
+  //
+  private async presentToast(message) {
+    alert(message);
+    /*
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000
+    });
+    toast.present();
+    */
+  }
+
+  private notificationSetup() {
+    this.fcm.getToken();
+    this.fcm.onNotifications().subscribe(
+      (msg) => {
+        if (this.platform.is('ios')) {
+          this.presentToast(msg.aps.alert);
+        } else {
+          this.presentToast(msg.body);
+        }
+      });
+  }
+  //
+ 
   openPage(page:any) {
     //this.rootPage = paginas[pagina]; 
     // Reset the content nav to have just this page

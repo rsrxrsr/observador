@@ -126,6 +126,23 @@ export class ServicioFirebase {
     });
   }
 
+  public getOrderCollection(coleccion: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion, ref => ref.orderBy('fhAlta'))
+        .snapshotChanges().subscribe(querySnapshot => {
+          var snapshot = [];
+          querySnapshot. forEach(function(doc) {
+            var item=doc.payload.doc.data();
+            item['id']=doc.payload.doc.id;
+            snapshot.push(item);
+          });
+          console.log("Consulta: ", coleccion, snapshot );
+          this.modelo[coleccion]=snapshot;
+          resolve(snapshot);
+          })     
+    });
+  }
+
   public docById(doc: string){
     console.log("doc", doc)
     return new Promise<any>((resolve, reject) => {

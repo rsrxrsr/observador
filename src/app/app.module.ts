@@ -1,15 +1,17 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { ObservadorApp } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { Firebase } from '@ionic-native/firebase/ngx';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { CONEXION_BD } from './ambiente';
 import { ServicioFirebase } from '../servicios/firebase.servicio';
 import { ServicioDb } from '../servicios/db.servicio';
+import { FcmService } from '../servicios/fcm.servicio';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -61,7 +63,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
-    MyApp,
+  ObservadorApp,
   //  WelcomePage,
   //  LoginPage,
     HomePage,
@@ -96,7 +98,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(ObservadorApp),
     AngularFireModule.initializeApp(CONEXION_BD.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
@@ -113,7 +115,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    ObservadorApp,
 //    WelcomePage,
 //    LoginPage,
     HomePage,
@@ -149,6 +151,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServicioFirebase,
+    Firebase,
+    FcmService,
     ServicioDb,
     Camera,
     Geolocation
