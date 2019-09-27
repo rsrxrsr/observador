@@ -17,19 +17,26 @@
     <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
   </ion-fab>      
 -->
+<ion-searchbar [(ngModel)]="searchData"   (ionInput)="setFilter(searchData,this.servicioFirebase.modelo[coleccion])"></ion-searchbar>
+<div *ngIf="swFind" class="spinner-container">
+  <ion-spinner></ion-spinner>
+</div>
 <ion-grid>
     <ion-row no-padding class="hdr">
       <ion-col >
         #
       </ion-col>
       <ion-col>
-        Caso
+        Caso 
+        <button><ion-icon slot="icon-only" name="cog" (click)="setSort('titulo')"></ion-icon></button>
       </ion-col>
       <ion-col >
         Fecha
+        <button><ion-icon slot="icon-only" name="cog" (click)="setSort('dateCreation')"></ion-icon></button>
       </ion-col>
       <ion-col >
         Clasificación
+        <button><ion-icon slot="icon-only" name="cog" (click)="setSort('idClassification')"></ion-icon></button>
       </ion-col>
       <ion-col >
         Impacto
@@ -39,11 +46,12 @@
       </ion-col>
       <ion-col >
         Municipio
+        <button><ion-icon slot="icon-only" name="cog" (click)="setSort('municipio')"></ion-icon></button>
       </ion-col>
       <ion-col col-1>
       </ion-col> 
     </ion-row>
-    <div *ngFor="let item of this.servicioFirebase.modelo[coleccion]; first as isFirst; even as isEven" (click)="selectRow($event, item)" text-wrap>
+    <div *ngFor="let item of items; first as isFirst; even as isEven" (click)="selectRow($event, item)" text-wrap>
     <ion-row no-padding [ngClass]="isFirst ? 'first' :  isEven ? 'even' : 'odd'" class="pointer">
       <ion-col >
         {{ item.idCase}}
