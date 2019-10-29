@@ -6,9 +6,9 @@
     </button>      
     <ion-title>Detalle del Caso</ion-title>
     <ion-fab top right>
-      <button (click)="openPage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
-  </ion-fab>          
-  </ion-navbar>
+      <button (click)="closePage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
+    </ion-fab>          
+</ion-navbar>
 
 </ion-header>
 
@@ -43,7 +43,7 @@
               </ion-item>
               <ion-item>
                   <ion-label stacked>Fecha y hora</ion-label>
-                  <ion-input type="text" name="fecha" value="{{ doc.dateCreation.toDate() | date:'dd-MM-yyyy HH:mm:ss' }}" readonly></ion-input>
+                  <ion-input type="text" name="fecha" value="{{ doc.dateCreation | date:'dd-MM-yyyy HH:mm:ss' }}" readonly></ion-input>
               </ion-item>
               <ion-item>
                   <ion-label stacked>Clasificación</ion-label>

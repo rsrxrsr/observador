@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, MenuController } 
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
 import { CasosPage } from '../casos/casos';
+import { HomePage } from '../home/home';
 
-//import { HomePage } from '../home/home';
 //import { TabsPage } from '../tabs/tabs';
 //import { menuCatalogos } from '../menuCatalogos/menuCatalogos';
 
@@ -42,8 +42,17 @@ export class LoginPage {
         console.info('FrmUsuarios',usuarios[0], this.usuario);        
         if (usuarios.length==1 && this.usuario.pass === usuarios[0].pass && usuarios[0].estatus=="Activo") {
           //this.showPopup("Success", "Account created.");
+          this.servicioFirebase.modelo["usuario"]=usuarios[0];
+          this.servicioFirebase.roles=this.servicioFirebase.modelo["usuario"]["roles"].join(",");
           this.menuCtrl.enable(true, 'menuMain');
-          this.navCtrl. setRoot(CasosPage);
+          if (this.servicioFirebase.roles.includes("Supervisor")) {
+            this.navCtrl. setRoot(CasosPage);
+          } else
+          if (this.servicioFirebase.roles.includes("Administrador")) {
+              this.navCtrl. setRoot(HomePage);
+          } else { 
+            this.showPopup("Error", 'Atemp security violation');
+          }
         } else {
           this.showPopup("Error", 'The password confirmation does not match.');
         }

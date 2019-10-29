@@ -2,10 +2,16 @@
     <ion-content>
       <ion-list>
         <h6>Menu Principal</h6>
-        <button ion-item (click)="openPage('UsuariosPage')" menuClose>Usuarios</button>
-        <button ion-item (click)="openPage('menuCatalogos')" menuClose>Catálogos</button>
-        <button ion-item (click)="openPage('menuEncuestas')" menuClose>Encuestas</button>
-        <button ion-item menuClose (click)="openPage('CasosPage')">Casos</button>
+        <button ion-item menuClose (click)="openPage('CasosPage')"
+          *ngIf="servicioFirebase.roles.includes('Supervisor')">Casos</button>
+        <button ion-item menuClose (click)="openPage('AccionesPage')"
+          *ngIf="servicioFirebase.roles.includes('Supervisor')">Acciones</button>
+        <button ion-item menuClose (click)="openPage('menuEncuestas')" 
+          *ngIf="servicioFirebase.roles.includes('Supervisor')">Encuestas</button>
+        <button ion-item menuClose (click)="openPage('UsuariosPage')" 
+          *ngIf="servicioFirebase.roles.includes('Administrador')">Usuarios</button>
+        <button ion-item menuClose (click)="openPage('menuCatalogos')" 
+          *ngIf="servicioFirebase.roles.includes('Administrador')">Catálogos</button>
         <!--
         <button ion-item menuClose (click)="openPage('AccionesPage')">Acciones</button>
         <button ion-item menuClose (click)="openPage('TabsPage')">Tablero</button>

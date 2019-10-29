@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { FcmService } from '../servicios/fcm.servicio';
+import { ServicioFirebase } from '../servicios/firebase.servicio';
 
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
@@ -36,7 +37,8 @@ export class ObservadorApp {
     private fcm: FcmService,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public app:App) {
+    public app:App,
+    public servicioFirebase: ServicioFirebase) {
     this.initializeApp();
   }
 

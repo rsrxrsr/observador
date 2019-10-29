@@ -4,8 +4,8 @@
       <ion-icon name="menu"></ion-icon>
     </button>  
     <ion-title>Acciones</ion-title>
-    <ion-fab top right>
-        <button (click)="openPage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
+    <ion-fab top right *ngIf="isUpdate">
+        <button (click)="closePage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
     </ion-fab>          
   </ion-navbar>
 </ion-header>
@@ -22,28 +22,53 @@
   <ion-grid>
     <ion-row size-lg>
       <ion-col col-2 size-lg></ion-col>
-      <ion-col col-8 size-lg>  
-      
-    <ion-row no-padding class="hdr">
-      <ion-col>
-        Caso
-      </ion-col>
+      <ion-col col-8 size-lg>
+
+          <ion-row *ngIf="!isUpdate">
+                <!-- -->
+                <ion-item>
+                  <ion-label>Estado</ion-label>
+                  <ion-select [(ngModel)]="delta.estado" name="idEdo" (ionChange)="setIdRegion('estado')" >
+                    <ion-option *ngFor="let opcion of servicioFirebase.modelo[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                  </ion-select>
+                </ion-item>
+                  
+                <ion-item>
+                  <ion-label>Municipio</ion-label>
+                  <ion-select [(ngModel)]="delta.municipio" name="idMun" (ionChange)="setIdRegion('municipio')">
+                    <ion-option *ngFor="let opcion of delta.estado[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                  </ion-select>
+                </ion-item> 
+
+                <ion-item>
+                  <ion-label>Colonia</ion-label>
+                  <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion('colonia')">
+                    <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                  </ion-select>
+                </ion-item> 
+              <!-- -->
+      </ion-row>  
+<ion-row no-padding class="hdr" *ngIf="isUpdate">
       <ion-col>
         Región
       </ion-col>
       <ion-col>
         Observador
       </ion-col>
+      <ion-col>
+        Caso
+      </ion-col>
     </ion-row>
     <ion-row>  
       <ion-col>
-        {{doc.titulo}} 
-      </ion-col>
-      <ion-col>
-        {{doc.region}} 
+      <!-- {{doc.municipio}} -->   
+        {{doc.region}}
       </ion-col>
       <ion-col>
         {{doc.usuario}}
+      </ion-col>
+      <ion-col>
+        {{doc.titulo}} 
       </ion-col>
     </ion-row>
   </ion-col>

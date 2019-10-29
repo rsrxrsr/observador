@@ -14,7 +14,7 @@
     </div>
   <!-- --> 
 
-  <ion-fab top right>
+  <ion-fab top right *ngIf="this.rollPage==this.nmColeccion">
     <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
   </ion-fab> 
 

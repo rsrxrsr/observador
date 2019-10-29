@@ -21,6 +21,10 @@
           <ion-col>
           <ion-list inset>
           <ion-item>
+            <ion-label stacked>Region</ion-label>
+            <ion-input type="text" name="Region" [(ngModel)]="doc.region" readonly></ion-input>
+          </ion-item>
+          <ion-item>
             <ion-label stacked>Tipo</ion-label>
             <ion-select name="Tipo" [(ngModel)]="doc.tipo" required>
               <ion-option>Actividad</ion-option>

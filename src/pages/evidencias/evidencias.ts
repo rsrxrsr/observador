@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
+
+import { CasosPage } from '../casos/casos';
 import { evidenciaPage } from '../evidencia/evidencia';
 
 @IonicPage()
@@ -14,13 +16,14 @@ export class evidenciasPage {
   item:any;
 
   constructor(
+    public app:App,
     public navCtrl: NavController,
     public navParams: NavParams,
     public servicioFirebase: ServicioFirebase) {};
  
     public ionViewDidLoad() {
       this.item = this.navParams.data;
-      this.coleccion+=this.item.id+"/evidencia";
+      this.coleccion+=this.item.id+"/evidencias";
       this.servicioFirebase.consultarColeccion(this.coleccion);
       console.log(this.coleccion);
 }
@@ -29,6 +32,10 @@ export class evidenciasPage {
     this.navCtrl.push(evidenciaPage,{
       item:item
       });
+  }
+
+  closePage(){
+    this.app.getRootNav().setRoot(CasosPage);
   }
 
 }

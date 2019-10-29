@@ -8,8 +8,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
 // ====================================================================================================================
 export class ServicioFirebase {
   //-------------------------------------------------------------------------------------------------------------------
-  public modelo=[];
+  public modelo=[{usuario:{roles:""}}];
   public model=[];
+  public roles:string="Administrador";
   public that=this;
   constructor(public afs: AngularFirestore,
               public storage: AngularFireStorage

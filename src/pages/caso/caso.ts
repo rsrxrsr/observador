@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { App, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 
 import { CasosPage } from '../casos/casos';
@@ -21,7 +21,8 @@ export class CasoPage {
     private servicioFirebase: ServicioFirebase,
     private nav: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private app:App
     ) {
       if (navParams.data) {
         this.isUpdate = true;
@@ -43,8 +44,9 @@ export class CasoPage {
 
   }
 
-  openPage() {
-    this.nav.push(CasosPage);
+  closePage(){
+    //this.nav.setRoot(CasosPage);
+    this.app.getRootNav().setRoot(CasosPage);
   }
 
   public register() {

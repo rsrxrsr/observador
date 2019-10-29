@@ -1,5 +1,9 @@
 import { Component, ElementRef} from '@angular/core';
-import { IonicPage,NavController,NavParams } from 'ionic-angular';
+import { App,IonicPage,NavController,NavParams } from 'ionic-angular';
+
+import { CasosPage } from '../casos/casos';
+import { app } from 'firebase';
+
 
 //import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 
@@ -17,6 +21,7 @@ export class MapaPage {
 //  @ViewChild("map") mapEle:ElementRef;
 
   constructor(
+    private app:App,
     private navCtrl: NavController,
     private navParams: NavParams,
     //private geolocation: Geolocation
@@ -28,6 +33,10 @@ export class MapaPage {
   ionViewDidLoad(){
     //this.getPosition();
     this.loadMap();
+  }
+  
+  closePage(){
+    this.app.getRootNav().setRoot(CasosPage);
   }
 
   getPosition():any{
