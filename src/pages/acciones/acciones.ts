@@ -36,7 +36,7 @@ export class AccionesPage {
 //
 //      this.servicioFirebase.docById("regiones/"+this.doc.idRegion)
 //      .then(snapshot=>this.doc.region=snapshot.region);
-      this.getRegiones("regiones");
+      //this.getRegiones("regiones");
       if (this.isUpdate) {
         this.servicioFirebase.docById("usuarios/"+this.doc.idObservador)
         .then(snapshot=>this.doc.usuario=snapshot.usuario);
@@ -66,6 +66,7 @@ export class AccionesPage {
             
   public selectRow(event, item ){
     console.log("Item",item);
+    /*
     if (item){
       this.setRegiones(item.idRegion);
       this.doc["idRegion"]=item.idRegion;
@@ -75,7 +76,7 @@ export class AccionesPage {
       alert("Indique Region");
       return;
     } 
-
+    */
     this.navCtrl.push(AccionPage,{
       item:item,
       delta:this.doc
@@ -149,17 +150,17 @@ export class AccionesPage {
     console.log("setIdRegion");
     let ref:string, region:string;
     if (this.delta.estado["id"]) {
-      ref = coleccion+"/"+this.delta.estado["id"];
+      ref = this.regiones+"/"+this.delta.estado["id"];
       region = this.delta.estado["region"];
     }
     if (coleccion!="estado") {  
       if (this.delta.municipio["id"]) {
-        ref +="/"+coleccion+"/"+this.delta.municipio["id"];  
+        ref +="/"+this.regiones+"/"+this.delta.municipio["id"];  
         region += "/"+this.delta.municipio["region"];
       }
       if (coleccion!="municipio") {  
         if (this.delta.colonia["id"]){
-          ref +="/"+coleccion+"/"+this.delta.colonia["id"];
+          ref +="/"+this.regiones+"/"+this.delta.colonia["id"];
           region += "/"+this.delta.colonia["region"];
         }
       }

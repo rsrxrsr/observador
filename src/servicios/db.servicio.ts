@@ -21,8 +21,10 @@ export class ServicioDb {
   }
 
   public sendMessageGet(usuario:any,message:any){
-    console.log("ServicioFCM",usuario,message)
-    let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="+usuario+"&message="+JSON.stringify(message);
+    console.log("ServicioFCM",usuario,message);
+//  let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario=";
+    let url = "https://us-central1-pm-soluciones.cloudfunctions.net/sendMessage";
+        url += usuario+"&message="+JSON.stringify(message);
     return new Promise<any>((resolve, reject) => {
       this.http.get(url,{responseType:'text'}).subscribe(
         res => resolve(res),
@@ -33,7 +35,20 @@ export class ServicioDb {
 
   public sendMessage(usuario:any,message:any){
     console.log("ServicioFCM",usuario,message)
-    let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="+usuario;
+    //let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="
+    let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="
+            + usuario;
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(url, JSON.stringify(message), {responseType:'text'}).subscribe(
+        res => resolve(res),
+        err => reject(err)
+        );
+    });
+  }
+
+  public sendEmail(usuario:any,message:any){
+    console.log("ServicioFCM",usuario,message)
+    let url = "https://us-central1-pm-soluciones.cloudfunctions.net/sendMail";
     return new Promise<any>((resolve, reject) => {
       this.http.post(url, JSON.stringify(message), {responseType:'text'}).subscribe(
         res => resolve(res),

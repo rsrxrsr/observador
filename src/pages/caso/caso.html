@@ -21,7 +21,7 @@
       <ion-col col-2 size-lg></ion-col>
       <ion-col col-8 size-lg>  
   
-  <form (ngSubmit)="register()" #registerForm="ngForm" >
+  <form (ngSubmit)="editar()" #registerForm="ngForm" >
       <ion-row>
         <ion-col>
           <ion-list inset>
@@ -67,7 +67,20 @@
                   <ion-label stacked>Observador</ion-label>
                   <ion-input type="text" name="observador" [(ngModel)]="doc.delta.usuario" readonly></ion-input>
               </ion-item>
+              <ion-item>
+                <ion-label stacked>Estatus</ion-label>
+                <ion-select name="Estatus" [(ngModel)]="doc.estatus" required>
+                  <ion-option>Activo</ion-option>
+                  <ion-option>Terminado</ion-option>
+                  <ion-option>Cancelado</ion-option>
+                </ion-select>
+              </ion-item>    
           </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-col">
+          <button ion-button [disabled]="!registerForm.form.valid">Guardar</button>
         </ion-col>
       </ion-row>
       <!--
@@ -76,7 +89,7 @@
           <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
         <ion-col class="ion-col" *ngIf="!isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Editar</button>
+          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
         </ion-col>
         <ion-col class="ion-col" *ngIf="!isUpdate">
           <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>

@@ -5,15 +5,15 @@
     </button>  
     <ion-title>Acciones</ion-title>
     <ion-fab top right *ngIf="isUpdate">
-        <button (click)="closePage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
+        <button (click)="closePage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>        
     </ion-fab>          
   </ion-navbar>
+  <ion-fab top right>
+      <button (click)="selectRow()" ion-fab mini ><ion-icon name="add" ></ion-icon></button>
+  </ion-fab>        
 </ion-header>
 
 <ion-content padding class="tema-app">
-  <ion-fab top right>
-      <button (click)="selectRow()" ion-fab mini ><ion-icon name="add" ></ion-icon></button>
-  </ion-fab>      
   <!-- -->
   <div *ngIf="this.servicioFirebase.modelo['acciones'] == 0">
     <ion-item>No hay acciones.</ion-item>
@@ -24,8 +24,8 @@
       <ion-col col-2 size-lg></ion-col>
       <ion-col col-8 size-lg>
 
+          <!--
           <ion-row *ngIf="!isUpdate">
-                <!-- -->
                 <ion-item>
                   <ion-label>Estado</ion-label>
                   <ion-select [(ngModel)]="delta.estado" name="idEdo" (ionChange)="setIdRegion('estado')" >
@@ -46,8 +46,8 @@
                     <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
                   </ion-select>
                 </ion-item> 
-              <!-- -->
       </ion-row>  
+      -->
 <ion-row no-padding class="hdr" *ngIf="isUpdate">
       <ion-col>
         Región

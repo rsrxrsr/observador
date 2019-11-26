@@ -148,7 +148,6 @@ export class UsuarioPage {
 
   getRegiones(coleccion) {
     console.log('Consultar');
-  //this.servicioFirebase.consultarColecciones(coleccion);
   //
     this.servicioFirebase.consultarColeccion(coleccion).then( snap1 => {
         snap1.forEach((element, index) => {

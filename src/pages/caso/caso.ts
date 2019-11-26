@@ -31,7 +31,7 @@ export class CasoPage {
       if (navParams.get('item')) {
         this.isUpdate = true;
         this.doc = navParams.get('item');
-        this.doc['dateCreation']=this.doc['dateCreation'].toDate();
+        //this.doc['dateCreation']=this.doc['dateCreation'].toDate();
       }
       this.doc['delta']={usuario:""};    
       console.log("caso",this.doc);
@@ -57,6 +57,9 @@ export class CasoPage {
   }
 
   public editar() {
+    if (this.doc["estatus"]=="Terminado" || this.doc["estatus"]=="Cancelado") {
+      this.doc['dateClosed']=new Date().toISOString();
+    }  
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
     this.showPopup("Success", "Document update."); 
   }

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+
 //import { AngularFireAuthModule } from "@angular/fire/auth";
 //import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -12,7 +13,8 @@ export class ServicioFirebase {
   public model=[];
   public roles:string="Administrador";
   public that=this;
-  constructor(public afs: AngularFirestore,
+  constructor(
+              public afs: AngularFirestore,
               public storage: AngularFireStorage
               //public auth: AngularFireAuthModule
               ) {}
@@ -30,6 +32,22 @@ export class ServicioFirebase {
       );
     });
   }
+
+  public upsertDocument( coleccion: string, id: string, doc: any){
+    console.log("Upsert",coleccion,id,doc);
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion).doc(id).set(doc)
+      .then(
+        res => resolve(res),
+        err => reject(err)
+      )
+    })
+  }
+
+  public getId(){  
+    return this.afs.createId();
+  }
+
   public agregarSubDocumento(id:string, coleccion: string, doc: any){
     let objeto = Object.assign({}, doc);  
     delete objeto.id;  
@@ -318,14 +336,19 @@ public imageUpload(data:any) {
     });
   }
   
-  loginUser(email, password) {
-    console.log('Loging user ' + email);  
-    this.afs.firestore.app.auth().signInWithEmailAndPassword(email, password)
-    .then(function (user) {
-      console.log('Credenciales correctas, ¡bienvenido!');
-    })
-    .catch(function (error) {
-      console.log(error);
+  loginUser(a_email, a_password) {
+    console.log('Loging user ' + a_email);
+    return new Promise<any>((resolve, reject) => {
+      let email="ricardo.romero@people-media.com.mx";
+      let crashtapen="Ventana6561";  
+      this.afs.firestore.app.auth().signInWithEmailAndPassword(email, crashtapen)
+      .then(function (user) {
+        console.log('Credenciales correctas, ¡bienvenido!');
+        resolve(email);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     });
   }
   
@@ -333,6 +356,7 @@ public imageUpload(data:any) {
     this.afs.firestore.app.auth().signOut();
     console.log("Logout User");
   }
+ 
 
 } // End Service
 

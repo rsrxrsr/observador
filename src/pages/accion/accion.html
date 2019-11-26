@@ -20,6 +20,29 @@
       <ion-row>
           <ion-col>
           <ion-list inset>
+          <!-- -->
+          <ion-item>
+            <ion-label>Estado</ion-label>
+            <ion-select [(ngModel)]="delta.estado" name="idEdo" (ionChange)="setIdRegion(regiones)" >
+              <ion-option *ngFor="let opcion of servicioFirebase.modelo[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Municipio</ion-label>
+            <ion-select [(ngModel)]="delta.municipio" name="idMun" (ionChange)="setIdRegion(regiones)" >
+              <ion-option *ngFor="let opcion of delta.estado[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+            </ion-select>
+          </ion-item> 
+                     
+          <ion-item>
+            <ion-label>Colonia</ion-label>
+            <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)">
+              <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+            </ion-select>
+          </ion-item> 
+          <!-- -->
+              
           <ion-item>
             <ion-label stacked>Region</ion-label>
             <ion-input type="text" name="Region" [(ngModel)]="doc.region" readonly></ion-input>
@@ -35,7 +58,7 @@
           </ion-item>
           <ion-item *ngIf="doc.tipo=='Encuesta'">
             <ion-label>Seleccione encuesta...</ion-label>
-            <ion-select [(ngModel)]="delta.idEncuesta" name="idEncuesta" >
+            <ion-select [(ngModel)]="doc.idEncuesta" name="idEncuesta" >
               <ion-option *ngFor="let opcion of servicioFirebase.modelo['encuestas']" [value]="opcion.id">{{opcion.encuesta}}</ion-option>                 
             </ion-select>
           </ion-item>
@@ -53,7 +76,7 @@
           </ion-item>
           <ion-item>
               <ion-label stacked>Fecha fin plan</ion-label>
-              <ion-input type="date" placeholder="fecha fin plan" name="fhFinPlan" [(ngModel)]="doc.fhFinPlan"></ion-input>
+              <ion-input type="date" placeholder="fecha fin plan" name="fhFinPlan" [(ngModel)]="doc.fhFinPlan" required></ion-input>
           </ion-item>
           <ion-item>
               <ion-label stacked>Fecha fin real</ion-label>

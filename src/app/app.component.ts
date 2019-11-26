@@ -110,7 +110,9 @@ export class ObservadorApp {
     //this.rootPage = WelcomePage;
     //this.nav.setRoot(this.paginas[page]);
     //this.app.getRootNav().popToRoot();
-    this.nav. setRoot(this.paginas[page]); 
+    this.nav. setRoot(this.paginas[page]);
+    //this.platform.exitApp();
+    //navigator[navigator.appName].exitApp();
   }
 
 }

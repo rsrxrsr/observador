@@ -24,7 +24,7 @@
 <ion-grid>
     <ion-row no-padding class="hdr">
       <ion-col >
-        #
+        # {{items.length}}
       </ion-col>
       <ion-col>
         Caso 
@@ -60,8 +60,8 @@
         {{ item.titulo}}
       </ion-col>
       <ion-col >
-      <!-- {{ item.dateCreation | date:'dd-MM-yy HH:mm:ss' }}-->
-        {{ item.dateCreation }}
+      {{ item.dateCreation | date:'dd-MM-yy HH:mm:ss' }}
+      <!-- {{ item.dateCreation }} -->
       </ion-col>
       <ion-col >
         {{ item.idClassification}}

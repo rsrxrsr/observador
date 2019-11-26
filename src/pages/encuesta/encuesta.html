@@ -35,6 +35,13 @@
                   <ion-label stacked>Propósito</ion-label>
                   <ion-input type="text" placeholder="Proposito" name="proposito" [(ngModel)]="doc.proposito" required></ion-input>
                 </ion-item>      
+                <ion-item>
+                  <ion-label stacked>Estatus</ion-label>
+                  <ion-select name="Estatus" [(ngModel)]="doc.estatus" required>
+                    <ion-option>Activo</ion-option>
+                    <ion-option>Captura</ion-option>
+                    <ion-option>Suspendido</ion-option>
+                  </ion-select>                </ion-item>
               </ion-list>
             </ion-col>
           </ion-row>
