@@ -1,5 +1,5 @@
+<!--
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle="menuMain">
       <ion-icon name="menu"></ion-icon>
@@ -8,10 +8,28 @@
     <ion-fab top right>
       <button (click)="closePage()" ion-fab mini ><ion-icon name="arrow-round-up"></ion-icon></button>
     </ion-fab>          
-</ion-navbar>
-
+  </ion-navbar>
 </ion-header>
-
+-->
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <p style="color: white; font-size: 18px;"><b>Detalle del Caso</b></p>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button (click)="closePage()" style="background-color:#2a4a7c;"><ion-icon name="arrow-round-up" style="color: white;font-size: 30px;margin-top:10px;"></ion-icon></button>
+        <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
+  
 <ion-content padding class="tema-app">
     <div padding-horizontal text-center >
         <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
@@ -29,44 +47,54 @@
                 <ion-label stacked>Folio</ion-label>
                 <ion-input type="text" name="idCase" [(ngModel)]="doc.idCase" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                 <ion-label stacked>Caso</ion-label>
                 <ion-input type="text" name="titulo" [(ngModel)]="doc.titulo" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                 <ion-label stacked>Riesgo</ion-label>
                 <ion-input type="text" name="riesgo" [(ngModel)]="doc.riesgo" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                 <ion-label stacked>Impacto</ion-label>
                 <ion-input type="text" name="impacto" [(ngModel)]="doc.impacto" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Fecha y hora</ion-label>
                   <ion-input type="text" name="fecha" value="{{ doc.dateCreation | date:'dd-MM-yyyy HH:mm:ss' }}" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Clasificación</ion-label>
                   <label>Clasificación</label>
                 <ion-input type="text" name="clasificacion" [(ngModel)]="doc.idClassification" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Municipio</ion-label>
                   <label>Municipio</label>
                 <ion-input type="text" name="municipio" [(ngModel)]="doc.municipio" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Descripción</ion-label>
                   <ion-textarea name="descripcion" [(ngModel)]="doc.description" readonly color="light"></ion-textarea>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Dirección</ion-label>
                   <ion-textarea name="direccion" [(ngModel)]="doc.address" readonly></ion-textarea>
               </ion-item>
+              <br />
               <ion-item>
                   <ion-label stacked>Observador</ion-label>
                   <ion-input type="text" name="observador" [(ngModel)]="doc.delta.usuario" readonly></ion-input>
               </ion-item>
+              <br />
               <ion-item>
                 <ion-label stacked>Estatus</ion-label>
                 <ion-select name="Estatus" [(ngModel)]="doc.estatus" required>
@@ -78,11 +106,8 @@
           </ion-list>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col class="ion-col">
-          <button ion-button [disabled]="!registerForm.form.valid">Guardar</button>
-        </ion-col>
-      </ion-row>
+      <button ion-button class="submit-btn loginButton round" full type="submit" [disabled]="!registerForm.form.valid">Guardar</button>
+
       <!--
       <ion-row>
         <ion-col class="ion-col" *ngIf="!isUpdate">

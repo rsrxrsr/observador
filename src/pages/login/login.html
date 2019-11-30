@@ -1,4 +1,6 @@
+<ion-header> </ion-header>
 <ion-content  padding class="login tema-app">		
+  <br /><br /><br />
 	<div class="login-content">
 		<div padding-horizontal text-center class="animated fadeInDown">
       <div padding-horizontal text-center >
@@ -9,37 +11,32 @@
       </div>
 		</div>
 	  
-		<!-- Login form -->
     <form (ngSubmit)="login()"  #loginForm="ngForm">
 
-      <ion-row>  
+      <ion-row class="ion-padding">  
         <ion-col col-2></ion-col>
           <ion-col col-8>
               <ion-list inset>
                   <ion-item>
                     <ion-icon name="mail" item-start class="text-primary"></ion-icon>
                     <ion-input type="text" placeholder="Correo del Usuario" name="usuario" [(ngModel)]="usuario.correo" required></ion-input>
-                  </ion-item>  
+                  </ion-item> 
+                  <br />
                   <ion-item>
                     <ion-icon name="lock" item-start class="text-primary"></ion-icon>
                     <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="usuario.pass" required></ion-input>
-                  </ion-item>    
+                  </ion-item>
+                  <br />  <br /> 
+                  <button ion-button class="submit-btn loginButton" full type="submit" [disabled]="!loginForm.form.valid">Login</button>
+                  <div text-center margin-top>
+                    <span ion-text color="secondary" tappable ><strong>Version 1.0</strong></span>
+                  </div>      
               </ion-list>
-          </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col col-2></ion-col>
-          <ion-col col-8 class="signup-col">
-            <button ion-button class="submit-btn loginButton" full type="submit" [disabled]="!loginForm.form.valid">Login</button>
           </ion-col>
       </ion-row>
       
     </form>
 
-    <div text-center margin-top>
-      <span ion-text color="secondary" tappable ><strong>Version 1.0</strong></span>
-    </div>
   </div>  
 </ion-content>
-	  
+

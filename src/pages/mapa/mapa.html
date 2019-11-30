@@ -1,3 +1,4 @@
+<!--
 <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle="menuMain">
@@ -14,13 +15,41 @@
 
   </ion-navbar>
 </ion-header>
+-->
+
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <p style="color: white; font-size: 18px;"><b>Ubicación</b></p>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button (click)="closePage()" style="background-color:#2a4a7c;"><ion-icon name="arrow-round-up" style="color: white;font-size: 30px;margin-top:10px;"></ion-icon></button>
+        <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+  </ion-row>
+</ion-header>
 
 <ion-content>
+
+  <br />
   <div #map id="map"></div>
 
-  <ion-item>
-    <ion-label stacked>Ubicación del caso</ion-label>
-    <ion-textarea placeholder="Ubicación del caso" name="descripcion" [(ngModel)]="item.address" readonly color="ligth"></ion-textarea>
-  </ion-item>
-
+  <ion-row>
+    <ion-col col-2></ion-col>
+    <ion-col col-8>
+      <ion-item>
+        <ion-label stacked>Ubicación del caso</ion-label>
+        <ion-textarea placeholder="Ubicación del caso" name="descripcion" [(ngModel)]="item.address" readonly color="ligth"></ion-textarea>
+      </ion-item>        
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+ 
 </ion-content>

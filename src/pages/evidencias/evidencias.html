@@ -1,3 +1,4 @@
+<!--
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle="menuMain">
@@ -9,6 +10,26 @@
     </ion-fab>          
   </ion-navbar>
 </ion-header>
+-->
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <p style="color: white; font-size: 18px;"><b>Evidencias</b></p>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button (click)="closePage()" style="background-color:#2a4a7c;"><ion-icon name="arrow-round-up" style="color: white;font-size: 30px;margin-top:10px;"></ion-icon></button>
+        <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
+
 
 <ion-content padding class="tema-app">
   <!-- -->
@@ -19,7 +40,7 @@
   <ion-grid>
     <ion-row no-padding class="hdr">
       <ion-col class="ion-text-center">
-        <h6 style="text-align:center;">Evidencias</h6>
+        <h6 style="text-align:center;">Galeria</h6>
       </ion-col>
     </ion-row>
     <div *ngFor="let item of this.servicioFirebase.modelo[coleccion];even as isEven" (click)="selectRow($event, item)" text-wrap>

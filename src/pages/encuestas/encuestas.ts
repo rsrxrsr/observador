@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 
 import { ServicioFirebase } from '../../servicios/firebase.servicio';
 import { EncuestaPage } from '../encuesta/encuesta';
@@ -20,7 +21,9 @@ export class EncuestasPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public servicioFirebase: ServicioFirebase) {
+    public servicioFirebase: ServicioFirebase,
+    public menuCtrl: MenuController) {
+      menuCtrl.enable(true, 'menuEncuestas');
       this.rollPage=navParams.get('rollPage');
       this.coleccion =  (navParams.get('ref')) ? navParams.get('ref')+"/"+this.nmColeccion : this.nmColeccion;
       switch(this.rollPage) {

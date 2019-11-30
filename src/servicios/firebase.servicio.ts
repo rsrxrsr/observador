@@ -138,7 +138,7 @@ export class ServicioFirebase {
             snapshot.push(item);
             ids["id"]=doc.payload.doc.id;
           });
-          console.log("Consulta: ", coleccion, snapshot );
+          console.log("Consulta: ", coleccion, campo, value, snapshot );
           this.modelo[coleccion]=snapshot;
           resolve(snapshot);
           })     

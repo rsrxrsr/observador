@@ -1,3 +1,4 @@
+<!--
 <ion-header>
   <ion-navbar>
       <button ion-button menuToggle="menuMain">
@@ -5,6 +6,35 @@
       </button>  
     <ion-title>Listado de Casos</ion-title>
   </ion-navbar>
+</ion-header>
+-->
+<ion-header>
+  <ion-row style="background-color:#96a3b2;height: 100%;">
+    <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+      <div style="margin-top:5px;">
+        <img src="../../assets/imgs/logo1.png" alt="" />
+      </div>
+    </ion-col>
+    <ion-col col-7 text-center>
+      <p style="color: white; font-size: 18px;"><b>Listado de Casos</b></p>
+    </ion-col>
+    <ion-col col-1 style="background-color:#96a3b2;text-align: center;padding:0;" >
+      <p style="height: 100%;width: 100%;;padding:0;">
+        <b style="height: 100%;width: 100%;padding:0;" class="pointer">
+          <ion-icon
+            name="add-circle"
+            style="color: white;font-size: 40px;margin:0;"
+            (click)="selectRow(null, null)"
+          ></ion-icon>
+        </b>
+      </p>
+    </ion-col>
+    <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+      <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+        <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+      </button>  
+    </ion-col>
+  </ion-row>
 </ion-header>
 
 <ion-content padding class="tema-app">
@@ -23,37 +53,38 @@
 </div>
 <ion-grid>
     <ion-row no-padding class="hdr">
-      <ion-col >
+      <ion-col col-1 style="text-align: center;">
         # {{items.length}}
       </ion-col>
       <ion-col>
         Caso 
-        <button><ion-icon slot="icon-only" name="arrow-dropup" (click)="setSort('titulo')"></ion-icon></button>
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('titulo')"></ion-icon></button>
       </ion-col>
       <ion-col >
         Fecha
-        <button><ion-icon slot="icon-only" name="arrow-dropup" (click)="setSort('dateCreation')"></ion-icon></button>
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('dateCreation')"></ion-icon></button>
       </ion-col>
       <ion-col >
         Clasificación
-        <button><ion-icon slot="icon-only" name="arrow-dropup" (click)="setSort('idClassification')"></ion-icon></button>
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('idClassification')"></ion-icon></button>
       </ion-col>
-      <ion-col >
+      <ion-col col-1>
         Impacto
       </ion-col>
-      <ion-col >
+      <ion-col col-1>
         Riesgo
       </ion-col>
       <ion-col >
         Municipio
-        <button><ion-icon slot="icon-only" name="arrow-dropup" (click)="setSort('municipio')"></ion-icon></button>
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('municipio')"></ion-icon></button>
       </ion-col>
-      <ion-col col-1>
+      <ion-col col-1 style="text-align: center;">
+        Detalle
       </ion-col> 
     </ion-row>
     <div *ngFor="let item of items; first as isFirst; even as isEven" (click)="selectRow($event, item)" text-wrap>
     <ion-row no-padding [ngClass]="isFirst ? 'first' :  isEven ? 'even' : 'odd'" class="pointer">
-      <ion-col >
+      <ion-col col-1 style="text-align: center;">
         {{ item.idCase}}
       </ion-col>
       <ion-col >
@@ -66,16 +97,24 @@
       <ion-col >
         {{ item.idClassification}}
       </ion-col>
-      <ion-col >
+      <ion-col col-1>
         {{ item.impacto}}
       </ion-col>
-      <ion-col >
-        {{ item.riesgo}}
-      </ion-col>
+      <ion-col col-1>
+        <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Alto'" >
+          <img src="../../assets/imgs/circulo.png" alt="" style="height: 100%; width: 100%;" />
+        </div>        
+        <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Bajo'" >
+          <img src="../../assets/imgs/circulov.png" alt="" style="height: 100%; width: 100%;" />
+        </div>
+        <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Medio'" >
+          <img src="../../assets/imgs/circuloa.png" alt="" style="height: 100%; width: 100%;" />
+        </div>
+       </ion-col>
       <ion-col >
         {{ item.municipio}}
       </ion-col>
-      <ion-col col-1>
+      <ion-col col-1 style="text-align: center;">
         <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
       </ion-col> 
   </ion-row>

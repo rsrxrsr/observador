@@ -14,7 +14,7 @@ export class AccionesPage {
   coleccion="acciones";
   regiones="regiones";
   doc:any;
-  delta={estado:{},municipio:{},colonia:{}};
+  delta={estado:{},municipio:{},colonia:{},region:""};
   isUpdate=false;
 
   constructor(
@@ -25,6 +25,7 @@ export class AccionesPage {
       if (navParams.data.id) {
         this.doc = navParams.data;
         this.doc.idCaso=this.doc.id;
+        //this.delta.region=this.doc.idRegion;
         this.isUpdate=true;    
         console.log("doc",this.doc);
       } else {
@@ -36,7 +37,7 @@ export class AccionesPage {
 //
 //      this.servicioFirebase.docById("regiones/"+this.doc.idRegion)
 //      .then(snapshot=>this.doc.region=snapshot.region);
-      //this.getRegiones("regiones");
+      this.getRegiones("regiones");
       if (this.isUpdate) {
         this.servicioFirebase.docById("usuarios/"+this.doc.idObservador)
         .then(snapshot=>this.doc.usuario=snapshot.usuario);
@@ -65,7 +66,7 @@ export class AccionesPage {
   }
             
   public selectRow(event, item ){
-    console.log("Item",item);
+    console.log("Item",item,this.doc);
     /*
     if (item){
       this.setRegiones(item.idRegion);

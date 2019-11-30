@@ -12,7 +12,8 @@ export class AccionPage {
 
   coleccion="acciones";
   regiones="regiones";
-  isUpdate=false; 
+  isUpdate=false;
+  isCaso=false;
   createSuccess = false;
   doc = {id:""};
   delta={estado:{id:''}, municipio:{id:''},colonia:{id:''},idCaso:"",idRegion:"",idObservador:"" };
@@ -31,9 +32,22 @@ export class AccionPage {
       } else {
         this.doc['estatus']="Activo";
       }
-      this.doc['idCaso']=this.delta.idCaso;
+      //
+      if (navParams.get('delta')) {
+        let artra = navParams.get('delta');
+        console.log("Watch",this.doc['idRegion'],artra.idRegion);
+        if (artra.idRegion) {
+          this.delta.idRegion=artra.idRegion;
+          this.doc['idRegion']=artra.idRegion;
+          this.isCaso=true;
+        }
+        this.delta.idCaso=artra.idCaso;
+        this.delta.idObservador=artra.idObservador;
+      }
+      //
       //this.doc['idRegion']=this.delta.idRegion;
       //this.doc['region']=this.delta.region;
+      this.doc['idCaso']=this.delta.idCaso;
       this.doc['idObservador']=this.delta.idObservador;
       console.info("doc",this.doc, "delta", this.delta);
     }
@@ -82,11 +96,11 @@ export class AccionPage {
     let region=this.delta.estado["region"];
     if (this.delta.municipio.id) {
       ref+="/"+coleccion+"/"+this.delta.municipio.id
-      region+=+"/"+this.delta.municipio["region"];
+      region+="/"+this.delta.municipio["region"];
     }
     if (this.delta.colonia.id) {
       ref+="/"+coleccion+"/"+this.delta.colonia.id;
-      region+=+"/"+this.delta.colonia["colonia"];
+      region+="/"+this.delta.colonia["region"];
     }
     this.doc["idRegion"]=ref;
     this.doc["region"]=region;
@@ -127,23 +141,23 @@ export class AccionPage {
   //this.servicioFirebase.consultarColecciones(coleccion);
   //
     this.servicioFirebase.consultarColeccion(coleccion).then( snap1 => {
-        snap1.forEach((element, index) => {
-          let ref:string = coleccion+"/"+element.id+"/"+coleccion;
-          this.servicioFirebase.consultarColeccion(ref).then(snap2 =>{
-            this.servicioFirebase.modelo[coleccion][index][coleccion]=snap2;
-  //
-            snap2.forEach((element2, index2) => {
-              let ref2=ref+"/"+element2.id+"/"+coleccion;
-              this.servicioFirebase.consultarColeccion(ref2).then(snap3 =>{
-                this.servicioFirebase.modelo[coleccion][index][coleccion][index2][coleccion]=snap3;
-                if (this.doc["idRegion"] && this.doc["idRegion"].indexOf(element2.id) >=0 && this.isUpdate) {
-                  this.setRegiones(this.doc["idRegion"]);
-                }                    
-              });
+      snap1.forEach((element, index) => {
+        let ref:string = coleccion+"/"+element.id+"/"+coleccion;
+        this.servicioFirebase.consultarColeccion(ref).then(snap2 =>{
+          this.servicioFirebase.modelo[coleccion][index][coleccion]=snap2;
+//
+          snap2.forEach((element2, index2) => {
+            let ref2=ref+"/"+element2.id+"/"+coleccion;
+            this.servicioFirebase.consultarColeccion(ref2).then(snap3 =>{
+              this.servicioFirebase.modelo[coleccion][index][coleccion][index2][coleccion]=snap3;
+              if (this.doc["idRegion"] && this.doc["idRegion"].indexOf(element2.id) >=0) {
+                this.setRegiones(this.doc["idRegion"]);
+              }                    
             });
-  //
-          });   
-        });
+          });
+//
+        });   
+      });
     });
   //
   } 

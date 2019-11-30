@@ -1,12 +1,33 @@
+<!--
 <ion-header>
-
   <ion-navbar>
     <ion-title>Usuario</ion-title>
   </ion-navbar>
-
 </ion-header>
+-->
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-navbar color="navcolor">
+          <ion-title>Usuarios</ion-title>
+        </ion-navbar>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+          <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
 
 <ion-content padding>
+
+  <input type="file" class="custom-file-input sitem item-input" id="idfile" name="uploadfile" ng-model="form.uploadfile" (change)="setFile($event)" style="color: transparent" >
 
   <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
@@ -14,43 +35,45 @@
           <ion-row>
             <ion-col col-5>
           <ion-item>
-            <label color="primary" class="item item-input"></label>
-            <input type="file" class="custom-file-input" id="idfile" name="uploadfile" ng-model="form.uploadfile" (change)="setFile($event)"  style="color: transparent">
-            <div class="preview-img"><br/><br/> <img id="idImg" src="{{doc.foto}}" width="155" height="155"  size="33" /> <br/></div>
+            <label color="primary" class="item item-input">Fotografía</label>
+<!--           <input type="file" class="custom-file-input" id="idfile" name="uploadfile" ng-model="form.uploadfile" (change)="setFile($event)"  style="color: transparent"> -->
+               <div class="preview-img " style="text-align:center;"><br/><br/> <img id="idImg" src="{{doc.foto}}" width="155" height="155"  size="33" /> <br/></div>
           </ion-item>
         </ion-col>
         <ion-col col-1></ion-col>
         <ion-col col-5>
-          <div id="mapauser" style="width:100%;height:400px"></div>
+          <div id="mapauser" style="width:100%;height:300px"></div>
         </ion-col>
         <ion-col col-1></ion-col>
         </ion-row>
         </ion-col>      
         <ion-col col-4>
           <ion-item>
-              <ion-label stacked>Usuario</ion-label>
-              <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="doc.usuario" required></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Correo</ion-label>
-                <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="doc.correo" required></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label stacked>Contraseña</ion-label>
-                <ion-input type="password" placeholder="Contraseña" name="pass" [(ngModel)]="doc.pass" required></ion-input>
-              </ion-item>
-    
-              <ion-item>
-                  <ion-label stacked>Confirme contraseña</ion-label>
-                  <ion-input type="password" placeholder="Confirm Password" name="confirmation_password" [(ngModel)]="forma.confirmation_password" required></ion-input>
-              </ion-item>
-            </ion-col>
+            <ion-label stacked>Usuario</ion-label>
+            <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="doc.usuario" required></ion-input>
+          </ion-item>
+          <br />
+          <ion-item>
+            <ion-label stacked>Correo</ion-label>
+            <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="doc.correo" required></ion-input>
+          </ion-item>
+          <br />
+          <ion-item>
+            <ion-label stacked>Contraseña</ion-label>
+            <ion-input type="password" placeholder="Contraseña" name="pass" [(ngModel)]="doc.pass" required></ion-input>
+          </ion-item>
+          <br />    
+          <ion-item>
+              <ion-label stacked>Confirme contraseña</ion-label>
+              <ion-input type="password" placeholder="Confirm Password" name="confirmation_password" [(ngModel)]="forma.confirmation_password" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
     
       <ion-row>
-          <ion-col>
+        <ion-col>
           <ion-list inset>
-          <ion-item>
+            <ion-item>
               <ion-label>Roles</ion-label>
               <ion-select name="roles" [(ngModel)]="doc.roles" multiple="true">
                 <ion-option>Ejecutivo</ion-option>
@@ -59,6 +82,7 @@
                 <ion-option>Observador</ion-option>
               </ion-select>
             </ion-item>
+            <br />
               <!-- -->
               <ion-item>
                 <ion-label>Estado</ion-label>
@@ -66,25 +90,27 @@
                   <ion-option *ngFor="let opcion of servicioFirebase.modelo[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
                 </ion-select>
               </ion-item>
-                
+              <br />                
               <ion-item>
                 <ion-label>Municipio</ion-label>
                 <ion-select [(ngModel)]="delta.municipio" name="idMun" >
                   <ion-option *ngFor="let opcion of delta.estado[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
                 </ion-select>
               </ion-item> 
-
+              <br />
               <ion-item>
-                  <ion-label>Colonia</ion-label>
-                  <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)">
-                    <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
-                  </ion-select>
-                </ion-item> 
-                <!-- -->
-            <ion-item>
-              <ion-label stacked>Region</ion-label>
-              <ion-input type="region" placeholder="Región" name="region" value="{{doc.idRegion}}" required></ion-input>
+                <ion-label>Colonia</ion-label>
+                <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)">
+                  <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+                </ion-select>
+              </ion-item> 
+              <br />
+              <!-- -->
+          <ion-item>
+            <ion-label stacked>Region</ion-label>
+            <ion-input type="region" placeholder="Región" name="region" value="{{doc.idRegion}}" required></ion-input>
           </ion-item>
+          <br />
           <ion-item>
             <ion-label>Estatus</ion-label>
             <ion-select name="estatus" [(ngModel)]="doc.estatus">
@@ -98,18 +124,16 @@
 
       <ion-row>
         <ion-col class="usuario-col" *ngIf="!isUpdate">
-          <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
         <ion-col class="usuario-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+          <button ion-button class="submit-btn round " full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
         </ion-col>
         <ion-col class="usuario-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+          <button ion-button class="submit-btn round" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
         </ion-col>
       </ion-row>
 
     </form>
-
-    <div id="mapuser"></div>
 
 </ion-content>
