@@ -54,6 +54,7 @@ import { OpcionesPage } from '../pages/opciones/opciones';
 import { cuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { CasoPage } from '../pages/caso/caso';
 import { CasosPage } from '../pages/casos/casos';
+import { tablePage } from '../pages/table/table';
 import { TableroPage } from '../pages/tablero/tablero';
 import { MapaPage } from '../pages/mapa/mapa';
 import { maperPage } from '../pages/maper/maper';
@@ -91,6 +92,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CasoPage,
     CasosPage,
     TableroPage,
+    tablePage,
     MapaPage,
     maperPage
   ],
@@ -143,6 +145,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CasoPage,
     CasosPage,
     TableroPage,
+    tablePage,
     MapaPage,
     maperPage
   ],

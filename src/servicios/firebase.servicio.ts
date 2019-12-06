@@ -255,7 +255,44 @@ public watchColeccion(coleccion:string) {
         });
     }); 
   }
-
+  
+  public getInstancias(coleccion,region) {
+    console.log('Instancias');
+    let f = new Date();
+    let fecha=f.getFullYear() + "/" + (f.getMonth() +1) + "/" + f.getDate() ;
+    this.modelo["encuestaInstancia"]=[];
+    return new Promise<any>((resolve, reject) => {
+      this.consultarColeccion(coleccion).then( snap1 => {
+        console.log("snap1", snap1);
+        snap1.forEach((element1, index1) => {
+          let ref1:string = coleccion+"/"+element1.id+"/instancias";
+          //, ref => ref.where("fhFin", ">", fecha)        
+          this.afs.collection(ref1)
+            .snapshotChanges().subscribe(snap2 => {
+              console.log("snap2", snap2);
+              let max:any;
+              snap2.forEach(element2=>{
+                let doc=element2.payload.doc.data();
+                doc["id"]=element2.payload.doc.id;
+                console.log("MaxInstancia",region,doc["idRegion"],doc["fhFin"]);
+                if(region.includes(doc["idRegion"])) {
+                  if (!max || max.fhFin<doc["fhFin"]) {
+                    max=doc;
+                  }  
+                }
+              })
+              if (max) {
+                console.log("max",max);
+                element1.instancia=max;
+                this.modelo["encuestaInstancia"].push(element1);  
+              }
+          });   
+        });
+        console.log("resolve",snap1);
+        resolve(snap1);
+      });
+    });
+  }
 
   public uploadDocumento(coleccion: string, objeto: any){
     delete objeto.id;

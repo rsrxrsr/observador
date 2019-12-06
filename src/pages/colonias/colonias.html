@@ -1,3 +1,4 @@
+<!--
 <ion-header>
   <ion-navbar>
       <button ion-button menuToggle="menuCatalogos">
@@ -6,18 +7,47 @@
     <ion-title>Colonias</ion-title>
   </ion-navbar>
 </ion-header>
+-->
+
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-7 text-center>
+        <p style="color: white; font-size: 18px;"><b>Colonias</b></p>
+      </ion-col>
+      <ion-col col-1 style="background-color:#96a3b2;text-align: center;padding:0;" >
+        <p style="height: 100%;width: 100%;;padding:0;">
+          <b style="height: 100%;width: 100%;padding:0;" class="pointer">
+            <ion-icon
+              name="add-circle"
+              style="color: white;font-size: 40px;margin:0;"
+              (click)="selectRow()"
+            ></ion-icon>
+          </b>
+        </p>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button (click)="closePage()" style="background-color:#2a4a7c;"><ion-icon name="house" style="color: white;font-size: 30px;margin-top:10px;"></ion-icon></button>
+        <button ion-button menuToggle="menuCatalogos" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
 
 <ion-content padding>  
-    <!-- -->
-      <div *ngIf="delta.municipio[coleccion] == 0">
-        <ion-item>No hay información</ion-item>
-      </div>
-    <!-- --> 
-  
+    <div *ngIf="delta.municipio[coleccion] == 0">
+      <ion-item>No hay información</ion-item>
+    </div>
+    <!--  
     <ion-fab top right>
       <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
     </ion-fab> 
-  
+    -->
     <div padding-horizontal text-center >
         <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
     </div>

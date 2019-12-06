@@ -1,10 +1,29 @@
+<!--
 <ion-header>
-
   <ion-navbar>
     <ion-title>Pregunta</ion-title>
   </ion-navbar>
-
 </ion-header>
+-->
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-navbar color="navcolor">
+          <ion-title><p style="color: white; font-size: 18px;"><b>Pregunta</b></p></ion-title>
+        </ion-navbar>    
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button menuToggle="menuEncuestas" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
 
 <ion-content padding class="tema-app">
     <div padding-horizontal text-center >
@@ -24,32 +43,34 @@
                   <ion-label stacked>Clave/Inciso/Número</ion-label>
                   <ion-input type="text" placeholder="Número o inciso de pregunta" name="cvPregunta" [(ngModel)]="doc.cvPregunta" required></ion-input>
                 </ion-item>
+                <br />
                 <ion-item>
                   <ion-label stacked>Pregunta</ion-label>
                   <ion-input type="text" placeholder="Pregunta" name="pregunta" [(ngModel)]="doc.pregunta" required></ion-input>
                 </ion-item>
+                <br />
                 <ion-item>
                   <ion-label stacked>Grupo</ion-label>
                   <ion-input type="text" placeholder="Grupo" name="grupo" [(ngModel)]="doc.grupo" required></ion-input>
                 </ion-item>  
+                <br />
                 <ion-item>
                   <ion-label stacked>Tipo</ion-label>
                   <ion-input type="text" placeholder="Tipo" name="Tipo" [(ngModel)]="doc.tipo" required></ion-input>
                 </ion-item>
-
               </ion-list>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="ion-col" *ngIf="!isUpdate">
-              <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+              <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
             </ion-col>
             <ion-col class="ion-col" *ngIf="isUpdate">
-              <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+              <button ion-button class="submit-btn round" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
             </ion-col>
             <ion-col class="ion-col" *ngIf="isUpdate">
-              <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+              <button ion-button class="submit-btn round" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
             </ion-col>
           </ion-row>
 

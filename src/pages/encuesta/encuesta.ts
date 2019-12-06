@@ -32,6 +32,7 @@ export class EncuestaPage {
     {
       this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ) 
       .then(res => {
+        this.registrarEncuesta(res["id"]);
         this.showPopup("Success", "Document update.") 
       }).catch(err =>
         this.showPopup("Error", "Document update.")
@@ -42,6 +43,7 @@ export class EncuestaPage {
   public editar() {
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc )
     .then(res => {
+      this.registrarEncuesta(this.doc.id);
       this.showPopup("Success", "Document update.") 
     }).catch(err =>
       this.showPopup("Error", "Document update.")
@@ -63,6 +65,15 @@ export class EncuestaPage {
       }
     );
 
+  }
+
+  public registrarEncuesta(id:String) {    
+    if (!this.isUpdate) {
+      this.doc["idInstancia"]=this.servicioFirebase.getId();
+    }
+    let encuesta={idRegion:"",idCaso:"",fhInicio:new Date().toISOString(),fhFin:new Date().toISOString()};
+    console.log("Instancia",id,this.doc["idInstancia"]);
+    this.servicioFirebase.upsertDocument("encuestas/"+id+"/instancias",this.doc["idInstancia"],encuesta );  
   }
 
 showPopup(title, text) {

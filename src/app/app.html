@@ -2,6 +2,8 @@
     <ion-content>
       <ion-list>
         <h6>Menu Principal</h6>
+        <button ion-item menuClose (click)="openPage('tablePage')"
+          *ngIf="servicioFirebase.roles.includes('Ejecutivo')">Tablero</button>
         <button ion-item menuClose (click)="openPage('CasosPage')"
           *ngIf="servicioFirebase.roles.includes('Supervisor')">Casos</button>
         <button ion-item menuClose (click)="openPage('AccionesPage')"
@@ -12,6 +14,7 @@
           *ngIf="servicioFirebase.roles.includes('Administrador')">Usuarios</button>
         <button ion-item menuClose (click)="openPage('menuCatalogos')" 
           *ngIf="servicioFirebase.roles.includes('Administrador')">Catálogos</button>
+
         <!--
         <button ion-item menuClose (click)="openPage('AccionesPage')">Acciones</button>
         <button ion-item menuClose (click)="openPage('TabsPage')">Tablero</button>

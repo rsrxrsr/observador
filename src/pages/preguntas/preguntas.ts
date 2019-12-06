@@ -31,10 +31,10 @@ export class PreguntasPage {
           this.titulo="Preguntas";
           break;
         case "opciones":
-          this.titulo="Opciones: seleccione pregunta>";
+          this.titulo="Opciones: seleccione pregunta...";
           break;
         default:
-          this.titulo="Preguntas?: seleccione opción>";
+          this.titulo="Preguntas?: seleccione opción...";
         } 
     console.log(this.nmColeccion, this.rollPage, this.coleccion);
     };

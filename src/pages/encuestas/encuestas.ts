@@ -31,19 +31,19 @@ export class EncuestasPage {
           this.titulo="Encuestas";
           break;
         case "preguntas":
-          this.titulo="Preguntas: seleccione encuesta>";
+          this.titulo="Preguntas: seleccione encuesta...";
           break;
         case "opciones":
-          this.titulo="Opciones: seleccione encuesta>";
+          this.titulo="Opciones: seleccione encuesta...";
           break;
         default:
-          this.titulo="Encuestas?: seleccione encuesta>";
+          this.titulo="Encuestas?: seleccione encuesta...";
         } 
     console.log(this.nmColeccion, this.rollPage, this.coleccion);
     };
  
-    public ionViewDidLoad() {
-      this.servicioFirebase.consultarColeccion(this.coleccion);
+  public ionViewDidLoad() {
+    this.servicioFirebase.consultarColeccion(this.coleccion);
   }
 
   public selectRow(event, item ) {

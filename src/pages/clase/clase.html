@@ -1,11 +1,29 @@
+<!--
 <ion-header>
-
   <ion-navbar>
     <ion-title>Clasificador</ion-title>
   </ion-navbar>
-
 </ion-header>
-
+-->
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-navbar color="navcolor">
+          <ion-title><p style="color: white; font-size: 18px;"><b>Clasificación</b></p></ion-title>
+        </ion-navbar>
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button menuToggle="menuCatalogos" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
 
 <ion-content padding class="tema-app">
   <div padding-horizontal text-center >
@@ -25,7 +43,7 @@
                   <ion-label stacked>Clasificación</ion-label>
                   <ion-input type="text" placeholder="Clase" name="clase" [(ngModel)]="doc.clase" required></ion-input>
                 </ion-item>
-
+                <br />
                 <ion-item>
                   <ion-label stacked>Descripción</ion-label>
                   <ion-input type="text" placeholder="descripcion" name="descripcion" [(ngModel)]="doc.descripcion" required></ion-input>
@@ -37,13 +55,13 @@
 
           <ion-row>
             <ion-col class="ion-col" *ngIf="!isUpdate">
-              <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+              <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
             </ion-col>
             <ion-col class="ion-col" *ngIf="isUpdate">
-              <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+              <button ion-button class="submit-btn round" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
             </ion-col>
             <ion-col class="ion-col" *ngIf="isUpdate">
-              <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+              <button ion-button class="submit-btn round" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
             </ion-col>
           </ion-row>
 

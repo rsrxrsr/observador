@@ -13,35 +13,37 @@ export class cuestionarioPage {
   doc={id:'',instancias:{},respuesta:{}};
   isUpdate=false;
   createSuccess = false;
-  delta={idObservador:"", idInstancia:""};
+  delta={idObservador:"", idRegion:"", idInstancia:"",encuesta:{}};
 
   constructor(
     private servicioFirebase: ServicioFirebase,
     private nav: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController
-    ) {
-      if (navParams.get('item')) {
-        this.isUpdate = true;
-        this.delta = navParams.get('item');
-      }    
-      this.delta.idInstancia="encuestas/EyiOj3b1ejzm96UvbCON/instancias/boOOkwpfTbYi6q9x71eH";
-      this.delta.idObservador=this.servicioFirebase.modelo["usuarios"][0].id;
-      console.log("Constructor",this.delta);
-    }
+    ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Page');
-    this.consultarEncuesta();
+    console.log('ionViewDidLoad Cuestionario');
+    this.delta.idRegion=this.servicioFirebase.modelo["usuarios"][0].idRegion;
+    this.delta.idObservador=this.servicioFirebase.modelo["usuarios"][0].id;
+    this.servicioFirebase.getInstancias("encuestas",this.delta.idRegion);
+  }
+
+  setIdRegion(){
+    console.log(this.delta.encuesta);
+//    this.delta.idRegion=this.delta.encuesta["instancia"].id;
+    this.consultarEncuesta();    
   }
 
   public consultarEncuesta() {
     console.log('Consultar', this.delta);
     //
-    let refI:string, refE:string, refP:string, refO:string ; 
+    let refI:string, refE:string, refP:string, refO:string ;
+    this.doc={id:'',instancias:{},respuesta:{}};
+    this.delta.idInstancia="encuestas/"+this.delta.encuesta["id"]+"/instancias/"+this.delta.encuesta["instancia"]["id"]; 
     refI=this.delta.idInstancia;
     this.servicioFirebase.docById(refI).then( docI => {
-      refE=this.coleccion+"/EyiOj3b1ejzm96UvbCON";//+docI.idEcuesta;
+      refE=refI.substring(0,refI.indexOf('/i'));
       this.servicioFirebase.docById(refE).then( docE => {
         this.servicioFirebase.modelo[this.coleccion]=docE;
         docE["instancias"]=docI;

@@ -23,6 +23,7 @@ import { OpcionesPage } from '../pages/opciones/opciones';
 import { cuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { CasosPage } from '../pages/casos/casos';
 import { AccionesPage } from '../pages/acciones/acciones';
+import { tablePage } from '../pages/table/table';
 
 @Component({
   templateUrl: 'app.html'
@@ -66,6 +67,7 @@ export class ObservadorApp {
       'cuestionarioPage' : cuestionarioPage,
       'CasosPage'      : CasosPage,
       'AccionesPage'   : AccionesPage,
+      'tablePage'      : tablePage,
     }
   }
   //

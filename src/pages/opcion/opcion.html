@@ -1,10 +1,30 @@
+<!--
 <ion-header>
-
     <ion-navbar>
       <ion-title>Opción</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
+    </ion-navbar>  
+</ion-header>
+-->
+  <ion-header>
+      <ion-row style="background-color:#96a3b2;height: 100%;">
+        <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+          <div style="margin-top:5px;">
+            <img src="../../assets/imgs/logo1.png" alt="" />
+          </div>
+        </ion-col>
+        <ion-col col-8 text-center>
+          <ion-navbar color="navcolor">
+            <ion-title><p style="color: white; font-size: 18px;"><b>Opción</b></p>
+            </ion-title>
+          </ion-navbar>      
+        </ion-col>
+        <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+          <button ion-button menuToggle="menuEncuestas" style="background-color:#2a4a7c;text-align: center;">
+            <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+          </button>  
+        </ion-col>
+      </ion-row>
+    </ion-header>
   
   <ion-content padding class="tema-app">
       <div padding-horizontal text-center >
@@ -21,14 +41,16 @@
         <ion-row>
           <ion-col>
             <ion-list inset>
-                <ion-item>
-                  <ion-label stacked>Clave/Inciso/Número</ion-label>
-                  <ion-input type="text" placeholder="Clave, inciso, número" name="clave" [(ngModel)]="doc.cvOpcion" required></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label stacked>Opción</ion-label>
-                  <ion-input type="text" placeholder="Opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
-              </ion-item>  
+              <ion-item>
+                <ion-label stacked>Clave/Inciso/Número</ion-label>
+                <ion-input type="text" placeholder="Clave, inciso, número" name="clave" [(ngModel)]="doc.cvOpcion" required></ion-input>
+              </ion-item>
+              <br />
+              <ion-item>
+                <ion-label stacked>Opción</ion-label>
+                <ion-input type="text" placeholder="Opcion" name="opcion" [(ngModel)]="doc.opcion" required></ion-input>
+              </ion-item> 
+              <br /> 
               <ion-item>
                 <ion-label stacked>Valor</ion-label>
                 <ion-input type="text" placeholder="Ponderación de la opcion" name="valor" [(ngModel)]="doc.valor" required></ion-input>
@@ -39,13 +61,13 @@
   
         <ion-row>
           <ion-col class="ion-col" *ngIf="!isUpdate">
-            <button ion-button class="submit-btn" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
+            <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
           </ion-col>
           <ion-col class="ion-col" *ngIf="isUpdate">
-            <button ion-button class="submit-btn" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+            <button ion-button class="submit-btn round" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
           </ion-col>
           <ion-col class="ion-col" *ngIf="isUpdate">
-            <button ion-button class="submit-btn" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
+            <button ion-button class="submit-btn round" full type="button"  (click)="borrar()" [disabled]="!registerForm.form.valid">Borrar</button>
           </ion-col>
         </ion-row>
   

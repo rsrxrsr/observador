@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-row style="background-color:#96a3b2;height: 100%;">
+      <ion-col col-2 style="background-color: #2a4a7c;" text-center>
+        <div style="margin-top:5px;">
+          <img src="../../assets/imgs/logo1.png" alt="" />
+        </div>
+      </ion-col>
+      <ion-col col-8 text-center>
+        <ion-navbar color="navcolor">
+          <ion-title><p style="color: white; font-size: 18px;"><b>Tablero</b></p></ion-title>
+        </ion-navbar>        
+      </ion-col>
+      <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
+          <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
+        </button>  
+      </ion-col>
+    </ion-row>
+  </ion-header>
+  
+<ion-content padding class="tema-app">    
+  <div padding-horizontal text-center >
+      <img src="../../assets/imgs/text.png" alt="Observador ciudadano">
+  </div>
+  <div width="90%"  style="height:800px;"  >
+      <iframe 
+            width="100%"
+            style="height:800px;"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZDMyYTJlZjktYjBjOS00ZGI4LTkzNjYtOWE5NTg5OWY3ODY0IiwidCI6IjkyMWY3OWM5LWYzNzUtNDcwMS04YzAwLTI1NDFhYTQzMjFhNyJ9"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen          
+            ></iframe>
+    </div >
+</ion-content>
