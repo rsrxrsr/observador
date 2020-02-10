@@ -26,10 +26,11 @@ export class CasosPage {
  
     public ionViewDidLoad() {
       //this.servicioDb.getColeccion(this.coleccion);
-      this.servicioFirebase.consultarColeccion(this.coleccion).then(snap=>{
-        this.items=snap;
-      })
-      //this.servicioFirebase.getOrderCollection(this.coleccion);
+      //this.servicioFirebase.consultarColeccion(this.coleccion)
+      this.servicioFirebase. getColeccion("usuarios")
+      .then(snap=>this.servicioFirebase. findOrderCaso(this.coleccion))
+      .then(snap=>this.items=snap)
+      .catch(error=>console.log("error en lectura"))
   }
 
   public selectRow(event, item ){
@@ -41,8 +42,10 @@ export class CasosPage {
   public setFilter(searchData, data){
     this.swFind=true;
     this.items = data.filter((item) => {
-      let searchText=item.titulo+item.idClassification+item.municipio;
-      return searchText.toLowerCase().indexOf(searchData)>-1;
+      let searchText=item.titulo+item.idClassification
+                    + this.servicioFirebase.model["usuarios"][item.idObservador]["region"] 
+                    + this.servicioFirebase.model["usuarios"][item.idObservador]["usuario"]
+      return searchText.toLowerCase().indexOf(searchData.toLowerCase())>-1;
     });
     this.swFind=false;
   }
@@ -54,17 +57,30 @@ export class CasosPage {
     } 
     this.toggle[item]=this.toggle[item]*-1;
     let _this=this;
-    this.items.sort(
-      function(a, b){
-        if (a[item] > b[item]) {
-          return 1*_this.toggle[item];
-        }
-        if (a[item] < b[item]) {
-          return -1*_this.toggle[item];
-        }
-        // a must be equal to b
-        return 0;
-    })  
+    if (item=="region" || item=="usuario") {      
+      this.items.sort(
+        function(a, b){
+          if (_this.servicioFirebase.model["usuarios"][a.idObservador][item] > _this.servicioFirebase.model["usuarios"][b.idObservador][item]) {
+            return 1*_this.toggle[item];
+          }
+          if (_this.servicioFirebase.model["usuarios"][a.idObservador][item] < _this.servicioFirebase.model["usuarios"][b.idObservador][item]) {
+            return -1*_this.toggle[item];
+          }
+          // a must be equal to b
+          return 0;
+      })
+    } else {
+      this.items.sort(
+        function(a, b){
+          if (a[item] > b[item]) {
+            return 1*_this.toggle[item];
+          }
+          if (a[item] < b[item]) {
+            return -1*_this.toggle[item];
+          }
+          // a must be equal to b
+          return 0;
+      })
+    }
   }  
-
 }

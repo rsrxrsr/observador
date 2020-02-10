@@ -49,9 +49,9 @@ export class MunicipioPage {
       this.servicioFirebase.agregarDocumento(this.getRef(this.itemPadre.id), this.doc ) 
       .then(res => {
         this.consultar();
-        this.showPopup("Success", "Document update.") 
+        this.showPopup("Municipios", "Documento creado") 
       }).catch(err =>
-        this.showPopup("Error", "Document update.")
+        this.showPopup("Municipios", "Error en creación")
       );
       }
   }
@@ -59,9 +59,9 @@ export class MunicipioPage {
   public editar() {
     this.servicioFirebase.editarDocumento (this.getRef(this.itemPadre.id), this.doc.id, this.doc )
     .then(res => {
-      this.showPopup("Success", "Document update.") 
+      this.showPopup("Municipios", "Documento actualizado") 
     }).catch(err =>
-      this.showPopup("Error", "Document update.")
+      this.showPopup("Municipios", "Error al actualizar")
     );
   }
 
@@ -73,9 +73,9 @@ export class MunicipioPage {
         this.servicioFirebase.eliminarDocumento (this.getRef(this.itemPadre.id), this.doc.id )
         .then(res => {
           this.consultar();
-          this.showPopup("Success", "Document update.") 
+          this.showPopup("Municipios", "Documento actualizado") 
         }).catch(err =>
-          this.showPopup("Error", "Document update.")
+          this.showPopup("Municipios", "Error al actualizar")
         );
         this.nav.pop();            
       }

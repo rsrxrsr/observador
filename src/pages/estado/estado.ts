@@ -33,13 +33,13 @@ export class EstadoPage {
   public register() {
     {
       this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ); 
-      this.showPopup("Success", "Document created.");
+      this.showPopup("Estados", "Documento creado");
     }
   }
 
   public editar() {
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
-    this.showPopup("Success", "Document update.");
+    this.showPopup("Estados", "Documento actualizado");
 
   }
 
@@ -50,9 +50,9 @@ export class EstadoPage {
       ()=> {
         this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )  
         .then(res => {
-          this.presentAlert("Proceso Efectuado", "El documento se ha borrado") 
+          this.presentAlert("Estados", "Documento borrado") 
         }).catch(err =>
-          this.presentAlert("Error", "Error al borrado el documento ")
+          this.presentAlert("Estados", "Error al borrar")
         );
         this.nav.pop();            
       }

@@ -31,7 +31,9 @@
         </p>
       </ion-col>
       <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
+        <!--
         <button ion-button (click)="closePage()" style="background-color:#2a4a7c;"><ion-icon name="house" style="color: white;font-size: 30px;margin-top:10px;"></ion-icon></button>
+        -->
         <button ion-button menuToggle="menuCatalogos" style="background-color:#2a4a7c;text-align: center;">
           <ion-icon name="menu" style="color: white;font-size: 40px;margin-top:10px;"></ion-icon>
         </button>  
@@ -60,7 +62,7 @@
             <ion-row>
               <ion-col>
                   <ion-item>
-                      <ion-label>Estado {{delta.estado.id}}</ion-label>
+                      <ion-label>Estado</ion-label>
                       <ion-select [(ngModel)]="delta.estado" name="idEdo" >
                         <ion-option *ngFor="let opcion of servicioFirebase.modelo[coleccion]" [value]="opcion">{{opcion.nombre}}</ion-option>                 
                       </ion-select>
@@ -68,7 +70,7 @@
               </ion-col>
               <ion-col>
                   <ion-item>
-                      <ion-label>Municipio {{delta.municipio.id}}</ion-label>
+                      <ion-label>Municipio </ion-label>
                       <ion-select [(ngModel)]="delta.municipio" name="idMun" >
                         <ion-option *ngFor="let opcion of delta.estado[coleccion]" [value]="opcion">{{opcion.nombre}}</ion-option>                 
                       </ion-select>

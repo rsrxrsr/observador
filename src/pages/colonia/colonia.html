@@ -41,16 +41,16 @@
               <ion-list inset >
               <!-- -->
                 <ion-item>
-                  <ion-label>Estado {{delta.estado.id}}</ion-label>
+                  <ion-label>Estado</ion-label>
                   <ion-select [(ngModel)]="delta.estado" name="idEdo" disabled="{{isUpdate}}" (ionChange)="this.delta.idxEdo=idxEdo">
-                    <ion-option *ngFor="let opcion of servicioFirebase.modelo[coleccion]; let idxEdo=index" [value]="opcion" >{{opcion.nombre}}{{delta.idxEdo}}</ion-option>                 
+                    <ion-option *ngFor="let opcion of servicioFirebase.modelo[coleccion]; let idxEdo=index" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
                   </ion-select>
                 </ion-item>
                 <br />
                 <ion-item>
-                  <ion-label>Municipio {{delta.municipio.id}}</ion-label>
+                  <ion-label>Municipio</ion-label>
                   <ion-select [(ngModel)]="delta.municipio" name="idMun" disabled="{{isUpdate}}" (ionChange)="this.delta.idxMun=idxMun">
-                    <ion-option *ngFor="let opcion of delta.estado[coleccion]; let idxMun=index" [value]="opcion" >{{opcion.nombre}}{{delta.idxMun}}</ion-option>                 
+                    <ion-option *ngFor="let opcion of delta.estado[coleccion]; let idxMun=index" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
                   </ion-select>
                 </ion-item> 
                 <br />

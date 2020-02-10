@@ -57,13 +57,9 @@ export class MapaPage {
     //let longitude = position.coords.longitude;
     //let latitude = 43.5293;
     //let longitude = -5.6773;
-    let latitude = Number(this.item.longitude);
-    let longitude = Number(this.item.latitude);
+    let longitude = Number(this.item.longitude);
+    let  latitude = Number(this.item.latitude);
 
-    //latitude = 19.4978;
-    //longitude =  -99.1269;
-    latitude = 40;
-    longitude =  -3.5;
     console.log(latitude, longitude);
 
     // create a new map by passing HTMLElement

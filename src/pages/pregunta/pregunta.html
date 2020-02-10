@@ -55,9 +55,14 @@
                 </ion-item>  
                 <br />
                 <ion-item>
-                  <ion-label stacked>Tipo</ion-label>
-                  <ion-input type="text" placeholder="Tipo" name="Tipo" [(ngModel)]="doc.tipo" required></ion-input>
+                  <ion-label>Tipo de pregunta</ion-label>
+                  <ion-select name="Tipo" [(ngModel)]="doc.tipo">
+                    <ion-option>abierta</ion-option>
+                    <ion-option>cerrada</ion-option>
+                    <ion-option>multiple</ion-option>
+                  </ion-select>
                 </ion-item>
+    
               </ion-list>
             </ion-col>
           </ion-row>

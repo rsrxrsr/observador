@@ -52,7 +52,7 @@ export class CasoPage {
   public register() {
     {
       this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ); 
-      this.showPopup("Success", "Document created.");
+      this.showPopup("Casos", "Documento creado");
     }
   }
 
@@ -61,12 +61,12 @@ export class CasoPage {
       this.doc['dateClosed']=new Date().toISOString();
     }  
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
-    this.showPopup("Success", "Document update."); 
+    this.showPopup("Casos", "Documento actualizado"); 
   }
 
   public borrar() {
     this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
-    this.showPopup("Success", "Document delete."); 
+    this.showPopup("Casos", "Documento Borrado"); 
   }
 
   public showImagen() {

@@ -33,9 +33,9 @@ export class EncuestaPage {
       this.servicioFirebase.agregarDocumento(this.coleccion, this.doc ) 
       .then(res => {
         this.registrarEncuesta(res["id"]);
-        this.showPopup("Success", "Document update.") 
+        this.showPopup("Encuestas", "Documento creado") 
       }).catch(err =>
-        this.showPopup("Error", "Document update.")
+        this.showPopup("Encuestas", "Error en creación")
       );
       }
   }
@@ -44,9 +44,9 @@ export class EncuestaPage {
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc )
     .then(res => {
       this.registrarEncuesta(this.doc.id);
-      this.showPopup("Success", "Document update.") 
+      this.showPopup("Encuestas", "Documento actualizado") 
     }).catch(err =>
-      this.showPopup("Error", "Document update.")
+      this.showPopup("Encuestas", "Error al actualizar")
     );
   }
 
@@ -57,9 +57,9 @@ export class EncuestaPage {
       ()=> {
         this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )
         .then(res => {
-          this.showPopup("Success", "Document update.") 
+          this.showPopup("Encuestas", "Documento borrado") 
         }).catch(err =>
-          this.showPopup("Error", "Document update.")
+          this.showPopup("Encuestas", "Error al borrar")
         );
         this.nav.pop();            
       }
@@ -68,15 +68,15 @@ export class EncuestaPage {
   }
 
   public registrarEncuesta(id:String) {    
-    if (!this.isUpdate) {
+    //if (!this.isUpdate) {
       this.doc["idInstancia"]=this.servicioFirebase.getId();
-    }
-    let encuesta={idRegion:"",idCaso:"",fhInicio:new Date().toISOString(),fhFin:new Date().toISOString()};
+    //}
     console.log("Instancia",id,this.doc["idInstancia"]);
+    let encuesta={idRegion:"",idCaso:"",fhInicio:new Date().toISOString(),fhFin:new Date().toISOString()};
     this.servicioFirebase.upsertDocument("encuestas/"+id+"/instancias",this.doc["idInstancia"],encuesta );  
   }
 
-showPopup(title, text) {
+  showPopup(title, text) {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: text,

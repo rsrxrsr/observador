@@ -45,19 +45,19 @@ export class UsuarioPage {
   public register() {
     //Validar
     if (this.doc.pass != this.forma.confirmation_password) {
-      this.showPopup("Error", 'The password confirmation does not match.');
+      this.showPopup("Usuarios", 'La contraseña y su confirmación no son identicas');
     } else 
     if (this.file) {
         this.servicioFirebase.fileUpload(this.file).then(fileInfo=>{
         this.doc["foto"]=fileInfo.downloadUrl;
         this.servicioFirebase.agregarDocumento("usuarios", this.doc );
         this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);    
-        this.showPopup("Success", "Document created.");          
+        this.showPopup("Usuarios", "Documento creado");          
       })
     } else {
       this.servicioFirebase.agregarDocumento("usuarios", this.doc ); 
       this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);   
-      this.showPopup("Success", "Document created.");          
+      this.showPopup("Usuarios", "Documento creado");          
     }
   }
 
@@ -66,17 +66,28 @@ export class UsuarioPage {
       this.servicioFirebase.fileUpload(this.file).then(fileInfo=>{
       this.doc["foto"]=fileInfo.downloadUrl;
       this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
-      this.showPopup("Success", "Document updated.");          
+      this.showPopup("Usuarios", "Documento actualizado");          
     })} else {
       this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
       this.servicioFirebase.createUser(this.doc["correo"],this.doc.pass);   
-      this.showPopup("Success", "Document updated.");          
+      this.showPopup("Usuarios", "Documento actualizado");          
     }
   }
 
   public borrar() {
-    this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
-    this.showPopup("Success", "Document delete."); 
+    this.presentConfirm(
+      "Confirme Baja",
+      "Se borrará el documento",
+      ()=> {
+        this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )  
+        .then(res => {
+          this.showPopup("Usuarios", "Documento borrado") 
+        }).catch(err =>
+          this.showPopup("Usuarios", "Error al borrar")
+        );
+        this.nav.pop();            
+      }
+    );
   }
 
   setFile(event) {
@@ -101,6 +112,30 @@ export class UsuarioPage {
             if (this.createSuccess) {
               this.nav.popToRoot();
             }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentConfirm(title:string, message:string, funcion:any) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            funcion();
+            console.log('Buy clicked');
           }
         }
       ]

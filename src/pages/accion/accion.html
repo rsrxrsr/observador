@@ -41,7 +41,7 @@ ion-header>
       <ion-row>
         <ion-col>
           <ion-list inset>
-          <!-- -->
+          <!--
           <ion-item>
             <ion-label>Estado</ion-label>
             <ion-select [(ngModel)]="delta.estado" name="idEdo" (ionChange)="setIdRegion(regiones)" [disabled]="isCaso">
@@ -55,20 +55,24 @@ ion-header>
               <ion-option *ngFor="let opcion of delta.estado[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
             </ion-select>
           </ion-item> 
-          <br />           
-          <ion-item>
-            <ion-label>Colonia</ion-label>
-            <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)" [disabled]="isCaso">
-              <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
-            </ion-select>
-          </ion-item>
-          <!-- -->
-          <br />    
+          <br />
+          -->
+          <div *ngIf="!isCaso">           
+            <ion-item>
+              <ion-label>Colonia</ion-label>
+              <ion-select [(ngModel)]="delta.colonia" name="idCol" (ionChange)="setIdRegion(regiones)" >
+                <ion-option *ngFor="let opcion of delta.municipio[regiones]" [value]="opcion" >{{opcion.nombre}}</ion-option>                 
+              </ion-select>
+            </ion-item>
+            <br />
+          </div>    
+          <!--
           <ion-item>
             <ion-label stacked>Region</ion-label>
             <ion-input type="text" name="Region" [(ngModel)]="doc.region" readonly></ion-input>
           </ion-item>
           <br />
+          -->
           <ion-item>
             <ion-label stacked>Tipo</ion-label>
             <ion-select name="Tipo" [(ngModel)]="doc.tipo" required>
@@ -97,28 +101,61 @@ ion-header>
           </ion-item>
           <br />
           <ion-item>
-              <ion-label stacked>Fecha Alta</ion-label>
-              <ion-input type="date" placeholder="fecha alta" name="fhAlta" [(ngModel)]="doc.fhAlta" required></ion-input>
+            <ion-label stacked>Responsable</ion-label>
+            <ion-input type="text" placeholder="Responsable" name="Responsable" [(ngModel)]="doc.responsable"></ion-input>
           </ion-item>
           <br />
           <ion-item>
-              <ion-label stacked>Fecha fin plan</ion-label>
-              <ion-input type="date" placeholder="fecha fin plan" name="fhFinPlan" [(ngModel)]="doc.fhFinPlan" required></ion-input>
+            <ion-label stacked>Fecha Alta</ion-label>
+            <ion-datetime placeholder="fecha alta" name="fhAlta" [(ngModel)]="doc.fhAlta"
+              min="2020-01-01" max="2021" required
+              displayFormat="DD/MM/YYYY" cancelText="Cerrar" doneText="Elegir"  >
+            </ion-datetime>
           </ion-item>
           <br />
           <ion-item>
-              <ion-label stacked>Fecha fin real</ion-label>
-              <ion-input type="date" placeholder="fecha fin" name="fhFin" [(ngModel)]="doc.fhFin"></ion-input>
+            <ion-label stacked>Fecha fin planeado</ion-label>
+            <ion-datetime placeholder="fecha fin plan" name="fhFinPlan" [(ngModel)]="doc.fhFinPlan"
+              min="{{doc.fhAlta | date:'yyyy-MM-dd'}}" max="2021" disabled="{{!doc.fhAlta}}" required
+              displayFormat="DD/MM/YYYY" cancelText="Cerrar" doneText="Elegir"
+            ></ion-datetime> 
           </ion-item>
           <br />
           <ion-item>
-              <ion-label stacked>Responsable</ion-label>
-              <ion-input type="text" placeholder="Responsable" name="Responsable" [(ngModel)]="doc.responsable"></ion-input>
+            <ion-label stacked>Fecha fin</ion-label>
+            <ion-datetime placeholder="fecha fin" name="fhFin" [(ngModel)]="doc.fhFin"
+              min="{{doc.fhAlta | date:'yyyy-MM-dd'}}" max="{{fecha | date:'yyyy-MM-dd'}}"
+              displayFormat="DD/MM/YYYY" cancelText="Cerrar" doneText="Elegir"
+            ></ion-datetime>
           </ion-item>
           <br />
+
+          <ion-row *ngIf="isUpdate">
+            <ion-col class="output textForm" size="12">
+              <ion-label stacked>Informe:</ion-label>
+              <ion-textarea rows={5} cols={36}
+                class="fondoOutput"
+                type="text"
+                placeholder="Informe"
+                name="Informe"
+                [(ngModel)]="doc.informe"
+                readonly
+              ></ion-textarea>
+              <br />
+              <ion-textarea rows={3} cols={36}
+                class="input fondoInput"
+                type="text"
+                placeholder="Comentario"
+                name="InformeAvance"
+                [(ngModel)]="informe"
+              ></ion-textarea>
+            </ion-col>
+          </ion-row>
+          <br />
+    
           <ion-item>
               <ion-label stacked>% Avance</ion-label>
-              <ion-input type="number" [min]="0.00" [max]="100.00" placeholder="% Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
+              <ion-input type="number" inputmode="decimal" min="0.00" max="100.00" step=".10" placeholder="% Avance" name="Avance" [(ngModel)]="doc.avance"></ion-input>
           </ion-item>
           <br />
           <ion-item>
@@ -129,19 +166,19 @@ ion-header>
               <ion-option>Cancelado</ion-option>
             </ion-select>
           </ion-item>
-      </ion-list>
+          </ion-list>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="accion-col" *ngIf="!isUpdate">
-          <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid || validar()">Registrar</button>
         </ion-col>
         <ion-col class="accion-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn round" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>
+          <button ion-button class="submit-btn round" full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid || doc.avance < 0 || doc.avance>100">Guardar</button>
         </ion-col>
         <ion-col class="accion-col" *ngIf="isUpdate">
-          <button ion-button class="submit-btn round" full type="button"  (click)="borrar()" >Borrar</button>
+          <button ion-button class="submit-btn round" full type="button"  [disabled]="doc.estatus!='Cancelado'" (click)="borrar()" >Borrar</button>
         </ion-col>
       </ion-row>
 

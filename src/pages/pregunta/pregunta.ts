@@ -43,10 +43,10 @@ export class PreguntaPage {
       this.servicioFirebase.agregarDocumento(this.coleccion, objeto ) 
       .then(res => {
         //this.consultar();
-        this.showPopup("Success", "Document update.") 
+        this.showPopup("Preguntas", "Documento creado") 
       }).catch(err => {
         console.log(err);
-        this.showPopup("Error", "Document update.")
+        this.showPopup("Preguntas", "Error en creación")
       });
       }
   }
@@ -56,10 +56,10 @@ export class PreguntaPage {
     delete objeto.item;
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, objeto )
     .then(res => {
-      this.showPopup("Success", "Document update.") 
+      this.showPopup("Preguntas", "Documento actualizado") 
     }).catch(err => {
       console.log(err);
-      this.showPopup("Error", "Document update.")
+      this.showPopup("Preguntas", "Error al actualizar")
     });
   }
 
@@ -71,9 +71,9 @@ export class PreguntaPage {
         this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )
         .then(res => {
           //this.consultar();
-          this.showPopup("Success", "Document update.") 
+          this.showPopup("Preguntas", "Documento borrado") 
         }).catch(err =>
-          this.showPopup("Error", "Document update.")
+          this.showPopup("Preguntas", "Error al borrar")
         );
         this.nav.pop();            
       }

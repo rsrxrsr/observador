@@ -13,10 +13,13 @@ export class AccionPage {
   coleccion="acciones";
   regiones="regiones";
   isUpdate=false;
+  fecha: any = new Date();
+  fh = this.fecha.toLocaleDateString();
   isCaso=false;
   createSuccess = false;
-  doc = {id:""};
+  doc = {id:"",informe:"",fhAlta:this.fh};
   delta={estado:{id:''}, municipio:{id:''},colonia:{id:''},idCaso:"",idRegion:"",idObservador:"" };
+  informe:String="";
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -30,15 +33,21 @@ export class AccionPage {
         this.doc=navParams.get('item'); 
         //this.delta = navParams.get('delta');
       } else {
+        this.doc.fhAlta=this.fh;
         this.doc['estatus']="Activo";
       }
       //
       if (navParams.get('delta')) {
         let artra = navParams.get('delta');
         console.log("Watch",this.doc['idRegion'],artra.idRegion);
+        this.doc['idRegion'] = "regiones/mYB9TZez4ys9WGHJbHJy/regiones/LsyugJFENlqSo8ZQc2iq";
+        this.doc['region'] = "CdMx/Miguel Hidalgo";    
         if (artra.idRegion) {
-          this.delta.idRegion=artra.idRegion;
-          this.doc['idRegion']=artra.idRegion;
+          //this.delta.idRegion=artra.idRegion;
+          //this.doc['idRegion']=artra.idRegion;
+          this.doc['idRegion'] = this.servicioFirebase.modelo["usuario"]["idRegion"];
+          this.doc['region'] = this.servicioFirebase.modelo["usuario"]["region"];    
+          this.delta.idRegion=this.doc['region'];
           this.isCaso=true;
         }
         this.delta.idCaso=artra.idCaso;
@@ -66,19 +75,32 @@ export class AccionPage {
     this.registrarEncuesta();
     this.servicioFirebase.agregarDocumento (this.coleccion, this.doc );
     this.enviar();
-    this.showPopup("Alta", "Documento creado");            
+    this.showPopup("Actividades", "Documento creado");            
   }
 
   public editar() {
     this.registrarEncuesta();
+    this.doc.informe = this.doc.informe ? this.doc.informe : "";
+    this.doc.informe+="\r"+this.fh+" "+this.servicioFirebase.modelo["usuario"].usuario+": "+this.informe;
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, this.doc );
     this.enviar();
-    this.showPopup("Cambio", "Documento actualizado");          
+    this.showPopup("Actividades", "Documento actualizado");          
   }
 
   public borrar() {
-    this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id );  
-    this.showPopup("Baja", "Documento borrado"); 
+    this.presentConfirm(
+      "Confirme Baja",
+      "Se borrará el documento",
+      ()=> {
+        this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )  
+        .then(res => {
+          this.showPopup("Actividades", "Documento borrado") 
+        }).catch(err =>
+          this.showPopup("Actividades", "Error al borrar")
+        );
+        this.nav.pop();            
+      }
+    );
   }
 
   public registrarEncuesta() {    
@@ -92,12 +114,16 @@ export class AccionPage {
   }
 
   setIdRegion(coleccion) {
+    let ref:string = "regiones/mYB9TZez4ys9WGHJbHJy/regiones/LsyugJFENlqSo8ZQc2iq";
+    let region="CdMx/Miguel Hidalgo";
+    /*
     let ref:string = coleccion+"/"+this.delta.estado.id;
     let region=this.delta.estado["region"];
     if (this.delta.municipio.id) {
       ref+="/"+coleccion+"/"+this.delta.municipio.id
       region+="/"+this.delta.municipio["region"];
     }
+    */
     if (this.delta.colonia.id) {
       ref+="/"+coleccion+"/"+this.delta.colonia.id;
       region+="/"+this.delta.colonia["region"];
@@ -152,7 +178,12 @@ export class AccionPage {
               this.servicioFirebase.modelo[coleccion][index][coleccion][index2][coleccion]=snap3;
               if (this.doc["idRegion"] && this.doc["idRegion"].indexOf(element2.id) >=0) {
                 this.setRegiones(this.doc["idRegion"]);
-              }                    
+              }
+              //
+              if (index==0 && index2==5 ){
+                this.delta.municipio[this.regiones]=snap3;                
+              }
+              //                    
             });
           });
 //
@@ -161,6 +192,15 @@ export class AccionPage {
     });
   //
   } 
+
+  public validar() {
+    let isInvalid:boolean =
+           Number(this.doc["avance"]) < 0
+        || Number(this.doc["avance"])>100
+        || new Date(this.doc["fhAlta"]) > new Date(this.doc["fhFinPlan"])
+        || new Date(this.doc["fhAlta"]) > new Date(this.doc["fhFin"])
+    return isInvalid;
+  }
 
   //
   public enviar() {
@@ -194,6 +234,30 @@ export class AccionPage {
             if (this.createSuccess) {
               this.nav.popToRoot();
             }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentConfirm(title:string, message:string, funcion:any) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            funcion();
+            console.log('Buy clicked');
           }
         }
       ]

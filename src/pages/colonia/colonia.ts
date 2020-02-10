@@ -71,9 +71,9 @@ export class coloniaPage {
       this.servicioFirebase.agregarDocumento(this.getRef(), this.doc ) 
       .then(res => {
         this.consultar();
-        this.showPopup("Success", "Document update.") 
+        this.showPopup("Colonias", "Documento creado") 
       }).catch(err =>
-        this.showPopup("Error", "Document update.")
+        this.showPopup("Colonias", "Error en creación")
       );
       }
   }
@@ -81,9 +81,9 @@ export class coloniaPage {
   public editar() {
     this.servicioFirebase.editarDocumento (this.getRef(), this.doc.id, this.doc )
     .then(res => {
-      this.showPopup("Success", "Document update.") 
+      this.showPopup("Colonias", "Documento actualizado") 
     }).catch(err =>
-      this.showPopup("Error", "Document update.")
+      this.showPopup("Colonias", "Error al actualizar")
     );
   }
 
@@ -95,9 +95,9 @@ export class coloniaPage {
         this.servicioFirebase.eliminarDocumento (this.getRef(), this.doc.id )
         .then(res => {
           this.consultar();
-          this.showPopup("Success", "Document update.") 
+          this.showPopup("Colonias", "Documento borrado") 
         }).catch(err =>
-          this.showPopup("Error", "Document update.")
+          this.showPopup("Colonias", "Error al borrar")
         );
         this.nav.pop();            
       }

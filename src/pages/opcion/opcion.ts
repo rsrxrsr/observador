@@ -43,10 +43,10 @@ export class OpcionPage {
       this.servicioFirebase.agregarDocumento(this.coleccion, objeto ) 
       .then(res => {
         //this.consultar();
-        this.showPopup("Success", "Document update.") 
+        this.showPopup("Opciones", "Documento creado") 
       }).catch(err => {
         console.log(err);
-        this.showPopup("Error", "Document update.")
+        this.showPopup("Opciones", "Error al crear documento")
       });
       }
   }
@@ -56,10 +56,10 @@ export class OpcionPage {
     delete objeto.item;
     this.servicioFirebase.editarDocumento (this.coleccion, this.doc.id, objeto )
     .then(res => {
-      this.showPopup("Success", "Document update.") 
+      this.showPopup("Opciones", "Documento actualizado") 
     }).catch(err => {
       console.log(err);
-      this.showPopup("Error", "Document update.")
+      this.showPopup("Opciones", "Error al actualizar")
     });
   }
 
@@ -71,9 +71,9 @@ export class OpcionPage {
         this.servicioFirebase.eliminarDocumento (this.coleccion, this.doc.id )
         .then(res => {
           //this.consultar();
-          this.showPopup("Success", "Document update.") 
+          this.showPopup("Opciones", "Documento borrado") 
         }).catch(err =>
-          this.showPopup("Error", "Document update.")
+          this.showPopup("Opciones", "Error al borrar")
         );
         this.nav.pop();            
       }

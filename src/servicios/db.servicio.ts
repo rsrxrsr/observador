@@ -35,8 +35,8 @@ export class ServicioDb {
 
   public sendMessage(usuario:any,message:any){
     console.log("ServicioFCM",usuario,message)
-    //let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="
-    let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="
+  // let url = "https://us-central1-proionic-007.cloudfunctions.net/sendMessage?usuario="
+    let url = "https://us-central1-pm-soluciones.cloudfunctions.net/sendMessage?usuario="
             + usuario;
     return new Promise<any>((resolve, reject) => {
       this.http.post(url, JSON.stringify(message), {responseType:'text'}).subscribe(

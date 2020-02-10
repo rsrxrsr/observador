@@ -105,11 +105,12 @@
                 </ion-select>
               </ion-item> 
               <br />
-              <!-- -->
+          <!-- 
           <ion-item>
             <ion-label stacked>Region</ion-label>
             <ion-input type="region" placeholder="Región" name="region" value="{{doc.idRegion}}" required></ion-input>
           </ion-item>
+          -->
           <br />
           <ion-item>
             <ion-label>Estatus</ion-label>
@@ -124,7 +125,7 @@
 
       <ion-row>
         <ion-col class="usuario-col" *ngIf="!isUpdate">
-          <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="submit-btn round" full type="submit"  [disabled]="!registerForm.form.valid">Guardar</button>
         </ion-col>
         <ion-col class="usuario-col" *ngIf="isUpdate">
           <button ion-button class="submit-btn round " full type="button"  (click)="editar()" [disabled]="!registerForm.form.valid">Guardar</button>

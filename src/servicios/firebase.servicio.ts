@@ -145,6 +145,25 @@ export class ServicioFirebase {
     });
   }
 
+  public findOrderCaso(coleccion: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection(coleccion, ref => ref.where("estatus", "==", "Activo").orderBy('dateCreation'))
+        .snapshotChanges().subscribe(querySnapshot => {
+          var snapshot = [];
+          let ids = [];
+          querySnapshot. forEach(function(doc) {
+            var item=doc.payload.doc.data();
+            item['id']=doc.payload.doc.id;
+            snapshot.push(item);
+            ids["id"]=doc.payload.doc.id;
+          });
+          console.log("Consulta: ", coleccion, snapshot );
+          this.modelo[coleccion]=snapshot;
+          resolve(snapshot);
+          })     
+    });
+  }
+
   public getOrderCollection(coleccion: string) {
     return new Promise<any>((resolve, reject) => {
       this.afs.collection(coleccion, ref => ref.orderBy('fhAlta'))

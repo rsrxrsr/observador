@@ -19,6 +19,7 @@
       <p style="color: white; font-size: 18px;"><b>Listado de Casos</b></p>
     </ion-col>
     <ion-col col-1 style="background-color:#96a3b2;text-align: center;padding:0;" >
+      <!--
       <p style="height: 100%;width: 100%;;padding:0;">
         <b style="height: 100%;width: 100%;padding:0;" class="pointer">
           <ion-icon
@@ -28,6 +29,7 @@
           ></ion-icon>
         </b>
       </p>
+      -->
     </ion-col>
     <ion-col col-2 style="background-color:#2a4a7c;text-align: center;" >
       <button ion-button menuToggle="menuMain" style="background-color:#2a4a7c;text-align: center;">
@@ -47,7 +49,7 @@
     <button (click)="selectRow()" ion-fab mini><ion-icon name="add"></ion-icon></button>
   </ion-fab>      
 -->
-<ion-searchbar [(ngModel)]="searchData"   (ionInput)="setFilter(searchData,this.servicioFirebase.modelo[coleccion])"></ion-searchbar>
+<ion-searchbar [(ngModel)]="searchData"   (ionInput)="setFilter(searchData,this.servicioFirebase.modelo[coleccion])" placeholder="Buscar..."></ion-searchbar>
 <div *ngIf="swFind" class="spinner-container">
   <ion-spinner></ion-spinner>
 </div>
@@ -69,16 +71,21 @@
         <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('idClassification')"></ion-icon></button>
       </ion-col>
       <ion-col col-1>
-        Impacto
+        Riesgo
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('riesgo')"></ion-icon></button>
       </ion-col>
       <ion-col col-1>
-        Riesgo
+        Impacto
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('impacto')"></ion-icon></button>
       </ion-col>
       <ion-col >
-        Municipio
-        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('municipio')"></ion-icon></button>
+        Region
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('region')"></ion-icon></button>
       </ion-col>
-      <ion-col col-1 style="text-align: center;">
+      <ion-col >
+        Usuario
+        <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('usuario')"></ion-icon></button>
+      </ion-col>      <ion-col col-1 style="text-align: center;">
         Detalle
       </ion-col> 
     </ion-row>
@@ -98,9 +105,6 @@
         {{ item.idClassification}}
       </ion-col>
       <ion-col col-1>
-        {{ item.impacto}}
-      </ion-col>
-      <ion-col col-1>
         <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Alto'" >
           <img src="../../assets/imgs/circulo.png" alt="" style="height: 100%; width: 100%;" />
         </div>        
@@ -110,9 +114,14 @@
         <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Medio'" >
           <img src="../../assets/imgs/circuloa.png" alt="" style="height: 100%; width: 100%;" />
         </div>
-       </ion-col>
-      <ion-col >
-        {{ item.municipio}}
+      </ion-col>
+      <ion-col col-1>
+        {{ item.impacto}}
+      </ion-col>
+       <ion-col >
+        {{ servicioFirebase.model["usuarios"][item.idObservador]["region"] }}  
+      </ion-col>      <ion-col >
+        {{ servicioFirebase.model["usuarios"][item.idObservador]["usuario"] }}  
       </ion-col>
       <ion-col col-1 style="text-align: center;">
         <ion-icon name="eye" item-start class="text-primary" title="Ver detalle"></ion-icon>
