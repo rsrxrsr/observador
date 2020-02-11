@@ -19,6 +19,7 @@ export class LoginPage {
   createSuccess = false;
   forma = {id:'' };
   usuario = { correo: '', pass: '', estatus:''};
+  showPolitica:boolean=false;
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -78,6 +79,10 @@ export class LoginPage {
       ]
     });
     alert.present();
+  }
+
+  setPolitica() {
+    this.showPolitica=!this.showPolitica;
   }
 
 }

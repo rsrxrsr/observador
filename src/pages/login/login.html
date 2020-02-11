@@ -30,6 +30,13 @@
                   <button ion-button class="submit-btn loginButton" full type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
                   <div text-center margin-top>
                     <span ion-text color="secondary" tappable ><strong>Version 1.0</strong></span>
+                    <br />
+                    <span ion-text color="secondary"><a (click)="setPolitica()">Política de Privacidad:</a></span>
+                    <span text-center style="font-size:10px;" *ngIf="showPolitica"> 
+                      Esta Política de Privacidad esta destinada para garantizarle que la información confidencial que nos proporcione
+                      al usar nuestros servicios será debidamente salvaguardada y no se le dará por ningún motivo un uso distinto al 
+                      requerido por el servicio. 
+                    </span>
                   </div>      
               </ion-list>
           </ion-col>
@@ -39,4 +46,3 @@
 
   </div>  
 </ion-content>
-
