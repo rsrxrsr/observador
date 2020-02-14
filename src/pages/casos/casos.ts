@@ -28,6 +28,7 @@ export class CasosPage {
       //this.servicioDb.getColeccion(this.coleccion);
       //this.servicioFirebase.consultarColeccion(this.coleccion)
       this.servicioFirebase. getColeccion("usuarios")
+      .then(snap=>this.servicioFirebase. getColeccion("clases"))
       .then(snap=>this.servicioFirebase. findOrderCaso(this.coleccion))
       .then(snap=>this.items=snap)
       .catch(error=>console.log("error en lectura"))
@@ -37,6 +38,12 @@ export class CasosPage {
     this.navCtrl.push(TabsPage,{
       item:item
       });
+  }
+
+  getCategoria(ref) {
+    if (!ref || ref.indexOf("/")<0) return;
+    let idx = ref.split("/")
+    return this.servicioFirebase.model["clases"][idx[1]]["clase"]
   }
 
   public setFilter(searchData, data){

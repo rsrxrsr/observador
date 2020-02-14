@@ -15,7 +15,8 @@ export class CasoPage {
   createSuccess = false;
   doc={id:'',idObservador:'',delta:{usuario:""}};
   forma={dateCreation:''};
-  url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Faccidente.jpg?alt=media&token=abf0dad0-e73c-464c-a1d6-7554cc4969d9";
+  //url="https://firebasestorage.googleapis.com/v0/b/observatorio-d6ad7.appspot.com/o/casos%2Fevidencias%2Faccidente.jpg?alt=media&token=abf0dad0-e73c-464c-a1d6-7554cc4969d9";
+  modelo={categoria:""};
 
   constructor(
     private servicioFirebase: ServicioFirebase,
@@ -33,7 +34,7 @@ export class CasoPage {
         this.doc = navParams.get('item');
         //this.doc['dateCreation']=this.doc['dateCreation'].toDate();
       }
-      this.doc['delta']={usuario:""};    
+      this.doc['delta']={usuario:""}; 
       console.log("caso",this.doc);
     }
 
@@ -41,7 +42,7 @@ export class CasoPage {
     console.log('ionViewDidLoad Page', this.doc.idObservador);
     this.servicioFirebase.docById("usuarios/"+this.doc.idObservador)
     .then(snapshot=>this.doc.delta.usuario=snapshot.usuario);
-
+    this.setCategoria(this.doc["idClassification"])
   }
 
   closePage(){
@@ -102,6 +103,16 @@ export class CasoPage {
       ]
     });
     alert.present();
+  }
+
+  setCategoria(ref) {
+    //console.log("getCategoria",ref)
+    if (!ref || ref.indexOf("/")<0) return;
+    let idx = ref.split("/")
+    let categoria = this.servicioFirebase.model["clases"][idx[1]]["clase"]
+    //console.log("Categoria",categoria)
+    this.servicioFirebase.docById(ref)
+    .then(doc=>{this.modelo.categoria = categoria+"/"+doc.clase})
   }
 
 }

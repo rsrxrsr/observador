@@ -38,7 +38,8 @@ export class EncuestasPage {
           break;
         default:
           this.titulo="Encuestas?: seleccione encuesta...";
-        } 
+        }
+    this.servicioFirebase.modelo[this.coleccion]=[]; 
     console.log(this.nmColeccion, this.rollPage, this.coleccion);
     };
  

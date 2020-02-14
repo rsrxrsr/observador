@@ -16,11 +16,12 @@ import { EstadosPage } from '../pages/estados/estados';
 import { MunicipiosPage } from '../pages/municipios/municipios';
 import { coloniasPage } from '../pages/colonias/colonias';
 import { ClasesPage } from '../pages/clases/clases';
+import { SubClasesPage } from '../pages/subclases/subclases';
 import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
 import { EncuestasPage } from '../pages/encuestas/encuestas';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionesPage } from '../pages/opciones/opciones';
-import { cuestionarioPage } from '../pages/cuestionario/cuestionario';
+import { CuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { CasosPage } from '../pages/casos/casos';
 import { AccionesPage } from '../pages/acciones/acciones';
 import { tablePage } from '../pages/table/table';
@@ -60,11 +61,12 @@ export class ObservadorApp {
       'MunicipiosPage' : MunicipiosPage,
       'coloniasPage'   : coloniasPage,
       'ClasesPage'     : ClasesPage,
+      'SubClasesPage'  : SubClasesPage,
       'menuEncuestas'  : menuEncuestas, 
       'EncuestasPage'  : EncuestasPage,
       'PreguntasPage'  : PreguntasPage,
       'OpcionesPage'   : OpcionesPage,
-      'cuestionarioPage' : cuestionarioPage,
+      'CuestionarioPage' : CuestionarioPage,
       'CasosPage'      : CasosPage,
       'AccionesPage'   : AccionesPage,
       'tablePage'      : tablePage,

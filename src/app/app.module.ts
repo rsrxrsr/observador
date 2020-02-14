@@ -44,6 +44,8 @@ import { coloniaPage } from '../pages/colonia/colonia';
 import { coloniasPage } from '../pages/colonias/colonias';
 import { ClasePage } from '../pages/clase/clase';
 import { ClasesPage } from '../pages/clases/clases';
+import { SubClasePage } from '../pages/subclase/subclase';
+import { SubClasesPage } from '../pages/subclases/subclases';
 import { menuEncuestas } from '../pages/menuEncuestas/menuEncuestas';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { EncuestasPage } from '../pages/encuestas/encuestas';
@@ -51,7 +53,7 @@ import { PreguntaPage } from '../pages/pregunta/pregunta';
 import { PreguntasPage } from '../pages/preguntas/preguntas';
 import { OpcionPage } from '../pages/opcion/opcion';
 import { OpcionesPage } from '../pages/opciones/opciones';
-import { cuestionarioPage } from '../pages/cuestionario/cuestionario';
+import { CuestionarioPage } from '../pages/cuestionario/cuestionario';
 import { CasoPage } from '../pages/caso/caso';
 import { CasosPage } from '../pages/casos/casos';
 import { tablePage } from '../pages/table/table';
@@ -81,6 +83,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     coloniasPage,
     ClasePage,
     ClasesPage,
+    SubClasePage,
+    SubClasesPage,
     menuEncuestas,
     EncuestaPage,
     EncuestasPage,
@@ -88,7 +92,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PreguntasPage,
     OpcionPage,
     OpcionesPage,
-    cuestionarioPage,
+    CuestionarioPage,
     CasoPage,
     CasosPage,
     TableroPage,
@@ -134,12 +138,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     coloniasPage,
     ClasePage,
     ClasesPage,
+    SubClasePage,
+    SubClasesPage,
     menuEncuestas,
     EncuestaPage,
     EncuestasPage,
     PreguntaPage,
     PreguntasPage,
-    cuestionarioPage,
+    CuestionarioPage,
     OpcionPage,
     OpcionesPage,
     CasoPage,

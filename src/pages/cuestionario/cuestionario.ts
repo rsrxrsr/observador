@@ -7,7 +7,7 @@ import { ServicioFirebase } from '../../servicios/firebase.servicio';
   selector: 'page-cuestionario',
   templateUrl: 'cuestionario.html'
 })
-export class cuestionarioPage {
+export class CuestionarioPage {
 
   coleccion="encuestas";
   doc={id:'',instancias:{},respuesta:{}};

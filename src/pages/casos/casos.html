@@ -67,7 +67,7 @@
         <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('dateCreation')"></ion-icon></button>
       </ion-col>
       <ion-col >
-        Clasificación
+        Categoría
         <button style="background-color:navy;"><ion-icon slot="icon-only" name="arrow-dropup" style="color: white;font-size: 18px;" (click)="setSort('idClassification')"></ion-icon></button>
       </ion-col>
       <ion-col col-1>
@@ -102,7 +102,7 @@
       <!-- {{ item.dateCreation }} -->
       </ion-col>
       <ion-col >
-        {{ item.idClassification}}
+        {{ getCategoria(item.idClassification) }}
       </ion-col>
       <ion-col col-1>
         <div style="height: 24px; width: 24px; margin-top:1px;" *ngIf="item.riesgo=='Alto'" >
